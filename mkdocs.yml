@@ -9,35 +9,38 @@ extra_css:
 theme:
   name: material
   language: zh
+  logo: assets/loggie.svg
+  custom_dir: overrides
+  font:
+    text: Noto Sans Simplified Chinese
+    code: Robot Mono
   features:
     - content.code.annotate
     - content.tabs.link
-    - header.autohide
-    - navigation.expand
-    - navigation.indexes
-    - navigation.instant
-    - navigation.sections
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top
-    - navigation.tracking
+    # - navigation.indexes
+    # - navigation.instant
+    # - navigation.sections
     - search.highlight
     - search.share
     - search.suggest
-    - toc.integrate
-  palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - scheme: slate
-      primary: red
-      accent: red
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.tabs.sticky
+    - navigation.top
+
+  # palette:
+  #   - scheme: default
+  #     primary: white
+  #     accent: indigo
+  #     toggle:
+  #       icon: material/toggle-switch-off-outline
+  #       name: Switch to dark mode
+  #   - scheme: slate
+  #     primary: red
+  #     accent: red
+  #     toggle:
+  #       icon: material/toggle-switch
+  #       name: Switch to light mode
 
 markdown_extensions:
   - admonition
