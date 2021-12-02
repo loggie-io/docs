@@ -1,13 +1,82 @@
 nav:
     - Home: index.md
-    - Getting Started:
-      - Overview: getting-started/index.md
-      - Installation:
-        - Kubernetes: getting-started/install/kubernetes.md
-    - User Guide:
+
+    - 快速上手: 
+      - Overview: getting-started/overview.md
+      - 核心概念: getting-started/intro/core-concept.md
+      - 快速上手: 
+        - Overview: getting-started/quick-start/quick-start.md
+        - Kubernetes环境: getting-started/quick-start/kubernetes.md
+        - 主机环境: getting-started/quick-start/node.md
+      - 部署:
+        - Kubernetes部署: getting-started/install/kubernetes.md
+        - 主机部署: getting-started/install/node.md
+      - RoadMap:
+        - 2022: getting-started/roadmap/roadmap-2022.md
+
+    - 用户指南:
       - Overview: user-guide/index.md
-    - Developer Guide:
-      - Overview: developer-guide/index.md
-    - Reference:
+      - 架构与特性: 
+        - 诞生背景: user-guide/architecture/background.md
+        - 设计架构: user-guide/architecture/core-arch.md
+        - 优势与特性: user-guide/architecture/advantages.md
+        - 开源项目对比: user-guide/architecture/compare.md
+
+      - Kubernetes:
+        - Kubernetes下的日志采集: user-guide/use-in-kubernetes/general-usage.md
+        - Loggie采集容器日志: user-guide/use-in-kubernetes/collect-container-logs.md
+        - Loggie采集Node日志: user-guide/use-in-kubernetes/collect-node-logs.md
+        - Loggie中转机: user-guide/use-in-kubernetes/aggregator.md
+        - 采集Kubernetes Events: user-guide/use-in-kubernetes/kube-event-source.md
+
+      - 最佳实践:
+        - 发送日志格式转换: user-guide/best-practice/log-format.md
+        - 日志切分与处理: user-guide/best-practice/log-process.md
+        - 日志定时清理: user-guide/best-practice/log-clean.md
+
+      - 监控报警:
+        - Loggie的监控与报警: user-guide/monitor/loggie-monitor.md
+        - 日志报警: user-guide/monitor/service-log-alarm.md
+
+      - 企业实战:
+        - 日志系统架构与演进: user-guide/enterprise-practice/architecture-and-evolution.md
+        - 企业日志使用实践: user-guide/enterprise-practice/enterprise-log-practice.md
+
+      - TroubleShot:
+        - 一般问题排查思路: user-guide/troubleshot/general-problems.md
+        - FAQ: user-guide/troubleshot/FAQ.md
+
+
+    - 组件配置:
       - Overview: reference/index.md
-    - Blog: blog/index.md
+      - 全局: 
+        - 启动参数与日志配置: reference/global/args.md
+        - 系统配置: reference/global/system.md
+      - Pipelines:
+        - Overview: reference/pipelines/overview.md
+        - Source:
+          - file: reference/pipelines/source/file.md
+          - kafka: reference/pipelines/source/kafka.md
+          - kubeEvent: reference/pipelines/source/kubeEvent.md
+        - Sink:
+          - elasticsearch: reference/pipelines/sink/elasticsearch.md
+          - kafka: reference/pipelines/sink/kafka.md
+          - dev: reference/pipelines/sink/dev.md
+          - grpc: reference/pipelines/sink/grpc.md
+        - Interceptor:
+          - jsonDecode: reference/pipelines/interceptor/jsonDecode.md
+          - limit: reference/pipelines/interceptor/limit.md
+          - logalert: reference/pipelines/interceptor/logalert.md 
+          - metrics: reference/pipelines/interceptor/metrics.md
+          - retry: reference/pipelines/interceptor/retry.md
+        - Queue:
+          - channel: reference/pipelines/queue/channel.md
+          - memeory: reference/pipelines/queue/memory.md
+      - Kubernetes CRD: 
+        - Overview: reference/discovery/kubernetes/overview.md
+        - LogConfig: reference/discovery/kubernetes/logconfig.md
+        - Sink: reference/discovery/kubernetes/sink.md
+        - Interceptor: reference/discovery/kubernetes/interceptors.md
+      
+    - 开发手册:
+      - Overview: developer-guide/index.md

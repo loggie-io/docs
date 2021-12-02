@@ -1,0 +1,63 @@
+{% extends "main.html" %} 
+{% block content %}
+<link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}" />
+
+<div class="md-container">
+  <section class="home-container">
+    <div class="animated-gradient">
+      <img src="assets/filebeat-arch.png" style="display: none;"/>
+    </div>
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <div>
+          <h1>云原生日志Agent</h1>
+          <h2>采集、中转、解析、报警</h2>
+          <h2>动态配置下发，Kubernetes适配</h2>
+          <p style="display: block">
+            <a href="{{ 'getting-started/overview/' | url }}" class="md-button md-button--primary">
+              快速上手
+            </a>
+            <a href="{{ 'user-guide/' | url }}" class="md-button"> 使用指南</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-container">
+    <div class="md-grid md-typeset">
+      <h2>Highlights</h2>
+      <ul class="task-list-control" style="columns: 2">
+        <li class="task-list-item">
+          <input type="checkbox" checked disabled />
+          <span class="task-list-indicator"></span>
+          <b>可扩展、热插拔：</b>配置不同的Source/Interceptor/Sink，拥有中转、过滤、解析、切分、日志报警等能力，可使用Golang快速自研插件
+        </li>
+        <li class="task-list-item">
+          <input type="checkbox" checked disabled /><span class="task-list-indicator"></span>
+          <b>强隔离：</b>多Pipeline设计，减少互相干扰，可同时发送多个不同数据源
+        </li>
+        <li class="task-list-item">
+          <input type="checkbox" checked disabled /><span class="task-list-indicator"></span>
+          <b>轻量级、高性能：</b>基于Golang，极少的资源占用，强大的吞吐性能
+        </li>
+        <li class="task-list-item">
+          <input type="checkbox" checked disabled /><span class="task-list-indicator"></span>
+          <b>可靠性保障：</b>完善的日志可观测性，原生Prometheus metrics支持，还有限流、背压等Interceptor
+        </li>
+        <li class="task-list-item">
+          <input type="checkbox" checked disabled /><span class="task-list-indicator"></span>
+          <b>云原生：</b>配置中心集成Kubernetes，创建CRD实例即可采集容器日志
+        </li>
+        <li class="task-list-item">
+          <input type="checkbox" checked disabled /><span class="task-list-indicator"></span>
+          <b>不仅仅是日志：</b>数据流基于Source/Interceptor/Sink模型，可扩展更多的可能性
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+
