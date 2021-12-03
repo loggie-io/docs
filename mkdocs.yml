@@ -1,6 +1,6 @@
 INHERIT: nav.yml
 
-site_name: Loggie
+site_name: ' ' 
 
 site_description: Loggie Documentation
 extra_css:
@@ -30,13 +30,13 @@ theme:
 
   # palette:
   #   - scheme: default
-  #     primary: white
+  #     primary: indigo
   #     accent: indigo
   #     toggle:
   #       icon: material/toggle-switch-off-outline
   #       name: Switch to dark mode
   #   - scheme: slate
-  #     primary: red
+  #     primary: white
   #     accent: red
   #     toggle:
   #       icon: material/toggle-switch
