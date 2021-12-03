@@ -18,11 +18,11 @@
       display: none;
     }
   }
-  @media screen and (min-width: 76.25em) {
+  /* @media screen and (min-width: 76.25em) {
     .md-sidebar--primary {
       display: none;
     }
-  }
+  } */
   
   @keyframes continuousgradient {
     0% {background-position: 0% 50%;}
