@@ -5,7 +5,7 @@
 
 .md-main__inner .md-content__inner,
 .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner {
-  /* margin: 0; */
+  margin: 0;
   padding: 0;
 }
 
