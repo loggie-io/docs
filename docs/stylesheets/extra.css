@@ -23,9 +23,9 @@
   margin-top: 50px;
 }
 
-.md-tabs {
+/* .md-tabs {
   box-shadow: 0 0 0.2rem rgb(0 0 0 / 10%), 0 0.2rem 0.4rem rgb(0 0 0 / 20%);
-}
+} */
 
 .md-nav__item--nested>.md-nav__link, .md-nav__item a {
   color: var(--nav-item-color);
@@ -53,7 +53,6 @@
 }
 
 .md-sidebar--primary .md-nav__item .md-nav__link--active {
-  /* background-color: aliceblue; */
   background: linear-gradient(295deg,#edf8ff,rgba(232,236,244,0));
   border-right: 2px solid #1a7dc9;
 }
