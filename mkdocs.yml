@@ -1,6 +1,6 @@
 INHERIT: nav.yml
 
-site_name: Loggie
+site_name: ' ' 
 
 site_description: Loggie Documentation
 extra_css:
