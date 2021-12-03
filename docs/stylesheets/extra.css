@@ -76,11 +76,11 @@
     max-width: 64rem;
   }
 
-  @media screen and (min-width: 76.25em) {
+  /* @media screen and (min-width: 76.25em) {
     .md-sidebar--primary:not([hidden])~.md-content>.md-content__inner{
       margin-left: 1.6rem;
     }
-  }
+  } */
 
   .md-tabs__link {
     font-weight: 450;
