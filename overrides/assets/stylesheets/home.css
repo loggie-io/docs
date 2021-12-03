@@ -3,11 +3,11 @@
   max-width: 100%;
 }
 
-.md-main__inner .md-content__inner,
+/* .md-main__inner .md-content__inner,
 .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner {
   margin: 0;
   padding: 0;
-}
+} */
 
 .md-main__inner .md-content__inner:before {
   display: none;
