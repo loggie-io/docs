@@ -27,6 +27,7 @@ nav:
         - Loggie采集容器日志: user-guide/use-in-kubernetes/collect-container-logs.md
         - Loggie采集Node日志: user-guide/use-in-kubernetes/collect-node-logs.md
         - Loggie中转机: user-guide/use-in-kubernetes/aggregator.md
+        - Sidecar方式采集日志: user-guide/use-in-kubernetes/sidecar.md
         - 采集Kubernetes Events: user-guide/use-in-kubernetes/kube-event-source.md
 
       - 最佳实践:
