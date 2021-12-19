@@ -90,5 +90,9 @@
 }
 
 .md-typeset h2 {
-  font-weight: 440;
+  font-weight: 470;
+}
+
+.md-typeset h3 {
+  font-weight: 460;
 }

@@ -42,7 +42,7 @@
     "time": "[13/Dec/2021:12:40:48 +0000]",
     "url": "\"GET / HTTP/1.1\"",
     "status": "404",
-    "s": "683"
+    "size": "683"
     ```
 
 具体配置的时候，建议先使用一些正则调试工具 (https://regex101.com/) 验证是否可以匹配。  
@@ -192,7 +192,7 @@
       - timestamp:
           target:
           - from: logtime
-            fromLayout: ""
+            fromLayout: "2006-01-02T15:04:05Z07:00"
             toLayout: "unix"
     ```
 
