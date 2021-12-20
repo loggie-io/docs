@@ -50,8 +50,6 @@ extraArgs:
 #### 额外挂载
 ```yaml
 extraVolumeMounts:
-  - mountPath: /data/
-    name: data
   - mountPath: /var/log/pods
     name: podlogs
   - mountPath: /var/lib/kubelet/pods
@@ -61,10 +59,6 @@ extraVolumeMounts:
 
 
 extraVolumes:
-  - hostPath:
-      path: /data/
-      type: DirectoryOrCreate
-    name: data
   - hostPath:
       path: /var/log/pods
       type: DirectoryOrCreate
@@ -80,7 +74,7 @@ extraVolumes:
 ```
 建议根据实际情况默认挂载以上目录。  
 
-- Loggie需要记录采集的文件状态(offset等)，避免重启后从头开始采集文件，造成日志采集重复，默认挂载路径为/data/loggie.db，所以挂载了/data目录。如果需要修改该目录，请同时修改file source配置`db.file`（默认`./data/loggie.db`）。  
+- Loggie需要记录采集的文件状态(offset等)，避免重启后从头开始采集文件，造成日志采集重复，默认挂载路径为/data/loggie.db，所以挂载了`/data/loggie--{{ template "loggie.name" . }}`目录。
 - 如果业务Pod使用hostPath挂载日志到节点，需要Loggie挂载相同的路径。  
 - 因为Loggie需要采集容器标准输出的路径，所以需要从节点/var/lib/docker或者/var/log/pods下采集日志，如果环境中部署的docker修改了该路径，请同步修改该挂载路径。如果非docker运行时，比如使用containerd，无需挂载/var/lib/docker，Loggie会从/var/log/pods中寻找实际的标准输出路径。  
 - 如果业务Pod使用emtpyDir挂载日志到节点，默认emtpyDir会在节点的/var/lib/kubelet/pods路径下，所以需要Loggie挂载该路径。如果环境的kubelet修改了该路径配置，这里需要同步修改。  
@@ -152,11 +146,23 @@ config:
 需要注意的是，如果你在本地使用Kind等工具部署Kubernetes，Kind默认会使用containerd runtime，此时需要在discovery.kubernetes中增加        `containerRuntime: containerd`，指定容器运行时。  
 
 
+#### service
+如果Loggie希望接收其他服务发送的数据，需要将自身的服务通过service暴露出来。  
+
+正常情况下，使用Agent模式的Loggie只需要暴露自身管理端口。  
+
+```yaml
+servicePorts:
+  - name: monitor
+    port: 9196
+    targetPort: 9196
+```
+
 ### 部署
 
 初次部署，我们指定部署在`loggie` namespace下，并让helm自动创建该namespace。
 ```bash
-helm install loggie ./ -nloggie --create-namespace --set image=hub.c.163.com/qingzhou/loggie:v0.1.0-rc1
+helm install loggie ./ -nloggie --create-namespace --set image=${loggie-image}
 ```
 
 如果你的环境中已经创建了`loggie` namespace，可以忽略其中的`-nloggie`和`--create-namespace`参数。当然，你也可以使用自己的namespace，将其中`loggie`替换即可。  
@@ -184,4 +190,33 @@ loggie-sxxwh   1/1     Running   0          5m21s   10.244.0.5   kind-control-pl
 
 
 ## 部署Loggie Aggregator
-// TODO
+
+部署Aggregator基本和Agent一致，在helm chart中我们提供了默认注释掉的`Aggregator global config`部分，只需使用该配置同时去掉Agent的配置即可。  
+
+同时，请注意在values.yaml中根据情况增加：
+
+- nodeSelector或者affinity，根据node是否有污点增加tolerations。使得Aggregator DaemonSet只调度在某几个节点上
+- service增加接收的端口，比如使用Grpc source，需要填写默认的6066端口：
+  ```yaml
+  servicePorts:
+  - name: grpc
+    port: 6066
+    targetPort: 6066
+  ```
+- discovery.kubernetes中增加cluster字段，表示中转机集群名称，用于区别Agent或者其他的Loggie集群，如下所示：
+  ```yaml
+  config:
+    loggie:
+      discovery:
+        enabled: true
+        kubernetes:
+          cluster: aggregator
+  ```
+
+执行部署命令参考：
+```
+helm install loggie-aggregator ./ -nloggie-aggregator --create-namespace --set image=${loggie-image}
+```
+
+!!! note
+    Loggie中转机同样可以使用Deployment或者StatefulSet来部署，请参考DaemonSet自行修改helm chart。
