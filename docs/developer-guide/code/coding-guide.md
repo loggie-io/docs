@@ -2,7 +2,7 @@
 
 ## 开发规则
 
-1. 不允许使用time.after。使用time.NewTicker()代替，并及时清理ticker
+1. 不允许使用`time.after()`。使用`time.NewTicker()`代替，并及时清理ticker
 2. 启动任何一个goroutine都要先想好如何退出，以及编码退出逻辑
 3. return err的时候想想是否需要清理本无需启动的goroutine
 4. 永远记住go中的操作都不保证原子性（例如字符串拼接），除了chan、sync包等
@@ -19,13 +19,13 @@
 
 * 日志应该被认真对待。在进行修改时，请花时间记录日志，以确保重要的事情被记录下来。特别是pipeline name、source name等组件的关键信息
 * 日志语句应该是完整的句子，大小写适当，供不一定熟悉源代码的人阅读
-* 打印日志直接使用项目预设的函数，例如`log.Info()`、`log.Error()`。不允许使用`fmt.Printf()`、`fmt.Println()`等go内置fmt方法。项目日志系统采用**zerolog**
+* 打印日志直接使用项目预设的函数，例如`log.Info()`、`log.Error()`。不允许使用`fmt.Printf()`、`fmt.Println()`等go内置fmt方法。项目日志系统采用 **zerolog**
 
 ### 日志级别
 
 * INFO级别是你应该假定该程序将以何种级别运行。INFO信息是一些并不坏的东西，但每次出现时用户肯定想知道
 * DEBUG级别是当有事情发生，你想弄清楚发生了什么的时候才打开的。DEBUG不应该太细，以至于会严重影响程序的性能
-* WARN和ERROR表示某些东西是坏的。如果你不完全确定它是坏的，就使用WARN，如果你确定，就使用ERROR。并且ERROR级别**默认**会上报error metric，如果对接了loggie内置的eventBus中的alertListener（参考[metric上报/error metric](developer-guide/metric/metric-guide.md)），将会直接发出报警
+* WARN和ERROR表示某些东西是坏的。如果你不完全确定它是坏的，就使用WARN，如果你确定，就使用ERROR。并且ERROR级别 **默认** 会上报error metric，如果对接了loggie内置的eventBus中的alertListener（参考[metric上报/error metric](developer-guide/metric/metric-guide.md)），将会直接发出报警
 
 ## 监控
 
@@ -49,23 +49,22 @@
 
 ## Copyright profile
 
-!!! Copyright text
+!!! Copyright-text
+    ```
+    /*
+    Copyright 2021 Loggie Authors
 
-```
-/*
-Copyright 2021 Loggie Authors
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-```
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    */
+    ```
 
