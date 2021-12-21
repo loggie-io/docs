@@ -82,3 +82,6 @@ nav:
       
     - 开发手册:
       - Overview: developer-guide/index.md
+      - 代码规范: developer-guide/code/coding-guide.md
+      - 组件开发: developer-guide/component/component-guide.md
+      - metric上报: developer-guide/metric/metric-guide.md
