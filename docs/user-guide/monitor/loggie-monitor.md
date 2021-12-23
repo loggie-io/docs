@@ -1,6 +1,6 @@
 # Loggie的监控与报警
 
-Loggie的monitor eventbus被设计为订阅和消费的模式，各个组件发送metrics到指定的topic中，由独立的listener来消费处理。  
+Loggie的monitor eventbus被设计为发布和订阅模式，各个组件发送metrics到指定的topic中，由独立的listener来消费处理。  
 
 比如`file source`会将采集日志的一些指标数据，发送至`filesource topic`，由`filesource listener`来消费，`filesource listener`会将数据聚合计算之后，打印至日志，暴露出Prometheus指标。
 
