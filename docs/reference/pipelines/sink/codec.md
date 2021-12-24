@@ -81,38 +81,38 @@ transformer会按配置顺序执行。
     ```
 
 
-#### transformer.add
+#### add
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.transformer.add.target | map |    否    |   无   | 增加字段 |
 
-#### transformer.drop
+#### drop
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.transformer.add.target | string数组 |    否    |   无   | 删除不用的字段 |
 
-#### transformer.move
+#### move
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.transformer.move.target | 数组 |    否    |   无   | 移动字段 |
 | codec.transformer.move.target[n].from | string |    必填    |   无   | 移动字段的来源 |
 | codec.transformer.move.target[n].to | string |    必填    |   无   | 移动字段的去向 |
 
-#### transformer.copy
+#### copy
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.transformer.copy | 数组 |    否    |   无   | 复制字段 |
 | codec.transformer.copy.target[n].from | string |    必填    |   无   | 复制字段的来源 |
 | codec.transformer.copy.target[n].to | string |    必填    |   无   | 复制字段的去向 |
 
-#### transformer.rename
+#### rename
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.transformer.rename | 数组 |    否    |   无   | 重命名字段 |
 | codec.transformer.rename.target[n].from | string |    必填    |   无   | 重命名字段的来源 |
 | codec.transformer.rename.target[n].to | string |    必填    |   无   | 重命名字段的去向 |
 
-#### transformer.timestamp
+#### timestamp
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.transformer.timestamp | 数组 |    否    |   无   | 格式化转换时间 |
