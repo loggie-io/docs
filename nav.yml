@@ -52,13 +52,20 @@ nav:
 
     - 组件配置:
       - Overview: reference/index.md
-      - 全局: 
-        - 启动参数与日志配置: reference/global/args.md
-        - 系统配置: reference/global/system.md
+      - 启动参数: reference/global/args.md
+      - 系统配置: 
+        - overview: reference/global/system.md
+        - monitor: reference/global/monitor.md
+        - discovery: reference/global/discovery.md
+        - reload: reference/global/reload.md
+        - defaults: reference/global/defaults.md
+        - http: reference/global/http.md
+
       - Source:
         - file: reference/pipelines/source/file.md
         - kafka: reference/pipelines/source/kafka.md
         - kubeEvent: reference/pipelines/source/kubeEvent.md
+        - grpc: reference/pipelines/source/grpc.md
       - Sink:
         - elasticsearch: reference/pipelines/sink/elasticsearch.md
         - kafka: reference/pipelines/sink/kafka.md
@@ -71,6 +78,8 @@ nav:
         - logalert: reference/pipelines/interceptor/logalert.md 
         - metrics: reference/pipelines/interceptor/metrics.md
         - retry: reference/pipelines/interceptor/retry.md
+        - maxbytes: reference/pipelines/interceptor/maxbytes.md
+
       - Queue:
         - channel: reference/pipelines/queue/channel.md
         - memeory: reference/pipelines/queue/memory.md
