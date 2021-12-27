@@ -10,6 +10,7 @@ theme:
   name: material
   language: zh
   logo: assets/loggie.svg
+  favicon: assets/min-logo.png
   custom_dir: overrides
   font:
     text: Noto Sans Simplified Chinese
