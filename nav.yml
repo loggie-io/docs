@@ -54,7 +54,7 @@ nav:
       - Overview: reference/index.md
       - 启动参数: reference/global/args.md
       - 系统配置: 
-        - overview: reference/global/system.md
+        - Overview: reference/global/system.md
         - monitor: reference/global/monitor.md
         - discovery: reference/global/discovery.md
         - reload: reference/global/reload.md
@@ -85,9 +85,9 @@ nav:
         - memeory: reference/pipelines/queue/memory.md
       - Kubernetes CRD: 
         - Overview: reference/discovery/kubernetes/overview.md
-        - LogConfig: reference/discovery/kubernetes/logconfig.md
-        - Sink: reference/discovery/kubernetes/sink.md
-        - Interceptor: reference/discovery/kubernetes/interceptors.md
+        - logConfig: reference/discovery/kubernetes/logconfig.md
+        - sink: reference/discovery/kubernetes/sink.md
+        - interceptor: reference/discovery/kubernetes/interceptors.md
       
     - 开发手册:
       - Overview: developer-guide/index.md
