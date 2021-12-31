@@ -1,10 +1,12 @@
 INHERIT: nav.yml
 
 site_name: ' ' 
-
+repo_url: https://github.com/loggie-io/loggie
+repo_name: loggie-io/loggie
 site_description: Loggie Documentation
 extra_css:
   - stylesheets/extra.css
+edit_uri: https://github.com/loggie-io/docs/tree/main/docs/
 
 theme:
   name: material
@@ -12,6 +14,9 @@ theme:
   logo: assets/loggie.svg
   favicon: assets/min-logo.png
   custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+
   font:
     text: Noto Sans Simplified Chinese
     code: Robot Mono
