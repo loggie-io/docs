@@ -70,17 +70,31 @@
     ```
     表示将配置的Pipelines下发至带有`nodepool: test`的所有node上。
 
+### type: loggie
+下发Pipeline配置至某个Loggie集群，通常需要配合`cluster`字段指定集群名使用。  
+
+!!! example 
+    ```yaml
+    spec: 
+      cluster: aggregator
+      selector:
+        type: loggie
+          
+    ```
+    表示将配置的Pipelines下发至`cluster`为aggregator的Loggie集群。
+
 
 ### cluster
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| cluster | string  |    非必填    |  ""    | 表示配置指定下发的Loggie集群。当部署多套Loggie时，和全局配置`discovery.kubernetes.cluster`配套使用 |
+| cluster | string  |    非必填    |  ""    | 表示配置指定下发的Loggie集群。当部署多套Loggie时，和全局系统配置`discovery.kubernetes.cluster`配套使用 |
 
 
 
 ## spec.pipelines
-和在配置文件中Pipelines的区别在：
+和在配置文件中Pipelines的区别在：  
+
 - sources为实际为string，在yaml中使用`｜`表示保留换行符，同时增加了几个特殊的参数。
 - 没有sink，只有sinkRef，表示引用的Sink CRD实例
 - 没有interceptors，只有interceptorsRef，表示引用的Interceptors CRD实例

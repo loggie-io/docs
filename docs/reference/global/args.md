@@ -12,6 +12,7 @@
 
 - `-log.level`: 日志级别，默认为info，可配置为debug、info、warn和error
 - `-log.jsonFormat`: 是否将日志输出为json格式，默认为true
+- `-log.enableStdout`: 是否输出标准输出日志，默认为true
 - `-log.enableFile`: 是否输出日志文件，默认为false，即不输出日志文件，默认打印到标准输出
 - `-log.directory`: 日志文件的路径，默认为/var/log，当log.enableFile=true时生效
 - `-log.filename`: 日志文件的名称，默认为loggie.log，一般同log.directory搭配使用
