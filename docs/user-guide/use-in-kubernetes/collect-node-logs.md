@@ -4,17 +4,15 @@
 
 
 ## 配置说明
-唯一和采集容器不同的是，logConfig里selector的区别：  
-使用`type: node`，并且填写`nodeSelector`用于选择下发配置到哪些节点，Node上需要包含这些labels。  
+和采集容器不同的是，节点日志采集的logConfig类型是ClusterLogConfig，selector使用`type: node`，并且填写`nodeSelector`用于选择下发配置到哪些节点，Node上需要包含这些labels。  
 
 示例如下：  
 !!! example
     ```yaml
     apiVersion: loggie.io/v1beta1
-    kind: LogConfig
+    kind: ClusterLogConfig
     metadata:
       name: varlog
-      namespace: default
     spec:
       selector:
         type: node
