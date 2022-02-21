@@ -26,7 +26,7 @@
     ```
 
 ## spec.selector
-表示Pipeline配置适用的范围，可以选择采集一批Pods的日志，或者采集节点的日志等
+表示Pipeline配置适用的范围，可以选择采集一批Pods的日志
 
 
 
@@ -51,38 +51,6 @@
 
 !!! warning
     在`type: pod`时，下面的Pipeline只能使用file source，此时的场景只能是采集日志。
-
-### type: node
-下发Pipeline配置至该批节点。
-
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| nodeSelector | map  |    必填    |      | 通过label选择下发配置的node |
-
-
-!!! example 
-    ```yaml
-    spec: 
-      selector:
-        type: pod
-        nodeSelector:
-          nodepool: test
-    ```
-    表示将配置的Pipelines下发至带有`nodepool: test`的所有node上。
-
-### type: loggie
-下发Pipeline配置至某个Loggie集群，通常需要配合`cluster`字段指定集群名使用。  
-
-!!! example 
-    ```yaml
-    spec: 
-      cluster: aggregator
-      selector:
-        type: loggie
-          
-    ```
-    表示将配置的Pipelines下发至`cluster`为aggregator的Loggie集群。
-
 
 ### cluster
 

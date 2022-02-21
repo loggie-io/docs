@@ -86,6 +86,7 @@ nav:
       - Kubernetes CRD: 
         - Overview: reference/discovery/kubernetes/overview.md
         - logConfig: reference/discovery/kubernetes/logconfig.md
+        - clusterLogConfig: reference/discovery/kubernetes/clusterlogconfig.md
         - sink: reference/discovery/kubernetes/sink.md
         - interceptor: reference/discovery/kubernetes/interceptors.md
       
