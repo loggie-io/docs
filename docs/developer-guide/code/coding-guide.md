@@ -25,11 +25,11 @@
 
 * INFO级别是你应该假定该程序将以何种级别运行。INFO信息是一些并不坏的东西，但每次出现时用户肯定想知道
 * DEBUG级别是当有事情发生，你想弄清楚发生了什么的时候才打开的。DEBUG不应该太细，以至于会严重影响程序的性能
-* WARN和ERROR表示某些东西是坏的。如果你不完全确定它是坏的，就使用WARN，如果你确定，就使用ERROR。并且ERROR级别 **默认** 会上报error metric，如果对接了loggie内置的eventBus中的alertListener（参考[metric上报/error metric](developer-guide/metric/metric-guide.md)），将会直接发出报警
+* WARN和ERROR表示某些东西是坏的。如果你不完全确定它是坏的，就使用WARN，如果你确定，就使用ERROR。并且ERROR级别 **默认** 会上报error metric，如果对接了loggie内置的eventBus中的alertListener（参考[metric上报/error metric](../metric/metric-guide.md)），将会直接发出报警
 
 ## 监控
 
-* 任何新组件都应该带有适当的指标，以便监控功能正常工作（参考[metric上报](developer-guide/metric/metric-guide.md)）
+* 任何新组件都应该带有适当的指标，以便监控功能正常工作（参考[metric上报](../metric/metric-guide.md)）
 * 应该认真对待这些指标，并且只上报有用的指标，这些指标将在生产中用于监测/提醒系统的健康状况，或排查问题
 
 ## 单元测试
