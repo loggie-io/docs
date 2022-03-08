@@ -5,7 +5,8 @@
 
 ## 落地一套日志系统会遇到哪些问题？
 在企业中，我们需要怎么去构建一套完整的日志系统？如何根据实际情况选型，其中又会碰到哪些问题？  
-搭建完日志系统后，如何根据业务来推广和使用？最佳实践有哪些？  
+在不同的业务类型、不同的使用场景、不同的日志规模下，我们可以采用哪些日志系统架构？
+
 请看「[企业实战](enterprise-practice/architecture-and-evolution.md)」。
 
 在我们对落地一套功能完善、架构完整的日志系统有初步了解后，想要知道：
@@ -26,8 +27,3 @@ Loggie和其他的开源日志Agent区别是什么？
 
 如何配置整体的监控和报警，保证Loggie正常运行？如何监控是否采集到ERROR日志？  
 请看「[监控报警](monitor/loggie-monitor.md)」。  
-
-使用Loggie遇到问题，如何排查？  
-请看「[Troubleshot](troubleshot/general-problems.md)」。  
-
-

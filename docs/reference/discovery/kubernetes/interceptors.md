@@ -1,6 +1,6 @@
-# interceptor
+# Interceptor
 
-表示一个interceptor组。
+表示一个interceptor组。用于在LogConfig/ClusterLogConfig中被引用。
 
 !!! example
 

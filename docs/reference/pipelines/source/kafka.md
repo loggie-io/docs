@@ -1,4 +1,4 @@
-# Kafka source
+# kafka
 
 Kafka source用于接收Kafka数据。
 
@@ -30,12 +30,59 @@ Kafka source用于接收Kafka数据。
 | ---------- | ----------- | ----------- | --------- | -------- |
 | groupId | string  |    非必填      |    loggie  | Loggie消费kafka的groupId |
 
+## queueCapacity
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| queueCapacity | int  |    非必填      |    100  | 内部发送的队列容量 |
+
+## minAcceptedBytes
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| minAcceptedBytes | int  |    非必填      |    1  | 最小接收的batch字节数 |
+
+## maxAcceptedBytes
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| maxAcceptedBytes | int  |    非必填      |    1e6  | 最大接收的batch字节数 |
+
+## readMaxAttempts
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| readMaxAttempts | int  |    非必填      |    3  | 最大的重试次数 |
+
+## maxPollWait
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| maxPollWait | time.Duration  |    非必填      |    10s  | 接收的最长等待时间 |
+
+## readBackoffMin
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| readBackoffMin | time.Duration  |    非必填      |    100ms  | 在接收新的消息前，最小的时间间隔 |
+
+## readBackoffMax
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| readBackoffMax | time.Duration  |    非必填      |    1s  | 在接收新的消息前，最大的时间间隔 |
+
+## enableAutoCommit
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| enableAutoCommit | bool  |    非必填      |    false  | 是否开启autoCommit |
 
 ## autoCommitInterval
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| autoCommitInterval | int    |    非必填    |  0   | autoCommit的间隔时间 |
+| autoCommitInterval | time.Duration    |    非必填    |  1s   | autoCommit的间隔时间 |
 
 
 ## autoOffsetReset

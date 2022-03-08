@@ -23,6 +23,31 @@
 | ---------- | ----------- | ----------- | --------- | -------- |
 | topic | string  |    非必填    |   loggie  | 发送日志至Kafka的topic |
 
+可使用`${a.b}`的方式，获取event里的字段值作为具体的topic名称。
+
+比如，一个event为：
+
+```json
+{
+  "topic": "loggie",
+  "hello": "world"
+}
+```
+可配置`topic: ${topic}`，此时该event发送到Kafka的topic为"loggie"。
+
+同时支持嵌套的选择方式：
+
+```json
+{
+  "fields": {
+    "topic": "loggie"
+  },
+  "hello": "world"
+}
+```
+可配置`topic: ${fields.topic}`，同样也会发送到topic "loggie"。
+
+
 ## balance
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
