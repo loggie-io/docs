@@ -19,7 +19,6 @@ nav:
       - 架构与特性: 
         - 诞生背景: user-guide/architecture/background.md
         - 设计架构: user-guide/architecture/core-arch.md
-        - 配置设计: user-guide/architecture/config.md
         - 数据格式: user-guide/architecture/schema.md
         - 优势与特性: user-guide/architecture/advantages.md
         - 开源项目对比: user-guide/architecture/compare.md
@@ -28,14 +27,13 @@ nav:
         - Kubernetes下的日志采集: user-guide/use-in-kubernetes/general-usage.md
         - Loggie采集容器日志: user-guide/use-in-kubernetes/collect-container-logs.md
         - Loggie采集Node日志: user-guide/use-in-kubernetes/collect-node-logs.md
-        - Loggie中转机: user-guide/use-in-kubernetes/aggregator.md
         - Sidecar方式采集日志: user-guide/use-in-kubernetes/sidecar.md
         - 采集Kubernetes Events: user-guide/use-in-kubernetes/kube-event-source.md
 
       - 最佳实践:
         - 日志格式转换: user-guide/best-practice/log-format.md
-        - 日志切分与处理: user-guide/best-practice/log-process.md
-        - 日志定时清理: user-guide/best-practice/log-clean.md
+        - 日志切分处理: user-guide/best-practice/log-process.md
+        - 使用Loggie中转机: user-guide/best-practice/aggregator.md
 
       - 监控报警:
         - Loggie的监控与报警: user-guide/monitor/loggie-monitor.md
@@ -43,18 +41,11 @@ nav:
 
       - 企业实战:
         - 日志系统架构与演进: user-guide/enterprise-practice/architecture-and-evolution.md
-        - 企业日志使用实践: user-guide/enterprise-practice/enterprise-log-practice.md
-
-      - TroubleShot:
-        - 一般问题排查思路: user-guide/troubleshot/general-problems.md
-        - FAQ: user-guide/troubleshot/FAQ.md
-
 
     - 组件配置:
       - Overview: reference/index.md
       - 启动参数: reference/global/args.md
       - 系统配置: 
-        - Overview: reference/global/system.md
         - monitor: reference/global/monitor.md
         - discovery: reference/global/discovery.md
         - reload: reference/global/reload.md
@@ -62,20 +53,29 @@ nav:
         - http: reference/global/http.md
 
       - Source:
+        - Overview: reference/pipelines/source/overview.md
         - file: reference/pipelines/source/file.md
         - kafka: reference/pipelines/source/kafka.md
-        - kubeEvent: reference/pipelines/source/kubeEvent.md
+        - kubeEvent: reference/pipelines/source/kube-event.md
         - grpc: reference/pipelines/source/grpc.md
+        - prometheusExporter: reference/pipelines/source/prometheus-exporter.md
+        - unix: reference/pipelines/source/unix.md
+        - dev: reference/pipelines/source/dev.md
+
       - Sink:
+        - Overview: reference/pipelines/sink/overview.md
         - elasticsearch: reference/pipelines/sink/elasticsearch.md
         - kafka: reference/pipelines/sink/kafka.md
-        - dev: reference/pipelines/sink/dev.md
         - grpc: reference/pipelines/sink/grpc.md
-        - codec: reference/pipelines/sink/codec.md
+        - file: reference/pipelines/sink/file.md
+        - dev: reference/pipelines/sink/dev.md
+
       - Interceptor:
+        - Overview: reference/pipelines/interceptor/overview.md
         - normalize: reference/pipelines/interceptor/normalize.md
-        - limit: reference/pipelines/interceptor/limit.md
-        - logalert: reference/pipelines/interceptor/logalert.md 
+        - rateLimit: reference/pipelines/interceptor/limit.md
+        - addK8sMeta: reference/pipelines/interceptor/addk8smeta.md
+        - logAlert: reference/pipelines/interceptor/logalert.md 
         - metrics: reference/pipelines/interceptor/metrics.md
         - retry: reference/pipelines/interceptor/retry.md
         - maxbytes: reference/pipelines/interceptor/maxbytes.md
@@ -83,16 +83,24 @@ nav:
       - Queue:
         - channel: reference/pipelines/queue/channel.md
         - memeory: reference/pipelines/queue/memory.md
+
+      - Monitor:
+        - Overview: reference/monitor/overview.md
+        - filesource: reference/monitor/filesource.md
+        - filewatcher: reference/monitor/filewatcher.md
+        - reload: reference/monitor/reload.md
+        - sink: reference/monitor/sink.md
+        - queue: reference/monitor/queue.md
+        - logAlert: reference/monitor/logalert.md
+
       - Kubernetes CRD: 
-        - Overview: reference/discovery/kubernetes/overview.md
-        - logConfig: reference/discovery/kubernetes/logconfig.md
-        - clusterLogConfig: reference/discovery/kubernetes/clusterlogconfig.md
-        - sink: reference/discovery/kubernetes/sink.md
-        - interceptor: reference/discovery/kubernetes/interceptors.md
+        - LogConfig: reference/discovery/kubernetes/logconfig.md
+        - ClusterLogConfig: reference/discovery/kubernetes/clusterlogconfig.md
+        - Sink: reference/discovery/kubernetes/sink.md
+        - Interceptor: reference/discovery/kubernetes/interceptors.md
       
     - 开发手册:
       - 代码贡献: developer-guide/contributing.md
       - 本地开发: developer-guide/development.md
       - 代码规范: developer-guide/code/coding-guide.md
       - 组件开发: developer-guide/component/component-guide.md
-      - metric上报: developer-guide/metric/metric-guide.md

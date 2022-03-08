@@ -1,6 +1,6 @@
-# sink
+# Sink
 
-表示一个sink配置。
+表示一个sink配置。用于在LogConfig/ClusterLogConfig中被引用。
 
 !!! example
 

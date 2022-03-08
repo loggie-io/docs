@@ -8,8 +8,8 @@ Loggie支持多个Pipeline，每个Pipeline都基于简单直观的source->inter
 多Pipeline设计，减少互相干扰。比如我们可以将重要的业务日志放在一个Pipeline中，其他的不重要的日志配置为另外的Pipeline，不重要的日志配置变动、发生下游堵塞时，不会影响重要日志的采集和发送。
 
 ## 通用性更好
-在一些场景下，我们可能会将不同类型的服务混合部署在一个节点上，很可能他们的日志会发送到不同的Kafka集群中，如果是类似Filebeat等只有一个全局的输出源的时候，需要在节点上部署两个Agent，如果使用Loggie则只需要使用不同的Pipeline即可，每个Pipeline配置不同的Sink，减少部署成本。  
-我们甚至可以采集相同的日志，发送到不同的后端输出源，可以根据实际需求灵活配置。  
+在一些场景下，我们可能会将不同类型的服务混合部署在一个节点上，很可能他们的日志会发送到不同的Kafka集群中，如果只有一个全局的输出源，需要在节点上部署两个Agent，如果使用Loggie则只需要使用不同的Pipeline即可，每个Pipeline配置不同的Sink，减少部署成本。  
+我们甚至可以采集相同的日志，发送到不同的后端输出源，根据实际需求灵活配置。  
 
 ## 灵活、热插拔、可扩展
 本质上source->interceptor->sink架构是一个数据流式的设计，不同类型的source/interceptor/sink的排列组合，可以满足日志的不同需求，
@@ -29,7 +29,7 @@ Loggie并没有将interceptor更细化的分类成比如Filter/Formater等类型
 
 ## 可快速方便的写一个组件
 Loggie基于微内核的架构，所有的source/interceptor/sink/queue都被抽象成component，只需要在代码中实现Golang接口，即可方便的研发一个component。  
-如果Loggie在某些特异化场景下，无法满足你的需求，可以尝试写一个自己的component。  
+如果Loggie在某些场景下，无法满足你的需求，可以尝试写一个自己的component。  
 比如需要Loggie转换成特定的日志格式，可以写一个interceptor去处理；需要Loggie将采集的日志发送至尚未支持的服务，可以写一个sink。  
 当然，Loggie使用Golang编写，所以你目前需要用Golang来写component。Golang和Java或者C/C++相比，在性能和研发效率上有一个折中，更适合类似日志Agent的场景。  
 
@@ -44,7 +44,7 @@ Loggie基于微内核的架构，所有的source/interceptor/sink/queue都被抽
 如果你使用Loggie，你可以：
 
 1. 快速部署，支持各种部署架构
-2. 只需要使用LogConfig CRD配置管理日志配置，更方便的接入各类容器云平台，对业务无侵入，无需关心Pod迁移等，无需手动在节点上操作配置日志文件，同时可配置注入Namespace/PodName/NodeName等元信息供查询使用
+2. 只需要使用ClusterLogConfig/LogConfig CRD配置管理日志配置，更方便的接入各类容器云平台，对业务无侵入，无需关心Pod迁移等，无需手动在节点上操作配置日志文件，同时可配置注入Namespace/PodName/NodeName等元信息供查询使用
 
 
 ## 更好的稳定性、更详细的监控指标、更方便的排障方式
@@ -53,12 +53,10 @@ Loggie可配置限流interceptor，在日志量太大时，可以避免发送日
 Loggie有合理的文件句柄处理机制，避免fd被占用的各种异常场景导致节点不稳定。  
 
 另外，Loggie结合我们在各种环境中遇到的各种问题，针对性的检测暴露出相应的指标。  
-比如指标支持采集和发送延迟检测。  
-比如针对文件size增长太快，或者文件size太大等场景，支持该类metric上报。  
+比如指标支持采集和发送延迟检测。比如针对文件size增长太快，或者文件size太大等场景，支持该类metric上报。  
 
-同时Loggie已支持原生Prometheus metric，可避免额外部署exporter带来的部署成本和资源消耗。Loggie还提供了完善的Grafana监控图表，可以方便快速接入使用。  
+同时Loggie支持原生Prometheus metric，可避免额外部署exporter带来的部署成本和资源消耗。Loggie还提供了完善的Grafana监控图表，可以方便快速接入使用。  
 
 ## 更低的资源占用，更好的性能
-Loggie基于Golang，基于极少的资源占用，可提供强大的吞吐性能。  
-
+Loggie基于Golang编写，在代码层面我们有很多优化，在较少资源占用的同时，还可提供强大的吞吐性能。  
 

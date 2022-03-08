@@ -1,7 +1,7 @@
 # grpc
 
 Grpc source用于接收Loggie Grpc格式的数据请求。  
-一般用在[中转机](../../../user-guide/use-in-kubernetes/aggregator.md)场景，接收其他Loggie集群发送的日志。  
+一般用在[中转机](../../../user-guide/best-practice/aggregator.md)场景，接收其他Loggie集群发送的日志。  
 
 !!! example
 
@@ -31,9 +31,6 @@ Grpc source用于接收Loggie Grpc格式的数据请求。
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | timeout | time.Duration  |    非必填    |   20s   | 超时时间 |
-
-## maintenanceInterval
-
 
 
 

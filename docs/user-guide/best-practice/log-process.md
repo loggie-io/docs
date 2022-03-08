@@ -1,9 +1,6 @@
-# 日志切分与处理
+# 日志切分处理
 > Loggie可使用[normalize interceptor](../../reference/pipelines/interceptor/normalize.md)来进行日志的切分和处理，将日志数据进行结构化的提取，同时可以对提取后的字段进行处理。  
 > 建议先了解Loggie内部日志数据[schema设计](../architecture/schema.md)。  
-
-!!! caution
-    normalize interceptor只用于用户日志的处理，并不能转换system开头的系统保留字段，系统保留字段请参考[日志格式转换](./log-format.md)。
 
 ## 需求场景
 
@@ -34,7 +31,8 @@
 - regex: 正则切分提取日志
 - jsonDecode: 解析提取json格式的日志
 - split: 通过分隔符来提取日志
-- add/rename/drop指定字段
+- add/rename/drop/copy/underRoot指定字段
+- convert类型转换
 - timestamp: 转换指定字段的时间格式
 
 normalize可以配置内部的processor顺序执行。
@@ -86,9 +84,9 @@ normalize可以配置内部的processor顺序执行。
               processors:
               - jsonDecode: ~
               - drop:
-                  target: ["stream", "time", "body"]
+                  targets: ["stream", "time", "body"]
               - rename:
-                  target:
+                  convert:
                   - from: "log"
                     to: "message"
             - type: normalize
@@ -117,7 +115,7 @@ normalize可以配置内部的processor顺序执行。
                   max: 4
                   keys: ["time", "std", "F", "message"]
               - drop:
-                  target: ["time", "std", "F", "body"]
+                  targets: ["time", "std", "F", "body"]
             - type: normalize
               name: accproc
               belongTo: ["access"]
@@ -141,11 +139,10 @@ normalize可以配置内部的processor顺序执行。
 使用filesource采集后，在Loggie里的原始格式为：
 ```
 "body": '"log":"I0610 08:29:07.698664 Waiting for caches to sync\n","stream":"stderr", "time":"2021-06-10T08:29:07.698731204Z"'
-"systemXXX": xxx
 ...
 ```
 
-在normalize interceptors里，使用:  
+可在normalize interceptors里，配置以下processor:  
 
 1. **`jsonDecode`**:  
 解析并提取字段，将Loggie里存储的日志格式变成：
@@ -154,7 +151,6 @@ normalize可以配置内部的processor顺序执行。
 "log": "I0610 08:29:07.698664 Waiting for caches to sync\n"
 "stream":"stderr"
 "time":"2021-06-10T08:29:07.698731204Z"
-"systemXXX": xxx
 ...
 ```
 
@@ -167,7 +163,6 @@ normalize可以配置内部的processor顺序执行。
 最终发送的日志格式变成：  
 ```
 "message": "I0610 08:29:07.698664 Waiting for caches to sync\n"
-"systemXXX": xxx
 ...
 ```
 

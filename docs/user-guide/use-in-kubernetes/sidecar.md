@@ -121,8 +121,3 @@ data:
 
 !!! info 
     Loggie后续会支持自动Sidecar注入和通过LogConfig自动生成ConfigMap挂载的方式，从而达到和使用DaemonSet一致的体验。  
-
-
-## 
-
-

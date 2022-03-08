@@ -16,12 +16,6 @@ channel queue,是基于go chan实现的内存缓冲queue。
 | ---------- | ----------- | ----------- | --------- | -------- |
 | batchSize | int  |    不必填      |    2048  | 一个批次包含的event数量 |
 
-## batchBufferFactor
-
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| batchBufferFactor | int  |    不必填      |    2  | queue缓冲区的大小(channel的容量)=batchSize*batchBufferFactor |
-
 ## batchBytes
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |

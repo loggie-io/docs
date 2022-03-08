@@ -1,6 +1,10 @@
 # ClusterLogConfig
 
-表示选择一批Pod进行日志采集、采集Node节点上的日志或者将pipeline配置下发至指定cluster的Pipeline配置。  
+Cluster级别CRD，可用于：
+
+- 采集任意Namespace的Pod日志
+- 采集Node节点上的日志
+- 将Pipeline配置下发至指定Loggie集群
 
 !!! example
 
@@ -90,8 +94,5 @@
 
 
 ## spec.pipelines
-和在配置文件中Pipelines的区别在：  
 
-- sources为实际为string，在yaml中使用`｜`表示保留换行符，同时增加了几个特殊的参数。
-- 没有sink，只有sinkRef，表示引用的Sink CRD实例
-- 没有interceptors，只有interceptorsRef，表示引用的Interceptors CRD实例
+配置和LogConfig一致。

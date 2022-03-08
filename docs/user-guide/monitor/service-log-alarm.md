@@ -44,7 +44,7 @@
         port: 9196
     ```
 
-增加`logAlert interceptor`，同时在logConfig中引用：
+增加`logAlert interceptor`，同时在ClusterLogConfig/LogConfig中引用：
 
 !!! config
 

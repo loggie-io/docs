@@ -10,7 +10,44 @@
 | ---------- | ----------- | ----------- | --------- | -------- |
 | processors | 数组  |    必填    |  无    | 所有的处理processor列表 |
 
-配置的processor将按照顺序依次执行。包括：
+配置的processor将按照顺序依次执行。
+
+!!! tips
+
+    Loggie支持使用`a.b`的形式引用嵌套的字段。
+    比如数据为:
+    ```json
+    {
+      "fields": {
+        "hello": "world"
+      }
+    }
+    ```
+    下面的processor配置中均可以使用`fields.hello`指定嵌套在`fields`里的`hello: world`。
+
+### addMeta
+默认情况下，Loggie不会添加任何的系统内部信息到原始数据中。  
+可通过addMeta添加系统内置字段发送给下游。  
+
+!!! note
+    请注意，在pipeline中配置addMeta，只会影响该pipeline发送的所有数据，如果需要全局生效，请在[defaults](../../global/defaults.md)中配置normalize.addMeta。
+
+    ```
+    loggie:
+      defaults:
+        interceptors:
+        - type: normalize
+          name: global
+          processors:
+            addMeta: ~
+
+    ```
+
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| target | string  |    非必填    |  meta    | 系统内置字段添加到event中的字段名 |
+
 ### regex
 将指定字段进行正则提取。  
 
@@ -122,7 +159,7 @@
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| drop.target | string数组  |    必填    |  无    | drop的字段 |
+| drop.targets | string数组  |    必填    |  无    | drop的字段 |
 
 !!! example
     ```yaml
@@ -130,7 +167,7 @@
     - type: normalize
       processors:
       - drop:
-          target: ["id", "body"]
+          targets: ["id", "body"]
     ```
 
 
@@ -139,9 +176,9 @@
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| rename.target | 数组  |    必填    |  无    |  |
-| rename.target[n].from | string  |    必填    |  无    | rename的目标 |
-| rename.target[n].to | string  |    必填    |  无    | rename后的名称 |
+| rename.convert | 数组  |    必填    |  无    |  |
+| rename.convert[n].from | string  |    必填    |  无    | rename的目标 |
+| rename.convert[n].to | string  |    必填    |  无    | rename后的名称 |
 
 !!! example
     ```yaml
@@ -149,7 +186,7 @@
     - type: normalize
       processors:
       - rename:
-          target:
+          convert:
           - from: "hello"
             to: "world"
     ```
@@ -159,7 +196,7 @@
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| add.target | map  |    必填    |  无    | 新增的key:value值 |
+| add.fields | map  |    必填    |  无    | 新增的key:value值 |
 
 !!! example
     ```yaml
@@ -167,20 +204,82 @@
     - type: normalize
       processors:
       - add:
-          target:
+          fields:
             hello: world
     ```
+
+### convert
+
+字段类型转换。
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| convert.convert | 数组  |    必填    |  无    |  |
+| convert.convert[n].from | string  |    必填    |  无    | 需要转换的字段名 |
+| convert.convert[n].to | string  |    必填    |  无    | 转换后的类型，可为："bool", "integer", "float" |
+
+!!! example
+    ```yaml
+    interceptors:
+    - type: normalize
+      processors:
+      - convert:
+          convert:
+          - from: count
+            to: float
+    ```
+
+### copy
+
+字段复制。
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| copy.convert | 数组  |    必填    |  无    |  |
+| copy.convert[n].from | string  |    必填    |  无    | 需要复制的字段名 |
+| copy.convert[n].to | string  |    必填    |  无    | 复制后的字段名 |
+
+!!! example
+    ```yaml
+    interceptors:
+    - type: normalize
+      processors:
+      - copy:
+          convert:
+          - from: hello
+            to: world
+    ```
+
+### underRoot
+
+将字段中的所有`key:value`放到event最外层。
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| underRoot.keys | string数组  |    必填    |  无    | 需要underRoot的字段名 |
+
+!!! example
+    ```yaml
+    interceptors:
+    - type: normalize
+      processors:
+      - copy:
+          convert:
+          - from: hello
+            to: world
+    ```
+
 
 ### timestamp
 转换时间格式。
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| timestamp.target | 数组  |    必填    |  无    |  |
-| timestamp.target[n].from | string  |    必填    |  无    | 指定转换时间格式的字段 |
-| timestamp.target[n].fromLayout | string  |    必填    |  无    | 指定字段的时间格式(golang形式) |
-| timestamp.target[n].toLayout | string  |    必填    |  无    | 转换后的时间格式(golang形式)，另外可为`unix`和`unix_ms` |
-| timestamp.target[n].toType | string  |    非必填    |  无    | 转换后的时间字段类型 |
+| timestamp.convert | 数组  |    必填    |  无    |  |
+| timestamp.convert[n].from | string  |    必填    |  无    | 指定转换时间格式的字段 |
+| timestamp.convert[n].fromLayout | string  |    必填    |  无    | 指定字段的时间格式(golang形式) |
+| timestamp.convert[n].toLayout | string  |    必填    |  无    | 转换后的时间格式(golang形式)，另外可为`unix`和`unix_ms` |
+| timestamp.convert[n].toType | string  |    非必填    |  无    | 转换后的时间字段类型 |
 
 !!! example
     ```yaml
@@ -188,7 +287,7 @@
     - type: normalize
       processors:
       - timestamp:
-          target:
+          convert:
           - from: logtime
             fromLayout: "2006-01-02T15:04:05Z07:00"
             toLayout: "unix"

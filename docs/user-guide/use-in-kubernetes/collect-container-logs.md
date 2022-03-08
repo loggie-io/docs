@@ -22,9 +22,10 @@ Loggie会感知到Pod和CRD的事件，进行配置的动态更新。同时，Lo
 ## CRD使用说明
 Loggie目前有三种CRD：
 
-- **[LogConfig](../../reference/discovery/kubernetes/logconfig.md)**：表示一个日志采集任务，其中主要填写采集的source配置，以及关联的sink和interceptor。
-- **[Sink](../../reference/discovery/kubernetes/sink.md)**：表示一个sink后端，需要在LogConfig中被关联。
-- **[Interceptor](../../reference/discovery/kubernetes/interceptors.md)**：表示一个interceptors组，需要在LogConfig中被关联。
+- **[LogConfig](../../reference/discovery/kubernetes/logconfig.md)**：namespace级别CRD，用于采集Pod容器日志，其中主要填写采集的source配置，以及关联的sink和interceptor。
+- **[ClusterLogConfig](../../reference/discovery/kubernetes/clusterlogconfig.md)**：cluster级别CRD，表示集群级别的采集Pod容器日志，采集Node节点上的日志，以及为某个Loggie集群下发通用的pipeline配置。
+- **[Sink](../../reference/discovery/kubernetes/sink.md)**：表示一个sink后端，需要在ClusterLogConfig/LogConfig中被关联。
+- **[Interceptor](../../reference/discovery/kubernetes/interceptors.md)**：表示一个interceptors组，需要在ClusterLogConfig/LogConfig中被关联。
 
 
 ## 准备工作
@@ -37,7 +38,7 @@ Loggie目前有三种CRD：
 3. Loggie Agent发送至Kafka，Loggie Aggregator消费Kafka再发送至后端   
 ...
 
-本文仅关注采集端，如果需要使用部署Loggie Aggregator，请参考[Loggie中转机](../use-in-kubernetes/aggregator.md)。
+本文仅关注采集端，如果需要使用部署Loggie Aggregator，请参考[Loggie中转机](../best-practice/aggregator.md)。
 
 在采集容器日志之前，请确保已经在Kubernetes中部署了Loggie DaemonSet。[如何在Kubernetes中部署Loggie？](../../getting-started/install/kubernetes.md)  
 
@@ -169,7 +170,7 @@ kubectl port-forward service/kibana-kibana 5601:http
 为了表明我们即将采集日志发送到的Elasticsearch，需要配置对应的Sink。  
 这里有两种方式：  
 
-1. 如果整个集群只会有一个存储后端，我们可以在全局的配置文件configMap里，配置defaults参数，具体可[参考](../../reference/global/system.md#defaults)。
+1. 如果整个集群只会有一个存储后端，我们可以在全局的配置文件configMap里，配置defaults参数，具体可[参考](../../reference/global/defaults.md)。
 
 2. 使用Sink CRD，并在logConfig中引用。这种方式可以扩展为多个后端，不同的logConfig可以配置使用不同的后端存储，大多数情况下，我们建议使用该方式。  
 
@@ -296,16 +297,6 @@ Events:
 我们还可以通过`kubectl -nloggie logs -f ${loggie-name}`来查看指定节点Loggie的日志来判断日志采集情况。  
 
 发送成功后，我们可以在Kibana上查询到采集到的日志。  
-
-
-## 更多
-虽然Loggie已经采集到了日志到Elasticsearch中，我们肯定还有更多的疑问和需求，比如：
-
-1. stdout日志输出的格式被多加了一层封装，如何只发送原始的日志内容？
-2. Loggie默认的日志字段和现有使用不一致，如何修改Loggie发送的日志格式与字段？
-3. 如何将日志发送到Kafka，然后通过Kafka再转发至Elasticsearch？
-4. 如何配置Loggie的监控？
-
 
 
 

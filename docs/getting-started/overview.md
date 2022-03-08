@@ -26,12 +26,7 @@
 
 ## :question: 解答
 在使用Loggie的时候遇到问题？
-
-运维排障，请看「[一般问题排查思路](../user-guide/troubleshot/general-problems.md)」。
-
-使用上的疑惑，可以先参考「[FAQ](../user-guide/troubleshot/FAQ.md)」。  
-
-如果还是不能解决你的问题，请提issues或者联系我们。  
+请提issues或者联系我们。  
 
 ## :globe_with_meridians: 参与
 如果你对Loggie的具体实现感兴趣，想参与Loggie开源的研发？想自研插件？请看「[开发手册](../developer-guide/contributing.md)」。  

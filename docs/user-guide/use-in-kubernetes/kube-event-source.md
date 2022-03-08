@@ -10,18 +10,17 @@ Kubernetes Events是由Kubernetes本身组件和一些控制器产生的事件�
 
 ## 配置示例
 
-配置kubeEvents source，并且使用`type: loggie`下发配置到Aggregator集群即可。  
+配置kubeEvents source，并且使用`type: cluster`下发配置到Aggregator集群即可。  
 
 !!! config
     ```yaml
     apiVersion: loggie.io/v1beta1
-    kind: LogConfig
+    kind: ClusterLogConfig
     metadata:
       name: kubeevent
-      namespace: default
     spec:
       selector:
-        type: loggie
+        type: cluster
         cluster: aggregator
       pipeline:
         sources: |
@@ -63,16 +62,15 @@ Kubernetes Events是由Kubernetes本身组件和一些控制器产生的事件�
                   target: ["body"]
         ```
 
-    === "logConfig"
+    === "clusterLogConfig"
         ```yaml
         apiVersion: loggie.io/v1beta1
-        kind: LogConfig
+        kind: ClusterLogConfig
         metadata:
           name: kubeevent
-          namespace: default
         spec:
           selector:
-            type: loggie
+            type: cluster
             cluster: aggregator
           pipeline:
             sources: |
@@ -150,7 +148,6 @@ Kubernetes Events是由Kubernetes本身组件和一些控制器产生的事件�
         ]
     },
     "reportingComponent": "",
-    "systemPipelineName": "default/kubeevent/",
     "type": "Normal",
     "message": "Created pod: loggie-aggregator-pbkjk",
     "reason": "SuccessfulCreate",
@@ -170,7 +167,6 @@ Kubernetes Events是由Kubernetes本身组件和一些控制器产生的事件�
         "apiVersion": "apps/v1",
         "resourceVersion": "2975170"
     },
-    "systemSourceName": "event"
     }
     ```
 

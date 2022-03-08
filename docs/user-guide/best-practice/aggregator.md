@@ -28,7 +28,7 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
 
 如果仅仅修改`sink`或者`interceptor` CR本身不会立即同步到已经使用的LogConfig里，只有等待某些事件触发后（LogConfig本身被修改、关联Pod有重建等）才会被刷新配置。如果需要立刻更新，可以考虑重启Loggie本身。  
 
-被采集的容器创建以及匹配的LogConfig，请参考[Loggie采集容器日志](./collect-container-logs.md)。
+被采集的容器创建以及匹配的LogConfig，请参考[Loggie采集容器日志](../use-in-kubernetes/collect-container-logs.md)。
 
 这里我们将其中的sink修改为以下示例：  
 
@@ -68,7 +68,7 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
     
     ```yaml
     apiVersion: loggie.io/v1beta1
-    kind: LogConfig
+    kind: ClusterLogConfig
     metadata:
       name: aggre
       namespace: default
@@ -111,7 +111,6 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
     ```json
     2021-12-20 09:58:50 INF go/src/loggie.io/loggie/pkg/sink/dev/sink.go:98 > event: {
         "body": "14-Dec-2021 06:19:58.306 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [141] milliseconds",
-        "systemSourceName": "rec1",
         "fields": {
             "podname": "tomcat-684c698b66-gkrfs",
             "containername": "tomcat",
@@ -119,15 +118,5 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
             "namespace": "default",
             "nodename": "kind-control-plane"
         },
-        "systemState": {
-            "collectTime": "2021-12-20T09:58:46.346170897Z",
-            "contentBytes": 117,
-            "jobUid": "1320468-64769",
-            "lineNumber": 43,
-            "offset": 6028,
-            "nextOffset": 6145,
-            "filename": "/var/lib/kubelet/pods/89772369-2fd6-4b64-909f-aa10d81326c5/volumes/kubernetes.io~empty-dir/log/catalina.2021-12-14.log"
-        },
-        "systemPipelineName": "default/aggregator/"
     }
     ```

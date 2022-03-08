@@ -6,7 +6,7 @@ Loggie的monitor eventbus被设计为发布和订阅模式，各个组件发送m
 
 组件和topic以及listener之间是松耦合关系，比如`file source`还会定时将全量匹配的日志文件指标发送至`filewatcher topic`，`filewatcher listener`会处理和暴露指标。  
 
-## monitor配置
+## Monitor配置
 monitor eventbus配置在全局的系统配置中，示例如下：
 
 !!! config
@@ -89,11 +89,7 @@ spec:
       instance: loggie
 ```
 
-同时，我们需要在Grafana中添加如下的json来展示Loggie的监控控制台。  
-
-```url
-https://github.com/loggie-io/installation/tree/main/prometheus/grafana-dashboard
-```
+同时，我们需要在Grafana中添加install工程中的[json](https://github.com/loggie-io/installation/tree/main/prometheus/grafana-dashboard)来展示Loggie的监控控制台。  
 
 !!! note
     Kubernetes版本和Grafana版本不同，可能导致图表展示不兼容，需要根据情况进行修改。  
