@@ -20,13 +20,16 @@ Loggie会感知到Pod和CRD的事件，进行配置的动态更新。同时，Lo
 当然带来的好处不仅仅这些，Loggie在动态配置下发、监控指标等方面都可以基于Kubernetes进行相应的适配和支持。  
 
 ## CRD使用说明
-Loggie目前有三种CRD：
+Loggie目前有以下几种CRD：
 
 - **[LogConfig](../../reference/discovery/kubernetes/logconfig.md)**：namespace级别CRD，用于采集Pod容器日志，其中主要填写采集的source配置，以及关联的sink和interceptor。
 - **[ClusterLogConfig](../../reference/discovery/kubernetes/clusterlogconfig.md)**：cluster级别CRD，表示集群级别的采集Pod容器日志，采集Node节点上的日志，以及为某个Loggie集群下发通用的pipeline配置。
 - **[Sink](../../reference/discovery/kubernetes/sink.md)**：表示一个sink后端，需要在ClusterLogConfig/LogConfig中被关联。
 - **[Interceptor](../../reference/discovery/kubernetes/interceptors.md)**：表示一个interceptors组，需要在ClusterLogConfig/LogConfig中被关联。
 
+使用CRD的流程架构如下所示：
+
+![loggie-crd-usage](imgs/loggie-crd-usage.png)
 
 ## 准备工作
 
