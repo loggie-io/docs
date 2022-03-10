@@ -2,10 +2,15 @@
 
 ## 部署Loggie DaemonSet
 
+请确保本地有kubectl和helm可执行命令。
+
+- kubectl（[下载](https://github.com/kubernetes/kubernetes/tree/master/CHANGELOG)）
+- helm（[下载](https://helm.sh/docs/intro/install/)）
+
 ### 下载helm-chart包
 
 ```bash
-git clone https://github.com/loggie-io/installation.git
+helm pull https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-v1.0.0.tgz && tar xvzf loggie-v1.0.0.tgz
 ```
 
 ### 修改配置
@@ -20,7 +25,7 @@ cd installation/helm-chart
 
 #### 镜像
 ```yaml
-image: hub.c.163.com/qingzhou/loggie:latest
+image: hub.c.163.com/loggie/loggie:v1.0.0
 ```
 loggie的镜像。
 
@@ -132,6 +137,7 @@ config:
     discovery:
       enabled: true
       kubernetes:
+        containerRuntime: containerd
         fields:
           container.name: containername
           logConfig: logconfig
@@ -162,10 +168,17 @@ servicePorts:
 
 初次部署，我们指定部署在`loggie` namespace下，并让helm自动创建该namespace。
 ```bash
-helm install loggie ./ -nloggie --create-namespace --set image=${loggie-image}
+helm install loggie ./ -nloggie --create-namespace
 ```
 
 如果你的环境中已经创建了`loggie` namespace，可以忽略其中的`-nloggie`和`--create-namespace`参数。当然，你也可以使用自己的namespace，将其中`loggie`替换即可。  
+
+!!! caution "Kubernetes版本问题"
+    ```
+    failed to install CRD crds/crds.yaml: unable to recognize "": no matches for kind "CustomResourceDefinition" in version "apiextensions.k8s.io/v1"
+    ```
+    如果你在helm install的时候出现类似的问题，说明你的Kubernetes版本较低，不支持apiextensions.k8s.io/v1版本CRD。Loggie暂时保留了v1beta1版本的CRD，请删除charts中v1版本，`rm loggie/crds/crds.yaml`，重新install。
+
 
 ### 查看部署状态
 执行完后，通过使用helm命令来查看部署状态：
@@ -215,7 +228,7 @@ loggie-sxxwh   1/1     Running   0          5m21s   10.244.0.5   kind-control-pl
 
 执行部署命令参考：
 ```
-helm install loggie-aggregator ./ -nloggie-aggregator --create-namespace --set image=${loggie-image}
+helm install loggie-aggregator ./ -nloggie-aggregator --create-namespace
 ```
 
 !!! note
