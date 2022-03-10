@@ -15,16 +15,34 @@
 
 ## 2. 部署Loggie DaemonSet
 
-#### 下载chart
+你可以在 [installation](https://github.com/loggie-io/installation/releases) 页面查看所有发布的部署chart。
+
+可以选择：
+
+#### 下载chart再部署
+
 ```bash
-git clone https://github.com/loggie-io/installation.git
-cd installation/helm-chart
+helm pull https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-v1.0.0.tgz && tar xvzf loggie-v1.0.0.tgz
+```
+尝试修改一下其中的values.yaml。
+
+然后部署安装：
+
+```bash
+helm install loggie ./loggie -nloggie --create-namespace
 ```
 
-#### 安装
+当然你也可以：
+#### 直接部署：
+
 ```bash
-helm install loggie ./ -nloggie --create-namespace --set image=hub.c.163.com/qingzhou/loggie:v0.1.0-rc1
+helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-v1.0.0.tgz
 ```
+
+
+!!! caution "部署有问题？"
+
+    如果尝试部署后出现问题，或者在你的环境中以下演示操作未成功，请参考[Kubernetes下部署Loggie](../install/kubernetes.md)，修改相关配置。
 
 
 ## 3. 采集日志
@@ -85,10 +103,19 @@ spec:
 EOF
 ```
 
-创建完之后，我们可以使用`kubectl get lgc`查看到。 
+创建完之后，我们可以使用`kubectl get lgc`查看到创建的CRD实例。
+
+同时，我们还可以通过`kubectl describe lgc nginx`查看LogConfig的事件，以获取最新的状态。
+
+```
+Events:
+  Type    Reason       Age   From                       Message
+  ----    ------       ----  ----                       -------
+  Normal  syncSuccess  52s   loggie/kind-control-plane  Sync type pod [nginx-6799fc88d8-5cb67] success
+```
 
 上面的nginx LogConfig通过其中的spec.selector来匹配采集哪些Pod的日志，这里我们使用`app: nginx`选择了刚才创建的nginx Pod。  
-Pipelines里则是Loggie的Pipeline配置，这里我们只采集容器标准输出的日志，所以在paths中填写`stdout`即可。  
+spec.pipeline则表示Loggie的Pipeline配置，我们只采集容器标准输出的日志，所以在paths中填写`stdout`即可。  
 
 ## 4. 查看日志
 首先找到所在的nginx pod节点：
@@ -108,7 +135,7 @@ kubectl -nloggie logs -f ${logge-pod}
 
 ## 更多
 
-上文只是一个简单的快速演示，想了解更多Kubernetes下Loggie如何使用？
+上文只是一个简单的快速演示，部署出现问题或者想了解更多Kubernetes下Loggie如何使用？
 
 - 更全面的部署介绍：[Kubernetes下部署Loggie](../install/kubernetes.md)
 - Kubernetes下日志采集最佳实践：[Kubernetes下的日志采集](../../user-guide/use-in-kubernetes/collect-container-logs.md)

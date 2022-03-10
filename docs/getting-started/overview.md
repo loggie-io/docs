@@ -26,7 +26,11 @@
 
 ## :question: 解答
 在使用Loggie的时候遇到问题？
-请提issues或者联系我们。  
+请提[issues](https://github.com/loggie-io/loggie/issues)或者联系我们。  
+
+微信扫码加入Loggie讨论群：
+
+![loggie-bot](imgs/loggie-bot.png)
 
 ## :globe_with_meridians: 参与
 如果你对Loggie的具体实现感兴趣，想参与Loggie开源的研发？想自研插件？请看「[开发手册](../developer-guide/contributing.md)」。  

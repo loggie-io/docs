@@ -5,7 +5,7 @@
 ### 1. 下载可执行文件
 请找一台Linux服务器节点，下载Loggie二进制可执行文件
 ```shell
-wget 
+curl https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-linux-amd64 -o loggie
 ```
 ### 2. 添加配置文件
 
@@ -46,7 +46,7 @@ EOF
 
 ### 3. 运行
 ```shell
-./loggie -config.system=./loggie.yml config.pipeline=./pipelines.yml
+./loggie -config.system=./loggie.yml -config.pipeline=./pipelines.yml -log.jsonFormat=false
 ```
 
 启动参数里，填入上面的loggie.yml和pipelines.yml的文件路径。
