@@ -80,8 +80,8 @@ file source用于日志采集。
     sources:
     - type: file
       name: accesslog
-    	multi:
-    		active: true
+      multi:
+    	active: true
     ```
 
 ### active
