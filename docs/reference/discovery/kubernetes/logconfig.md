@@ -22,7 +22,7 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
             paths:
             - stdout
         sinkRef: default
-        interceptorsRef: default
+        interceptorRef: default
     ```
 
 ## spec.selector
@@ -67,7 +67,7 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 
 - sources为实际为string，在yaml中使用`｜`表示保留换行符
 - 没有sink，只有sinkRef，表示引用的Sink CRD实例
-- 没有interceptors，只有interceptorsRef，表示引用的Interceptors CRD实例
+- 没有interceptors，只有interceptorRef，表示引用的Interceptor CRD实例
 
 ### sources
 在LogConfig中，如果`type: pod`，`file source`新增几个专门针对容器化的参数：
@@ -113,8 +113,8 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 | sinkRef | string  |    非必填    |      | 表示该Pipeline引用的Sink CR |
 
 
-### interceptorsRef
+### interceptorRef
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| interceptorsRef | string  |    非必填    |      | 表示该Pipeline引用的Interceptor CR |
+| interceptorRef | string  |    非必填    |      | 表示该Pipeline引用的Interceptor CR |
