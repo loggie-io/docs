@@ -146,7 +146,7 @@ kubectl apply -f tomcat-emptydir.yml
 如果你的环境中已经有Elasticsearch和Kibana，这一步可以忽略。  
 如果希望自己搭建一套Elasticsearch和Kibana试用，这里建议：
 
-- [使用Helm部署Elasticsearch](https://github.com/elastic/helm-charts/blob/mainelasticsearch/README.md)
+- [使用Helm部署Elasticsearch](https://github.com/elastic/helm-charts/blob/main/elasticsearch/README.md)
 - [使用Helm部署Kibana](https://github.com/elastic/helm-charts/tree/main/kibana)
 
 如果本地没有helm客户端，需要下载[helm](https://helm.sh/docs/intro/install/)。  
