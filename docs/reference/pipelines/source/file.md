@@ -44,7 +44,7 @@ file source用于日志采集。
 
 | `字段`       | `类型` | `是否必填` | `默认值` | `含义`                 |
 | ------------ | ------ | ---------- | -------- | ---------------------- |
-| readChanSize | int    | 非必填     | 64       | 读取任务的channel size |
+| readChanSize | int    | 非必填     | 512       | 读取任务的channel size |
 
 ## readBufferSize
 
