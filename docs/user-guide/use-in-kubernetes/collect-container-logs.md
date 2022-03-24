@@ -92,18 +92,18 @@ Loggie目前有以下几种CRD：
         kind: Deployment
         metadata:
           labels:
-            app: nginx
-          name: nginx
+            app: tomcat
+          name: tomcat
           namespace: default
         spec:
           replicas: 1
           selector:
             matchLabels:
-              app: nginx
+              app: tomcat
           template:
             metadata:
               labels:
-                app: nginx
+                app: tomcat
             spec:
               containers:
               - env:
@@ -117,8 +117,8 @@ Loggie目前有以下几种CRD：
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-                image: nginx
-                name: nginx
+                image: tomcat
+                name: tomcat
                 volumeMounts:
                 - mountPath: /log
                   name: datalog
