@@ -5,7 +5,7 @@
 ### 1. 下载可执行文件
 请找一台Linux服务器节点，下载Loggie二进制可执行文件
 ```shell
-curl https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-linux-amd64 -o loggie
+curl -LJ https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-linux-amd64 -o loggie
 ```
 ### 2. 添加配置文件
 
