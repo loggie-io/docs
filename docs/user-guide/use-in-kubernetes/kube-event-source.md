@@ -59,7 +59,7 @@ Kubernetes Events是由Kubernetes本身组件和一些控制器产生的事件�
               processors:
               - jsonDecode: ~
               - drop:
-                  target: ["body"]
+                  targets: ["body"]
         ```
 
     === "clusterLogConfig"
