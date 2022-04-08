@@ -177,7 +177,7 @@ helm install loggie ./ -nloggie --create-namespace
     ```
     failed to install CRD crds/crds.yaml: unable to recognize "": no matches for kind "CustomResourceDefinition" in version "apiextensions.k8s.io/v1"
     ```
-    如果你在helm install的时候出现类似的问题，说明你的Kubernetes版本较低，不支持apiextensions.k8s.io/v1版本CRD。Loggie暂时保留了v1beta1版本的CRD，请删除charts中v1版本，`rm loggie/crds/crds.yaml`，重新install。
+    如果你在helm install的时候出现类似的问题，说明你的Kubernetes版本较低，不支持apiextensions.k8s.io/v1版本CRD。Loggie暂时保留了v1beta1版本的CRD，请删除charts中v1beta1版本，`rm loggie/crds/crds.yaml`，重新install。
 
 
 ### 查看部署状态
