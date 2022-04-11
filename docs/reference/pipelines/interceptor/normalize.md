@@ -263,10 +263,8 @@
     interceptors:
     - type: normalize
       processors:
-      - copy:
-          convert:
-          - from: hello
-            to: world
+      - underRoot:
+          keys: ["fields"]
     ```
 
 
