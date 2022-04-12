@@ -19,10 +19,12 @@ file source用于日志采集。
 !!! example
 
     需要采集的目标文件：
-    * /tmp/loggie/service/order/access.log
-    * /tmp/loggie/service/order/access.log.2022-04-11
-    * /tmp/loggie/service/pay/access.log
-    * /tmp/loggie/service/pay/access.log.2022-04-11
+    ```yaml
+    /tmp/loggie/service/order/access.log
+    /tmp/loggie/service/order/access.log.2022-04-11
+    /tmp/loggie/service/pay/access.log
+    /tmp/loggie/service/pay/access.log.2022-04-11
+    ```
     
     对应配置：
     ```yaml
