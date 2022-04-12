@@ -14,7 +14,25 @@ file source用于日志采集。
 ## paths
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| paths | string数组  |    必填      |    无  | 采集的path路径，使用glob表达式来匹配 |
+| paths | string数组  |    必填      |    无  | 采集的path路径，使用glob表达式来匹配。支持glob扩展表达式`Brace Expansion`和`Glob Star` |
+
+!!! example
+
+    需要采集的目标文件：
+    * /tmp/loggie/service/order/access.log
+    * /tmp/loggie/service/order/access.log.2022-04-11
+    * /tmp/loggie/service/pay/access.log
+    * /tmp/loggie/service/pay/access.log.2022-04-11
+    
+    对应配置：
+    ```yaml
+    sources:
+    - type: file
+      paths:
+      - /tmp/loggie/**/access.log{,.[2-9][0-9][0-9][0-9]-[01][0-9]-[0123][0-9]}
+    ```
+
+### 
 
 ## excludeFiles
 
