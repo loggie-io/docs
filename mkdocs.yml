@@ -18,7 +18,6 @@ theme:
     repo: fontawesome/brands/github
 
   font:
-    text: Noto Sans Simplified Chinese
     code: Robot Mono
   features:
     - content.code.annotate
