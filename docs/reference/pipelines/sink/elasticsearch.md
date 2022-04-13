@@ -8,7 +8,7 @@
     sink:
       type: elasticsearch
       hosts: ["elasticsearch1:9200", "elasticsearch2:9200", "elasticsearch3:9200"]
-      index: "log-${field.service}-${+YYYY.MM.DD}"
+      index: "log-${fields.service}-${+YYYY.MM.DD}"
     ```
 
 ## hosts
