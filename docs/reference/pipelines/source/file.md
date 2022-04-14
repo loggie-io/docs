@@ -34,7 +34,6 @@ file source用于日志采集。
       - /tmp/loggie/**/access.log{,.[2-9][0-9][0-9][0-9]-[01][0-9]-[0123][0-9]}
     ```
 
-### 
 
 ## excludeFiles
 
@@ -53,6 +52,30 @@ file source用于日志采集。
 | `字段`        | `类型` | `是否必填` | `默认值` | `含义`                           |
 | ------------- | ------ | ---------- | -------- | -------------------------------- |
 | ignoreSymlink | bool   | 非必填     | false    | 是否忽略符号链接（软链接）的文件 |
+
+
+## addonMeta
+
+| `字段`        | `类型` | `是否必填` | `默认值` | `含义`                           |
+| ------------- | ------ | ---------- | -------- | -------------------------------- |
+| addonMeta | bool   | 非必填     | false    | 是否添加默认的日志采集state元信息 |
+
+!!! example "event示例"
+
+    ```json
+    {
+      "body": "this is test",
+      "state": {
+        "pipeline": "local",
+        "source": "demo",
+        "filename": "/var/log/a.log",
+        "timestamp": "2006-01-02T15:04:05.000Z",
+        "offset": 1024,
+        "bytes": 4096,
+        "hostname": "node-1"
+      }
+    }
+    ```
 
 ## workerCount
 
