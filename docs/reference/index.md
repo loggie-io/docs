@@ -88,3 +88,7 @@ Loggie定义了以下几个CRD用于在Kubernetes集群环境里下发配置：
 - [**Sink**](discovery/kubernetes/sink.md)：cluster级别，表示一个sink配置，可以在LogConfig/ClusterLogConfig中引用该Sink。  
 
 - [**Interceptors**](discovery/kubernetes/interceptors.md)：cluster级别，表示一个interceptors组，可以在LogConfig中引用该interceptors组。  
+
+!!! note
+    ClusterLogConfig/LogConfig中的pipeline可以定义sink和interceptor，用于该pipeline的sink/interceptor。  
+    如果你希望在多个ClusterLogConfig/LogConfig中复用sink或者interceptor，可以创建Sink/Interceptor CR，在ClusterLogConfig/LogConfig中使用sinkRef/interceptorRef进行引用。

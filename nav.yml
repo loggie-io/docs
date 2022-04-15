@@ -66,6 +66,7 @@ nav:
         - Overview: reference/pipelines/sink/overview.md
         - elasticsearch: reference/pipelines/sink/elasticsearch.md
         - kafka: reference/pipelines/sink/kafka.md
+        - loki: reference/pipelines/sink/loki.md
         - grpc: reference/pipelines/sink/grpc.md
         - file: reference/pipelines/sink/file.md
         - dev: reference/pipelines/sink/dev.md

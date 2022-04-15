@@ -278,6 +278,7 @@
 | timestamp.convert[n].fromLayout | string  |    必填    |  无    | 指定字段的时间格式(golang形式) |
 | timestamp.convert[n].toLayout | string  |    必填    |  无    | 转换后的时间格式(golang形式)，另外可为`unix`和`unix_ms` |
 | timestamp.convert[n].toType | string  |    非必填    |  无    | 转换后的时间字段类型 |
+| timestamp.convert[n].local | bool  |    非必填    |  false    | 是否将解析的时间转成当前时区 |
 
 !!! example
     ```yaml
@@ -316,7 +317,23 @@ const (
 ```
 还可以根据实际情况修改。  
 
+### fmt
 
+字段内容重新格式化。可根据其他字段内容进行组合和格式化。
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| fmt.fields | map  |    必填    |  无    | key表示需要格式化的字段名称，value为需要格式化的内容。可使用`${}`的方式表示取值某个字段 |
+
+!!! example
+    ```yaml
+    interceptors:
+    - type: normalize
+      processors:
+      - fmt:
+          fields:
+            d: new-${a.b}-${c}
+    ```
 
 
 

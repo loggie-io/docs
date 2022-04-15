@@ -1,7 +1,10 @@
 ## 系统参数
 
-- `-config.system`: 默认为loggie.yml，表示指定Loggie系统配置的路径和文件名称
-- `-config.pipeline`: 默认为pipelines.yml，表示Pipeline配置文件所在的路径，需要填写符合glob匹配的路径，比如具体的路径和文件名`/etc/loggie/pipelines.yml`，或者glob匹配的方式，比如`/etc/loggie/*.yml`
+- `-config.from`: 默认为file，即默认使用文件的配置方式。可选：env，此时会从环境变量中读取配置（此时不支持reload）。
+- `-config.system`: 默认为loggie.yml，表示指定Loggie系统配置的路径和文件名称。  
+  （如果`-config.from=env`，则为system配置的环境变量名称）
+- `-config.pipeline`: 默认为pipelines.yml，表示Pipeline配置文件所在的路径，需要填写符合glob匹配的路径，比如具体的路径和文件名`/etc/loggie/pipelines.yml`，或者glob匹配的方式，比如`/etc/loggie/*.yml`。  
+  （如果`-config.from=env`，则为pipeline配置的环境变量名称）
 
 !!! warning
     值得注意的是，如果`config.pipeline=/etc/loggie`，glob匹配会认为`/etc/loggie`为`/etc`目录下的`loggie`文件，而不是匹配`/etc/loggie`目录下的文件，请避免类似的设置方式

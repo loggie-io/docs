@@ -34,3 +34,16 @@
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec.pretty |   |    非必填    |  false  | 是否进行json格式美化 |
 | codec.beatsFormat |   |    非必填    |  false  | 日志转成类filebeats格式：增加`@timestamp`字段，同时body字段命名为`message` |
+
+#### type: raw
+
+用于发送采集的原始body数据。
+
+!!! example
+
+    ```yaml
+    sink:
+      type: dev
+      codec:
+        type: raw
+    ```

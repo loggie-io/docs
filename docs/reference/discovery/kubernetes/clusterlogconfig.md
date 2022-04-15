@@ -51,7 +51,7 @@ Cluster级别CRD，可用于：
     表示采集带有标签 `app: nginx`的所有Pod的日志。
 
 !!! warning
-在`type: pod`时，下面的Pipeline只能使用file source，此时的场景只能是采集日志。
+    在`type: pod`时，下面的Pipeline只能使用file source，此时的场景只能是采集日志。
 
 ### type: node
 下发Pipeline配置至该批节点。

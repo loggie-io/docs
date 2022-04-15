@@ -37,8 +37,9 @@
 | podLogDirPrefix | string  |    非必填    |  /var/log/pods   | kubernetes默认放置的pod标准输出路径 |
 | fields | map  |    非必填    |    | 自动添加的元信息 |
 | fields.node.name | string  |    非必填    |  node.name  | 添加所在节点node name作为元信息，同时使用该值为key |
+| fields.node.ip | string  |    非必填    |  node.ip  | 添加所在节点node ip作为元信息，同时使用该值为key |
 | fields.namespace | string  |    非必填    |  namespace  | 添加namespace作为元信息，同时使用该值为key |
 | fields.pod.name | string  |    非必填    |  pod.name  | 添加pod name作为元信息，同时使用该值为key |
+| fields.pod.ip | string  |    非必填    |  pod.ip  | 添加pod ip作为元信息，同时使用该值为key |
 | fields.container.name | string  |    非必填    |  container.name  | 添加container name作为元信息，同时使用该值为key |
 | fields.logConfig | string  |    非必填    |  logConfig  | 添加logConfig name作为元信息，同时使用该值为key |
-

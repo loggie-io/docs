@@ -4,26 +4,56 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 
 !!! example
 
-    ```yaml
-    apiVersion: loggie.io/v1beta1
-    kind: LogConfig
-    metadata:
-      name: nginx
-      namespace: default
-    spec:
-      selector:
-        type: pod
-        labelSelector:
-          app: nginx
-      pipeline:
-        sources: |
-          - type: file
-            name: mylog
-            paths:
-            - stdout
-        sinkRef: default
-        interceptorRef: default
-    ```
+    === "直接定义sink/interceptor方式"
+
+        ```yaml
+        apiVersion: loggie.io/v1beta1
+        kind: LogConfig
+        metadata:
+          name: tomcat
+          namespace: default
+        spec:
+          selector:
+            type: pod
+            labelSelector:
+              app: tomcat
+          pipeline:
+            sources: |
+              - type: file
+                name: common
+                paths:
+                  - stdout
+            sink: |
+              type: dev
+              printEvents: false
+            interceptors: |
+              - type: rateLimit
+                qps: 90000
+        ```
+
+    === "引用sink和interceptor方式"
+
+        ```yaml
+        apiVersion: loggie.io/v1beta1
+        kind: LogConfig
+        metadata:
+          name: nginx
+          namespace: default
+        spec:
+          selector:
+            type: pod
+            labelSelector:
+              app: nginx
+          pipeline:
+            sources: |
+              - type: file
+                name: mylog
+                paths:
+                - stdout
+            sinkRef: default
+            interceptorRef: default 
+        ```
+
 
 ## spec.selector
 表示Pipeline配置适用的范围，可以选择采集一批Pods的日志
@@ -105,6 +135,19 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
             - stdout
 
     ```
+
+### interceptors
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| interceptors | string  |    非必填    |      | 表示该Pipeline的interceptor，使用方式和以上sources类似 |
+
+### sink
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| sink | string  |    非必填    |      | 表示该Pipeline的sink，使用方式和以上的sources类似 |
+
+
+如果你希望sink和interceptor可以在不同的ClusterLogConfig/LogConfig间复用，则可以使用以下ref的方式：
 
 ### sinkRef
 
