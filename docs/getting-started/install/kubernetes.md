@@ -10,7 +10,7 @@
 ### 下载helm-chart包
 
 ```bash
-helm pull https://github.com/loggie-io/installation/releases/download/v1.0.0/loggie-v1.0.0.tgz && tar xvzf loggie-v1.0.0.tgz
+helm pull https://github.com/loggie-io/installation/releases/download/v1.1.0/loggie-v1.1.0.tgz && tar xvzf loggie-v1.1.0.tgz
 ```
 
 ### 修改配置
@@ -25,7 +25,7 @@ cd installation/helm-chart
 
 #### 镜像
 ```yaml
-image: hub.c.163.com/loggie/loggie:v1.0.0
+image: hub.c.163.com/loggie/loggie:v1.1.0
 ```
 loggie的镜像。
 
