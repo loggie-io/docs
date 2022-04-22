@@ -130,7 +130,7 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
             name: mylog
             containerName: nginx
             matchFields:
-              labelKey: app
+              labelKey: ["app"]
             paths:
             - stdout
 
