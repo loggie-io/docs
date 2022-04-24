@@ -1,14 +1,12 @@
-# 日志格式转换
+# 日志增加加元信息
 
 > 建议先了解Loggie内部日志数据[schema设计](../architecture/schema.md)。  
 
 
-日志格式转换，主要是对Loggie内置的一些字段进行处理和转换，一般会依赖[日志切分处理](log-process.md)。
-
 ## 需求场景
-Loggie部署在不同的环境中，如果需要兼容已有的格式，可以参考如下的办法。
+Loggie部署在不同的环境中，如果需要在原始的日志数据里，增加一些元信息，同时兼容已有的格式，可以参考如下的办法。
 
-### 示例1: 发送原始数据
+### 场景1: 发送原始数据
 正常情况，Loggie仅将原始数据发送给下游。
 
 如果你配置：
@@ -38,7 +36,7 @@ sink输出的数据仅为原始数据：
     }
 ```
 
-### 示例2: 添加fields自定义元信息
+### 场景2: 添加fields自定义元信息
 
 如果我们在source上配置了一些自定义的fields。
 
@@ -88,7 +86,51 @@ sink输出的数据仅为原始数据：
     }
 ```
 
-### 示例3: 添加meta系统内置元信息
+### 场景3: 添加日志采集file source的状态信息
+在我们使用file source时，可能希望自动在日志原始数据里，增加一些日志采集的状态，比如采集的文件名称、采集的文件offsest等，file source提供了一个`addonMeta`配置，可快速enable。
+
+示例：添加如下`addonMeta`，并设置为true。
+
+!!! config "file source"
+
+    ```yaml
+    sources:
+    - type: file
+      paths:
+      - /var/log/*.log
+      addonMeta: true
+    ```
+    
+此时，采集的event会变成类似如下：
+
+!!! example 
+
+    ```json
+    {
+      "body": "this is test",
+      "state": {
+        "pipeline": "local",
+        "source": "demo",
+        "filename": "/var/log/a.log",
+        "timestamp": "2006-01-02T15:04:05.000Z",
+        "offset": 1024,
+        "bytes": 4096,
+        "hostname": "node-1"
+      }
+    }
+    ```
+
+具体字段含义可参考[file source](../../reference/pipelines/source/file.md)
+
+
+### 场景4: 增加Kubernetes元信息
+在Kubernetes的场景中，采集的容器日志，为了在查询的时候，使用namespace/podName等信息进行检索，往往需要增加相关的元数据。
+
+我们可以在系统配置的discovery.kubernetes中，配置fields字段。
+
+可参考[discovery](../../reference/global/discovery.md)。
+
+### 场景5: 添加meta系统内置元信息
 
 有一些Loggie系统内置的元信息，我们也希望发送给下游，这个时候，需要使用normalize interceptor中的addMeta processors。
 
@@ -163,7 +205,7 @@ sink输出的数据仅为原始数据：
     ```
 
 
-### 示例4：beatsFormat快速转换
+### 场景6：beatsFormat快速转换
 
 如果你期望的格式为类似：
 
