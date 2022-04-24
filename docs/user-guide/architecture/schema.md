@@ -15,7 +15,7 @@
 ## 格式转换
 如果以上的格式不满足需求，可以参考：
 
-- [日志格式转换](../best-practice/log-format.md)
+- [日志元信息](../best-practice/log-enrich.md)
 
 ## 日志切分
 对于原始日志数据的切分与处理，请使用 **normalize interceptor**，请参考：

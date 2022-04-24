@@ -23,7 +23,7 @@ Loggie和其他的开源日志Agent区别是什么？
 请看「[Kubernetes](use-in-kubernetes/general-usage.md)」。  
 
 如何配置各种不同的日志架构？如何接入现有的服务？如何配置日志的处理和切分？Loggie还提供了哪些有用又好用的功能？  
-请看「[最佳实践](best-practice/log-format.md)」。  
+请看「[最佳实践](best-practice/log-enrich.md)」。  
 
 如何配置整体的监控和报警，保证Loggie正常运行？如何监控是否采集到ERROR日志？  
 请看「[监控报警](monitor/loggie-monitor.md)」。  

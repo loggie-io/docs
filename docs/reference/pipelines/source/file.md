@@ -77,6 +77,15 @@ file source用于日志采集。
     }
     ```
 
+state含义解释：
+- pipeline: 所在的pipeline名称
+- source: 所在的source名称
+- filename: 采集的文件名称
+- timestamp: 采集时刻的时间戳
+- offset: 采集的数据在文件的offset偏移量
+- bytes: 采集的数据字节数
+- hostname: 所在节点名称
+
 ## workerCount
 
 | `字段`      | `类型` | `是否必填` | `默认值` | `含义`                                                       |
