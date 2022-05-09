@@ -39,7 +39,7 @@
         - type: normalize
           name: global
           processors:
-            addMeta: ~
+           - addMeta: ~
 
     ```
 
@@ -115,8 +115,8 @@
         - type: normalize
           processors:
           - split:
-            separator: '|'
-            keys: ["time", "order", "service", "price"]
+              separator: '|'
+              keys: ["time", "order", "service", "price"]
         ```
         使用以上split配置可以将日志：
         ```
@@ -137,9 +137,9 @@
         - type: normalize
           processors:
           - split:
-            separator: ' '
-            max: 2
-            keys: ["time", "content"]
+              separator: ' '
+              max: 2
+              keys: ["time", "content"]
         ```
         通过增加`max`参数，可以控制最多分割的字段。  
         比如以下日志:
