@@ -88,3 +88,7 @@ type Interceptor interface {
     Intercept(invoker Invoker, invocation Invocation) api.Result
 }
 ```
+
+
+!!! note
+    请注意新增的组件需要放到pkg/include/include.go的import当中注册
