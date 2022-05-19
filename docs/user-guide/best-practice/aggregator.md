@@ -71,10 +71,9 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
     kind: ClusterLogConfig
     metadata:
       name: aggre
-      namespace: default
     spec:
       selector:
-        type: loggie
+        type: cluster
         cluster: aggregator
       pipeline:
         sources: |
