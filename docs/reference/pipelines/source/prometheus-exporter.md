@@ -8,7 +8,7 @@
     - type: prometheusExporter
       name: metric
       endpoints:
-      - "127.0.0.1:9196/metrics"
+      - "http://127.0.0.1:9196/metrics"
     ```
 
 ## endpoints
