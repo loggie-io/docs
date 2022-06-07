@@ -35,7 +35,7 @@ kubectl -n ${namespace} describe lgc ${name}
   kubectl -n ${namespace} get po -owide -l ${labels}
   ```
   比如`kubectl -n ns1 get po -owide -l app=tomcat,service=web`
-  来判断一下是否有匹配的Pod，如果没有匹配则无类似sync success的events。
+  来判断一下是否有匹配的Pod。
 
 如果没有类似sync success的events，可根据events同时结合Loggie日志排查问题：
 
