@@ -1,10 +1,15 @@
-:root {
+/* :root {
   --md-primary-fg-color: #1a7dc9;
   --home-color: #0071c7;
   --nav-item-color: #4d4d4d;
   --md-accent-fg-color: #0071c7;
-}
+} */
 
+:root > * {
+  --md-primary-fg-color:        #2264E5;
+  --md-primary-fg-color--light: #73b7e4;
+  --md-primary-fg-color--dark:  #2264E5;
+}
 
 .md-header__button.md-logo img {
   width: 5.5rem;
@@ -15,7 +20,7 @@
   transition-property: transform;
 }
 
-.md-header,.md-footer-nav {
+.md-header .md-footer-nav {
   background-image: linear-gradient(0 deg, rgb(53, 112, 227) 0%, rgb(53, 112, 227) 24%, rgb(46 106 225) 53%, rgb(32 97 223) 78%, rgb(26 94 225) 100%);
   /* background-color: rgb(53, 112, 227); */
 }
@@ -24,9 +29,9 @@
   margin-top: 50px;
 }
 
-/* .md-tabs {
+.md-tabs {
   box-shadow: 0 0 0.2rem rgb(0 0 0 / 10%), 0 0.2rem 0.4rem rgb(0 0 0 / 20%);
-} */
+}
 
 .md-nav__item--nested>.md-nav__link, .md-nav__item a {
   color: var(--nav-item-color);
@@ -69,6 +74,10 @@
   max-width: 64rem;
 }
 
+.md-grid .md-typeset {
+  padding-left: 3rem;
+}
+
 /* @media screen and (min-width: 76.25em) {
   .md-sidebar--primary:not([hidden])~.md-content>.md-content__inner{
     margin-left: 1.6rem;
@@ -77,10 +86,12 @@
 
 .md-tabs__link {
   font-weight: 450;
+  font-size: 0.77rem;
 }
 
 .md-tabs__link .md-tabs__link--active {
   font-weight: 500;
+  font-size: 0.77rem;
   border-bottom: 2px solid white;
 }
 
