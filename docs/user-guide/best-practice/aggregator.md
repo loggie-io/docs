@@ -97,7 +97,7 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
           pretty: true
     ```
 
-`type: loggie`表示选择下发配置到`cluster`指定的Loggie集群，即我们刚部署的中转机集群，如果不填写会将配置指定到默认的Agent集群，导致无法生效。  
+`type: cluster`表示选择下发配置到`cluster`指定的Loggie集群，即我们刚部署的中转机集群，如果不填写会将配置指定到默认的Agent集群，导致无法生效。  
 
 这里的source为Grpc，接收Agent Grpc sink发出的数据，然后转发至自身sinkRef指定的sink中。这里我们创建了一个dev sink用于查看中转机输出的数据。  
 
