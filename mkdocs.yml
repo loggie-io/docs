@@ -85,7 +85,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
-copyright: Copyright &copy; 2021 Loggie.io
+copyright: Copyright &copy; 2022 Loggie.io
 
 extra:
   social:
