@@ -91,3 +91,5 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/loggie-io
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/loggieio/loggie
