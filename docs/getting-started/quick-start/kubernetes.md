@@ -22,7 +22,7 @@
 #### 下载chart再部署
 
 ```bash
-helm pull https://github.com/loggie-io/installation/releases/download/v1.1.0/loggie-v1.1.0.tgz && tar xvzf loggie-v1.1.0.tgz
+helm pull https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-v1.2.0.tgz && tar xvzf loggie-v1.2.0.tgz
 ```
 尝试修改一下其中的values.yaml。
 
@@ -40,7 +40,7 @@ helm install loggie ./loggie -nloggie --create-namespace
 #### 直接部署：
 
 ```bash
-helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/v1.1.0/loggie-v1.1.0.tgz
+helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-v1.2.0.tgz
 ```
 
 

@@ -40,6 +40,10 @@ git push upstream release-v${A.B.C}
 #### 3. release Loggie-installation
 release Loggie-installationation部署脚本工程，和上述1，2步骤相同
 
+请注意：
+
+- 请勿忘记修改Chart.yaml中的版本号
+
 #### 4. 回归测试
 基于release分支进行回归测试。  
 release分支push至Github后，会触发action进行镜像构建，使用该镜像进行回归测试。  
@@ -61,7 +65,7 @@ git push v${A.B.C}
 - Loggie工程复制项目中的CHANGELOG即可
 - Loggie installation工程需要提供`loggie-linux-amd64`二进制和`loggie-v${A.B.C}.tgz` helm chart包。
   - 二进制需要找台linux amd64机器进行`make build`
-  - helm chart包需要基于对应版本的loggie installation项目，执行`helm package`
+  - helm chart包需要基于对应版本的loggie installation项目，执行`helm package ./helm-chart`即可。
 
 #### 7. 更新Loggie docs文档
 
