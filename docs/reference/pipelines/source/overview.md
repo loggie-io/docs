@@ -108,3 +108,77 @@ sources字段为数组，一个Pipeline中可填写多个source组件配置。
     }
 }
 ```
+
+### codec
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| codec |   |    非必填    |    | source接收到数据的时候用于解析预处理 |
+| codec.type | string  |    非必填    |   无 |  |
+
+请注意：目前仅`file source`支持source codec。
+
+#### type: json
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| codec.bodyFields |   |    必填    |    | 使用解析读取到的json数据中的该字段作为`body` |
+
+配置示例：
+!!! example "type: json"
+
+    ```yaml
+      sources:
+      - type: file
+        name: nginx
+        paths:
+        - /var/log/*.log
+        codec:
+          type: json
+          bodyFields: log
+    ```
+
+如果采集到的日志为：
+```json
+{"log":"I0610 08:29:07.698664 Waiting for caches to sync\n", "stream":"stderr", "time:"2021-06-10T08:29:07.698731204Z"}
+```
+则codec后得到的event为：
+```
+body: "I0610 08:29:07.698664 Waiting for caches to sync"
+```
+
+请注意：目前非bodyFields的字段均会被丢弃。
+
+
+#### type: regex
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| codec.pattern |   |    必填    |    | 正则表达式 |
+| codec.bodyFields |   |    必填    |    | 使用正则提取到的该字段作为`body` |
+
+配置示例：
+!!! example "type: regex"
+
+    ```yaml
+      sources:
+      - type: file
+        name: nginx
+        paths:
+        - /var/log/*.log
+        codec:
+          type: regex
+          pattern: ^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) (?P<log>.*)$
+          bodyFields: log
+    ```
+
+如果采集到的日志为：
+```
+2021-12-01T03:13:58.298476921Z stderr F INFO [main] Starting service [Catalina]
+```
+则codec后得到的event为：
+```
+body: "INFO [main] Starting service [Catalina]"
+```
+
+请注意：目前非bodyFields的字段均会被丢弃。

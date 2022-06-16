@@ -35,3 +35,25 @@
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | toJson | bool  |    非必填    |  false   | 是否将抓取到的prometheus原生指标，转换成JSON格式 |
+
+## labels
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| labels | map  |    非必填    |     | 给所有metrics指标增加额外的label |
+
+labels支持配置${_env.XX}的方式获取环境变量。
+例如，配置：
+!!! example "labels"
+
+    ```yaml
+        sources:
+        - type: prometheusExporter
+          name: metric
+          endpoints:
+          - "http://127.0.0.1:9196/metrics"
+          labels:
+            svc: ${_env.SVC}
+    
+    ```
+假设环境变量SVC=test，会将所有的metrics加上svc=test的label。

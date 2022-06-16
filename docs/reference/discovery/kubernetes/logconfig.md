@@ -107,9 +107,10 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 | containerName | string  |    非必填    |      | 表示指定采集的容器名称，建议在Pod里包含多个容器时填写 |
 | excludeContainerPatterns | string数组  |    非必填    |      | 排除的容器名称，使用正则表达式形式 |
 | matchFields |   |    非必填    |      | 将Pod中的信息加入到Fields中  |
-| matchFields.labelKey | string数组  |    非必填    |      | 指定增加的Pod上的Label Key值，比如Pod上包含Label: `app: demo`，此处填写`labelKey: app`，此时会将Pod上的`app: demo` label增加到file source fields中，采集到的日志会被加上该label信息。适用于匹配的Pod的label存在不一致的场景。 |
-| matchFields.annotationKey | string数组  |    非必填    |      | 和上面labelKey类似，注入的为Pod Annoatation的值 |
-| matchFields.env | string数组  |    非必填    |      | 和上面labelKey类似，注入的为Pod Env环境变量的值 |
+| matchFields.labelKey | string数组  |    非必填    |      | 指定增加的Pod上的Label Key值，比如Pod上包含Label: `app: demo`，此处填写`labelKey: app`，此时会将Pod上的`app: demo` label增加到file source fields中，采集到的日志会被加上该label信息。适用于匹配的Pod的label存在不一致的场景。支持配置为"*"的方式获取所有的label |
+| matchFields.annotationKey | string数组  |    非必填    |      | 和上面labelKey类似，注入的为Pod Annoatation的值，支持配置为"*"的方式获取所有的annotation |
+| matchFields.env | string数组  |    非必填    |      | 和上面labelKey类似，注入的为Pod Env环境变量的值，支持配置为"*"的方式获取所有的env |
+
 
 !!! example
 

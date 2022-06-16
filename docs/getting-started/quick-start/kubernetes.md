@@ -22,7 +22,7 @@
 #### 下载chart再部署
 
 ```bash
-helm pull https://github.com/loggie-io/installation/releases/download/v1.1.0/loggie-v1.1.0.tgz && tar xvzf loggie-v1.1.0.tgz
+helm pull https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-v1.2.0.tgz && tar xvzf loggie-v1.2.0.tgz
 ```
 尝试修改一下其中的values.yaml。
 
@@ -40,7 +40,7 @@ helm install loggie ./loggie -nloggie --create-namespace
 #### 直接部署：
 
 ```bash
-helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/v1.1.0/loggie-v1.1.0.tgz
+helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-v1.2.0.tgz
 ```
 
 
@@ -104,6 +104,35 @@ spec:
         paths:
         - stdout
     sinkRef: default
+EOF
+```
+
+可以看到，上面使用了sinkRef引用了刚才创建的`sink default CR`。当然，我们还可以直接在Logconfig中使用sink字段，示例如下：
+
+```yaml
+cat << EOF | kubectl apply -f -
+apiVersion: loggie.io/v1beta1
+kind: LogConfig
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  selector:
+    type: pod
+    labelSelector:
+      app: nginx
+  pipeline:
+    sources: |
+      - type: file
+        name: mylog
+        paths:
+        - stdout
+    sink: |
+      type: dev
+      printEvents: true
+      codec:
+        type: json
+        pretty: true
 EOF
 ```
 

@@ -301,7 +301,102 @@ Events:
 
 发送成功后，我们可以在Kibana上查询到采集到的日志。  
 
+## 自动解析容器标准输出原始日志
 
+正常情况下，我们采集到的标准输出并不是打印的日志内容，而是被容器运行时增加了一层封装。  
+
+例如docker的标准输出为json形式：
+```json
+{"log":"I0610 08:29:07.698664 Waiting for caches to sync\n", "stream":"stderr", "time:"2021-06-10T08:29:07.698731204Z"}
+```
+业务打印的原始日志内容存储在log字段里。
+
+containerd的标准输出形式类似如下：
+```
+2021-12-01T03:13:58.298476921Z stderr F INFO [main] Starting service [Catalina]
+```
+前面`2021-12-01T03:13:58.298476921Z stderr F `为运行时增加的前缀内容，后面则为原始的日志。
+
+特别是如果我们配置了日志采集多行配置，因为采集到的日志内容和业务输出的日志不一致，会导致采集标准输出日志匹配多行有问题。
+
+所以，Loggie提供了一键开关配置，在系统配置中，将`parseStdout`参数设置为true即可。
+
+!!! example "parseStdout"
+
+    ```yaml
+    config:
+      loggie:
+        discovery:
+          enabled: true
+          kubernetes:
+            parseStdout: true
+    ```
+
+Loggie会在渲染LogConfig的时候自动增加source codec解析出原始的业务日志。
+
+需要注意的是：
+
+- 仅当LogConfig配置里的paths单独为`stdout`时有效：  
+  【有效】
+    ```yaml
+            sources: |
+              - type: file
+                name: common
+                paths:
+                  - stdout
+    ```
+  【无效】
+  ```yaml
+          sources: |
+            - type: file
+              name: common
+              paths:
+                - stdout
+                - /usr/local/tomcat/logs/*.log
+  ```
+  上面需要改成两个source：  
+  【有效】
+  ```yaml
+          sources: |
+            - type: file
+              name: stdout
+              paths:
+                - stdout
+            - type: file
+              name: tomcat
+              paths:
+                - /usr/local/tomcat/logs/*.log
+  ```
+
+- 目前只会保留原始的日志内容到`body`中，其余运行时附加的字段会被丢弃。
+- 自动解析stdout实际上是在LogConfig渲染成Pipeline配置时自动增加source codec来实现。
+
+
+## 无需挂载volume的容器日志采集
+
+虽然我们建议使用挂载volume(emptyDir/hostPath+subPathExpr)的方式将日志文件挂出给Loggie采集，但仍然存在很多情况我们没办法将业务的Pod统一挂载出日志路径。  
+比如一些基础组件无法配置独立的日志volume，或者业务单纯的不愿意改部署配置。
+
+Loggie提供了无需挂载即可采集容器日志的能力，可自动识别并采集容器root filesystem里的日志文件。
+
+你只需要将部署的helm chart中values.yml里的配置`rootFsCollectionEnabled`设置为true，
+同时填上实际环境的容器运行时（docker/containerd），如下所示：
+
+!!! example "rootFsCollectionEnabled"
+
+    ```yaml
+    config:
+      loggie:
+        discovery:
+          enabled: true
+          kubernetes:
+            containerRuntime: containerd
+            rootFsCollectionEnabled: false
+    ```
+
+修改完成后，重新helm upgrade即可。  
+helm模版会自动渲染增加额外的一些挂载路径和配置，如果你从低版本升级，需要额外修改部署的Daemonset yaml。
+具体原理请参考issues [#208](https://github.com/loggie-io/loggie/issues/208)。
 
 
 

@@ -14,7 +14,7 @@
 ## 日志参数:  
 
 - `-log.level`: 日志级别，默认为info，可配置为debug、info、warn和error
-- `-log.jsonFormat`: 是否将日志输出为json格式，默认为true
+- `-log.jsonFormat`: 是否将日志输出为json格式，默认为false
 - `-log.enableStdout`: 是否输出标准输出日志，默认为true
 - `-log.enableFile`: 是否输出日志文件，默认为false，即不输出日志文件，默认打印到标准输出
 - `-log.directory`: 日志文件的路径，默认为/var/log，当log.enableFile=true时生效
@@ -23,6 +23,7 @@
 - `-log.maxBackups`: 日志轮转最多保留的文件个数，默认为3
 - `-log.maxAge`: 日志轮转最大保留的天数，默认为7
 - `-log.timeFormat`: 每行日志输出的时间格式，默认格式为`2006-01-02 15:04:05`
+- `-log.noColor`: 输出是否有颜色美化，默认为false，即有颜色美化，对于从标准输出查看日志比较方便。如果输出到日志文件中，建议设置为true，避免引入额外的格式。
 
 !!! info
     Loggie的日志轮转使用[lumberjack](`https://github.com/natefinch/lumberjack`)库

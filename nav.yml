@@ -41,6 +41,7 @@ nav:
 
       - 企业实战:
         - 日志系统架构与演进: user-guide/enterprise-practice/architecture-and-evolution.md
+        - 使用阿里云SLS日志存储: user-guide/enterprise-practice/sls.md
 
       - 运维排障:
         - 日志采集快速排障指南: user-guide/troubleshot/log-collection.md
@@ -73,6 +74,7 @@ nav:
         - grpc: reference/pipelines/sink/grpc.md
         - file: reference/pipelines/sink/file.md
         - dev: reference/pipelines/sink/dev.md
+        - sls: reference/pipelines/sink/sls.md
 
       - Interceptor:
         - Overview: reference/pipelines/interceptor/overview.md
@@ -96,6 +98,7 @@ nav:
         - sink: reference/monitor/sink.md
         - queue: reference/monitor/queue.md
         - logAlert: reference/monitor/logalert.md
+        - sys: reference/monitor/sys.md
 
       - Kubernetes CRD: 
         - LogConfig: reference/discovery/kubernetes/logconfig.md
@@ -108,3 +111,4 @@ nav:
       - 本地开发: developer-guide/development.md
       - 代码规范: developer-guide/code/coding-guide.md
       - 组件开发: developer-guide/component/component-guide.md
+      - 版本发布流程: developer-guide/release.md
