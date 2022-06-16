@@ -4,9 +4,9 @@
 而你只需要使用`sls sink`即可。
 
 
-## 准备：创建SLS日志存储Project
+## 准备：创建SLS Project
 
-为了使用阿里云可观测统一存储SLS日志存储，我们需要先创建一个对应的Project。
+为了使用阿里云可观测统一存储SLS，我们需要先创建一个对应的Project。
 如下所示，在SLS页面中，点击`创建Project`，填入project名称和对应的地域，创建完之后同步创建相应的Logstore。
 ![sls-project](imgs/sls-project.png)
 
