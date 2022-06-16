@@ -55,6 +55,7 @@
 | ---------- | ----------- | ----------- | --------- | -------- |
 | regex.pattern | string  |    必填    |  无    | 正则解析规则 |
 | regex.target | string  |    非必填    |  body    | 正则解析的目标字段 |
+| regex.ignoreError | bool  |    非必填    |  false    | 是否忽略错误 |
 
 !!! example
     ```yaml
@@ -88,6 +89,8 @@
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | jsonDecode.target | string  |    非必填    |  body    | json decode的目标字段 |
+| jsonDecode.ignoreError | bool  |    非必填    |  false    | 是否忽略错误 |
+
 
 !!! example
     ```yaml
@@ -107,6 +110,7 @@
 | split.separator | string  |    必填    |  无    | 分隔符 |
 | split.max | int  |    非必填    |  -1    | 通过分割符分割后得到的最多的字段数 |
 | split.keys | string数组  |    必填    |  无   | 分割后字段对应的key |
+| split.ignoreError | bool  |    非必填    |  false    | 是否忽略错误 |
 
 !!! example
     === "base"
