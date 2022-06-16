@@ -1,6 +1,6 @@
 # sls
 
-sls sink用于将日志发送至阿里云SLS存储。  
+sls sink用于将日志发送至[阿里云可观测统一存储SLS](https://www.aliyun.com/product/sls)。  
 
 !!! example
 
@@ -20,7 +20,7 @@ sls sink用于将日志发送至阿里云SLS存储。
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| endpoint | string  |    必填    |      | sls存储的访问域名 |
+| endpoint | string  |    必填    |      | SLS存储的访问域名 |
 
 你可以在具体project页面的项目概览中查看到。
 
