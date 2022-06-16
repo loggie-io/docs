@@ -1,13 +1,13 @@
-# 使用阿里云SLS日志存储
+# 使用阿里云可观测统一存储SLS
 
-不管你的服务部署在阿里云还是使用混合云的架构，Loggie同样支持采集日志数据至阿里云SLS日志存储。
+不管你的服务部署在阿里云还是使用混合云的架构，Loggie同样支持采集日志数据至[阿里云可观测统一存储SLS](https://www.aliyun.com/product/sls)。
 而你只需要使用`sls sink`即可。
 
 
 ## 准备：创建SLS日志存储Project
 
-为了使用阿里云SLS日志存储，我们需要先创建一个对应的Project。
-如下所示，在阿里云SLS页面中，点击`创建Project`，填入project名称和对应的地域，创建完之后同步创建相应的Logstore。
+为了使用阿里云可观测统一存储SLS日志存储，我们需要先创建一个对应的Project。
+如下所示，在SLS页面中，点击`创建Project`，填入project名称和对应的地域，创建完之后同步创建相应的Logstore。
 ![sls-project](imgs/sls-project.png)
 
 然后我们可以准备一下`sls sink`的配置，示例如下所示，具体可参考[sls sink 配置参数](../../reference/pipelines/sink/sls.md)：

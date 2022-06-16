@@ -41,7 +41,7 @@ nav:
 
       - 企业实战:
         - 日志系统架构与演进: user-guide/enterprise-practice/architecture-and-evolution.md
-        - 使用阿里云SLS日志存储: user-guide/enterprise-practice/sls.md
+        - 使用阿里云可观测统一存储SLS: user-guide/enterprise-practice/sls.md
 
       - 运维排障:
         - 日志采集快速排障指南: user-guide/troubleshot/log-collection.md
