@@ -87,6 +87,15 @@ markdown_extensions:
 
 copyright: Copyright &copy; 2022 Loggie.io
 
+plugins:
+  - i18n:
+      default_language: en
+      languages:
+        en:
+          name: English
+        zh:
+          name: 中文
+
 extra:
   social:
     - icon: fontawesome/brands/github
