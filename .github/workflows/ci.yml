@@ -15,4 +15,6 @@ jobs:
       - run: pip install mkdocs-material==7.2.5 
       - run: mkdocs --version
       - run: pip show mkdocs-material
-      - run: mkdocs gh-deploy --force
+      - run: mkdocs build -f config/en/mkdocs.yml
+      - run: mkdocs build -f config/zh/mkdocs.yml
+      - run: mkdocs gh-deploy -d docs/ --force
