@@ -1,0 +1,94 @@
+INHERIT: nav.yml
+
+site_name: ' ' 
+docs_dir: '../../docs/en'                           
+site_dir: '../../generated/en'                      
+
+repo_url: https://github.com/loggie-io/loggie
+repo_name: loggie-io/loggie
+site_description: Loggie Documentation
+extra_css:
+  - stylesheets/extra.css
+edit_uri: https://github.com/loggie-io/docs/tree/main/docs/
+
+theme:
+  name: material
+  language: en
+  logo: assets/loggie.svg
+  favicon: assets/min-logo.png
+  custom_dir: '../../overrides/'                  # This is where the customization of the theme lives
+
+  icon:
+    repo: fontawesome/brands/github
+
+  font:
+    code: Robot Mono
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    # - navigation.indexes
+    # - navigation.instant
+    # - navigation.sections
+    - search.highlight
+    - search.share
+    - search.suggest
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.tabs.sticky
+    - navigation.top
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+copyright: Copyright &copy; 2022 Loggie.io
+
+extra:
+  alternate:
+    - name: English
+      link: /en/ 
+      lang: en
+    - name: 中文
+      link: /zh/
+      lang: zh
+
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/loggie-io
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/loggieio/loggie
+
