@@ -15,4 +15,5 @@ jobs:
       - run: pip install mkdocs-material==7.2.5 
       - run: mkdocs --version
       - run: pip show mkdocs-material
+      - run: pip install mkdocs-static-i18n
       - run: mkdocs gh-deploy --force
