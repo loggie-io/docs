@@ -3,6 +3,8 @@
 不管你的服务部署在阿里云还是使用混合云的架构，Loggie同样支持采集日志数据至[阿里云可观测统一存储SLS](https://www.aliyun.com/product/sls)。
 而你只需要使用`sls sink`即可。
 
+> 阿里云官方文档中关于Loggie的使用请参考：[使用Loggie上传日志](https://help.aliyun.com/document_detail/434306.htm)
+
 
 ## 准备：创建SLS Project
 
