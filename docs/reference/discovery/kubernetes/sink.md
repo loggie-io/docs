@@ -5,6 +5,7 @@
 !!! example
 
     ```yaml
+    apiVersion: loggie.io/v1beta1
     kind: Sink
     metadata:
       name: default
