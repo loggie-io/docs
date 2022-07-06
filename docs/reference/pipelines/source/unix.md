@@ -7,8 +7,7 @@
     sources:
     - type: unix
       name: demo
-      path:
-      - "/tmp/loggie.sock"
+      path: "/tmp/loggie.sock"
     ```
 
 ## path
