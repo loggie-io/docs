@@ -45,6 +45,7 @@ nav:
 
       - 运维排障:
         - 日志采集快速排障指南: user-guide/troubleshot/log-collection.md
+        - 问题案例: user-guide/troubleshot/problems.md
 
     - 组件配置:
       - Overview: reference/index.md
