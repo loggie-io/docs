@@ -23,8 +23,8 @@ theme:
     - content.code.annotate
     - content.tabs.link
     # - navigation.indexes
-    # - navigation.instant
-    # - navigation.sections
+    - navigation.instant
+    - navigation.sections
     - search.highlight
     - search.share
     - search.suggest
