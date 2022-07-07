@@ -26,9 +26,6 @@ helm pull https://github.com/loggie-io/installation/releases/download/v1.2.0/log
 ```
 尝试修改一下其中的values.yaml。
 
-!!! node "想使用其他版本镜像？"
-
-    为了方便体验最新的Fix和特性，我们提供了main分支每次合并后的镜像版本，可通过 [这里](https://hub.docker.com/r/loggieio/loggie/tags) 进行选择。
 
 然后部署安装：
 
@@ -42,6 +39,11 @@ helm install loggie ./loggie -nloggie --create-namespace
 ```bash
 helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-v1.2.0.tgz
 ```
+
+!!! node "想使用其他版本镜像？"
+
+    为了方便体验最新的Fix和特性，我们提供了main分支每次合并后的镜像版本，可通过 [这里](https://hub.docker.com/r/loggieio/loggie/tags) 进行选择。  
+    同时你可以在helm install命令中增加`--set image=loggieio/loggie:vX.Y.Z`来指定具体的Loggie镜像。
 
 
 !!! caution "部署有问题？"
