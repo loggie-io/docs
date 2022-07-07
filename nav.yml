@@ -113,3 +113,6 @@ nav:
       - 代码规范: developer-guide/code/coding-guide.md
       - 组件开发: developer-guide/component/component-guide.md
       - 版本发布流程: developer-guide/release.md
+
+    - Blog:
+      - Posts: blog/index.md
