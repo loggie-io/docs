@@ -18,15 +18,11 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
 
 部署为Aggregator类型时，请务必在Kubernetes配置中指定`cluster`集群名称。  
 
-为了查看输出日志更加方便，可以在Loggie的启动参数中加上`-log.jsonFormat=false`，使用非json格式的日志打印。  
-
 ## 配置使用
 
 ### Agent
 
 采集日志的LogConfig配置无区别，只需要修改sink发送至Loggie Aggregator或者Kafka即可。  
-
-如果仅仅修改`sink`或者`interceptor` CR本身不会立即同步到已经使用的LogConfig里，只有等待某些事件触发后（LogConfig本身被修改、关联Pod有重建等）才会被刷新配置。如果需要立刻更新，可以考虑重启Loggie本身。  
 
 被采集的容器创建以及匹配的LogConfig，请参考[Loggie采集容器日志](../use-in-kubernetes/collect-container-logs.md)。
 
@@ -43,7 +39,7 @@ Loggie可以部署为Agent，同时支持独立部署，进行聚合、转发和
         spec:
           sink: |
             type: grpc
-            host: "loggie-aggregator.loggie-aggregator:6166"
+            host: "loggie-aggregator.loggie-aggregator:6066"
         ```
 
     === "Kafka"
