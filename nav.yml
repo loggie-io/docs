@@ -57,6 +57,12 @@ nav:
         - defaults: reference/global/defaults.md
         - http: reference/global/http.md
 
+      - Kubernetes CRD: 
+        - LogConfig: reference/discovery/kubernetes/logconfig.md
+        - ClusterLogConfig: reference/discovery/kubernetes/clusterlogconfig.md
+        - Sink: reference/discovery/kubernetes/sink.md
+        - Interceptor: reference/discovery/kubernetes/interceptors.md
+
       - Source:
         - Overview: reference/pipelines/source/overview.md
         - file: reference/pipelines/source/file.md
@@ -100,12 +106,6 @@ nav:
         - queue: reference/monitor/queue.md
         - logAlert: reference/monitor/logalert.md
         - sys: reference/monitor/sys.md
-
-      - Kubernetes CRD: 
-        - LogConfig: reference/discovery/kubernetes/logconfig.md
-        - ClusterLogConfig: reference/discovery/kubernetes/clusterlogconfig.md
-        - Sink: reference/discovery/kubernetes/sink.md
-        - Interceptor: reference/discovery/kubernetes/interceptors.md
       
     - 开发手册:
       - 代码贡献: developer-guide/contributing.md
