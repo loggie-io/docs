@@ -28,7 +28,7 @@
 在使用Loggie的时候遇到问题？
 请提[issues](https://github.com/loggie-io/loggie/issues)或者联系我们。  
 
-微信扫码加入Loggie讨论群：
+微信扫码加入Loggie讨论群：（老的微信已满，未通过的请重新扫码）
 
 ![loggie-bot](imgs/loggie-bot.png)
 
