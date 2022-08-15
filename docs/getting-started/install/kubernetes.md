@@ -25,9 +25,9 @@ cd installation/helm-chart
 
 #### 镜像
 ```yaml
-image: hub.c.163.com/loggie/loggie:v1.2.0
+image: loggieio/loggie:main
 ```
-loggie的镜像。
+loggie的镜像。可从[docker hub](https://hub.docker.com/r/loggieio/loggie/)中查看所有镜像。
 
 #### 资源
 ```yaml
