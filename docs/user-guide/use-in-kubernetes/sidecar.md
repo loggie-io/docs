@@ -41,7 +41,7 @@ spec:
         args:
         - -config.system=/opt/loggie/loggie.yml
         - -config.pipeline=/opt/loggie/pipeline.yml
-        image: hub.c.163.com/loggie-io/loggie:lastest
+        image: loggieio/loggie:main
         volumeMounts:
         # loggie和业务container挂载相同的log volume
         - mountPath: /usr/local/tomcat/logs
