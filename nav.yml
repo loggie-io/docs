@@ -85,13 +85,14 @@ nav:
 
       - Interceptor:
         - Overview: reference/pipelines/interceptor/overview.md
-        - normalize: reference/pipelines/interceptor/normalize.md
+        - transformer: reference/pipelines/interceptor/transformer.md
         - rateLimit: reference/pipelines/interceptor/limit.md
         - addK8sMeta: reference/pipelines/interceptor/addk8smeta.md
         - logAlert: reference/pipelines/interceptor/logalert.md 
         - metrics: reference/pipelines/interceptor/metrics.md
         - retry: reference/pipelines/interceptor/retry.md
         - maxbytes: reference/pipelines/interceptor/maxbytes.md
+        - normalize: reference/pipelines/interceptor/normalize.md
 
       - Queue:
         - channel: reference/pipelines/queue/channel.md
