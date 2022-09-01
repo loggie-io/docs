@@ -1,8 +1,9 @@
 # normalize
 
+（该interceptor后续不再维护，建议使用transformer替换）
+
 用于日志切分处理。  
 属于source interceptor。可指定只被某些source使用。  
-具体使用示例可参考[日志切分与处理](../../../user-guide/best-practice/log-process.md)。
 
 ## processors
 

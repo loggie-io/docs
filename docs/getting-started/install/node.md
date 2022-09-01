@@ -13,8 +13,10 @@ Loggie使用Golang编译成二进制，可根据自身需求对接各类部署�
 ## 下载二进制
 
 ```
-mkdir /opt/loggie && curl https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-linux-amd64 -o /opt/loggie/loggie && chmod +x /opt/loggie/loggie
+mkdir /opt/loggie && curl https://github.com/loggie-io/installation/releases/download/<VERSION>/loggie-linux-amd64 -o /opt/loggie/loggie && chmod +x /opt/loggie/loggie
 ```
+
+请将以上的<VERSION>替换成具体的版本号。
 
 ## 添加配置文件
 

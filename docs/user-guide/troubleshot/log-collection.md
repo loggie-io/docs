@@ -73,7 +73,34 @@ kubectl -n ${loggie-namespace} get po -owide |grep ${node-name}
 kubectl -n ${loggie-namespace} logs -f ${loggie-pod-name} —-tail=${N}
 ```
 
-#### 3. :mag_right: 查看节点Loggie渲染生成的配置
+#### 3. :mag_right: 查看采集情况
+
+**调用自动排障接口**
+
+针对对应的Agent，调用help接口：
+```bash
+curl <ip>:9196/api/v1/help
+```
+
+接口返回里最开头包括了一个使用提示：
+```
+--------- Usage: -----------------------
+|--- view details: /api/v1/help?detail=<module>, module is one of: all/pipeline/log
+|--- query by pipeline name: /api/v1/help?pipeline=<name>
+|--- query by source name: /api/v1/help?source=<name>
+```
+我们可以使用`curl <ip>:9196/api/v1/help?detail=all`来查询所有的细节详情，也可以使用根据pipeline或者source的名称来搜索。
+
+目前返回主要包括两部分：
+
+- Pipeline Status：整体的pipeline运行情况，配置以及一些一致性的检查
+- Log Collection Status：file source日志采集的详情，详细列举了每个pipeline/source下的日志文件的采集情况和进度等。
+
+正常情况下，该接口覆盖了以下操作得到的内容，无需继续进行以下操作，下文步骤仅供参考。
+
+---
+
+**查看节点Loggie渲染生成的配置**
 
 进入到容器中：
 ```bash
@@ -88,7 +115,16 @@ ls /opt/loggie/pipeline/
 curl ${loggie-pod-ip}:9196/api/v1/reload/config
 ```
 
-#### 4. :mag_right: 查看日志采集持久化状态
+**确认日志采集配置**
+
+```bash
+cat /opt/loggie/pipeline/
+```
+查看现在渲染后的日志配置，这里的path为根据logconfig里填写的容器里path转换后的路径，为实际节点的path，正常可以在节点上找到。  
+当然，因为Loggie使用容器化部署，Loggie Pod里无法查看到节点所有的配置，需要确保Loggie也挂载了相关的路径前缀。
+
+
+**查看日志采集持久化状态**
 
 Loggie会记录每个日志文件的采集状态，这样即使Loggie重启后，也可以继续保持上一次的采集进度，避免重新采集日志文件。
 可以通过调用接口来查看：
