@@ -340,3 +340,151 @@ source的确认机制相关配置。如果需确保要`at least once`，需要�
 | `字段`         | `类型` | `是否必填` | `默认值` | `含义`                                                       |
 | -------------- | ------ | ---------- | -------- | ------------------------------------------------------------ |
 | maxHistoryDays | int    | 非必填     | 无       | （采集完成后的）文件最多保留的天数。如果超出限制，将会把文件直接从磁盘中删除。不配置则永远不会删除文件 |
+
+
+## charset
+
+编码转换，用于将不同的编码转换为utf8，当下支持的编码转换格式.
+
+
+!!! example
+
+```yaml
+    sources:
+      - type: file
+        name: demo
+        paths:
+          - /tmp/log/*.log
+        fields:
+          topic: "loggie"
+        charset: "gbk"
+```
+
+## charset
+
+|    `字段`   |    `类型`    | `是否必填` | `默认值` |  `含义`  |
+| ---------- | ----------- |--------|-------| -------- |
+| charset | string  | 否      | utf-8 | 提取字段的匹配模型 |
+
+当前支持的转换为utf-8的编码格式有
+- `nop`
+- `plain`
+- `utf-8`
+- `gbk`
+- `big5`
+- `euc-jp`
+- `iso2022-jp`
+- `shift-jis`
+- `euc-kr`
+- `iso8859-6e`
+- `iso8859-6i`
+- `iso8859-8e`
+- `iso8859-8i`
+- `iso8859-1`
+- `iso8859-2`
+- `iso8859-3`
+- `iso8859-4`
+- `iso8859-5`
+- `iso8859-6`
+- `iso8859-7`
+- `iso8859-8`
+- `iso8859-9`
+- `iso8859-10`
+- `iso8859-13`
+- `iso8859-14`
+- `iso8859-15`
+- `iso8859-16`
+- `cp437`
+- `cp850`
+- `cp852`
+- `cp855`
+- `cp858`
+- `cp860`
+- `cp862`
+- `cp863`
+- `cp865`
+- `cp866`
+- `ebcdic-037`
+- `ebcdic-1040`
+- `ebcdic-1047`
+- `koi8r`
+- `koi8u`
+- `macintosh`
+- `macintosh-cyrillic`
+- `windows1250`
+- `windows1251`
+- `windows1252`
+- `windows1253`
+- `windows1254`
+- `windows1255`
+- `windows1256`
+- `windows1257`
+- `windows1258`
+- `windows874`
+- `utf-16be-bom`
+- `utf-16le-bom`
+
+
+## lineDelimiter
+
+换行符相关配置
+
+!!! example
+
+    ```yaml
+    sources:
+      - type: file
+        name: demo
+        lineDelimiter:
+          type: carriage_return_line_feed
+          value: "\r\n"
+          charset: gbk
+    ```
+
+### type
+
+| `字段`           | `类型` | `是否必填` | `默认值` | `含义`                       |
+| ---------------- | ------ | ---------- |-------|----------------------------|
+| type | bool   | 非必填     | auto  | 只有在type是custome时候value才会有效 |
+
+当前支持的type有
+
+- `auto`
+- `line_feed`
+- `vertical_tab`
+- `form_feed`
+- `carriage_return`
+- `carriage_return_line_feed`
+- `next_line`
+- `line_separator`
+- `paragraph_separator`
+- `null_terminator`
+
+对应的换行符为：
+
+        ```
+            auto:                    {'\u000A'},
+            line_feed:               {'\u000A'},
+            vertical_tab:            {'\u000B'},
+            form_feed:               {'\u000C'},
+            carriage_return:         {'\u000D'},
+            carriage_return_line_feed: []byte("\u000D\u000A"),
+            next_line:               {'\u0085'},
+            line_separator:          []byte("\u2028"),
+            paragraph_separator:     []byte("\u2029"),
+            null_terminator:         {'\u0000'},
+        ```
+
+### value
+
+| `字段`       | `类型`   | `是否必填` | `默认值` | `含义`   |
+| ------------ |--------| ---------- |-------|--------|
+| value | string | 非必填     | \n    | 换行符的内容 |
+
+### charset
+
+| `字段`          | `类型`   | `是否必填` | `默认值` | `含义`  |
+| --------------- |--------| ---------- |-------|-------|
+| charset | string | 非必填     | utf-8 | 换行符编码 |
+
+
