@@ -25,7 +25,7 @@
 helm pull https://github.com/loggie-io/installation/releases/download/<VERSION>/loggie-<VERSION>.tgz && tar xvzf loggie-<VERSION>.tgz
 ```
 尝试修改一下其中的values.yaml。
-请将以上的<VERSION>替换成具体的版本号。
+请将以上的`<VERSION>`替换成具体的版本号。
 
 然后部署安装：
 
@@ -39,7 +39,7 @@ helm install loggie ./loggie -nloggie --create-namespace
 ```bash
 helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/<VERSION>/loggie-<VERSION>.tgz
 ```
-请将以上的<VERSION>替换成具体的版本号。
+请将以上的`<VERSION>`替换成具体的版本号。
 
 !!! node "想使用其他版本镜像？"
 

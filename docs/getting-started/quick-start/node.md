@@ -8,7 +8,7 @@
 curl -LJ https://github.com/loggie-io/installation/releases/download/<VERSION>/loggie-linux-amd64 -o loggie
 ```
 
-请将以上的<VERSION>替换成具体的版本号。
+请将以上的`<VERSION>`替换成具体的版本号。
 
 ### 2. 添加配置文件
 
