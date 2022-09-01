@@ -10,8 +10,9 @@
 ### 下载helm-chart包
 
 ```bash
-helm pull https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-v1.2.0.tgz && tar xvzf loggie-v1.2.0.tgz
+helm pull https://github.com/loggie-io/installation/releases/download/<VERSION>/loggie-<VERSION>.tgz && tar xvzf loggie-<VERSION>.tgz
 ```
+请将以上的<VERSION>替换成具体的版本号。比如v1.3.0。 可从[release tag](https://github.com/loggie-io/loggie/tags)里找。
 
 ### 修改配置
 进入chart目录：

@@ -5,8 +5,11 @@
 ### 1. 下载可执行文件
 请找一台Linux服务器节点，下载Loggie二进制可执行文件
 ```shell
-curl -LJ https://github.com/loggie-io/installation/releases/download/v1.2.0/loggie-linux-amd64 -o loggie
+curl -LJ https://github.com/loggie-io/installation/releases/download/<VERSION>/loggie-linux-amd64 -o loggie
 ```
+
+请将以上的<VERSION>替换成具体的版本号。
+
 ### 2. 添加配置文件
 
 我们先使用dev sink将file source采集的日志文件打印到标准输出，复制以下内容为pipelines.yml文件：

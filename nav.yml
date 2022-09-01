@@ -31,7 +31,7 @@ nav:
         - 采集Kubernetes Events: user-guide/use-in-kubernetes/kube-event-source.md
 
       - 最佳实践:
-        - 日志增加元信息: user-guide/best-practice/log-enrich.md
+        - 日志格式与元信息字段: user-guide/best-practice/log-enrich.md
         - 日志切分处理: user-guide/best-practice/log-process.md
         - 使用Loggie中转机: user-guide/best-practice/aggregator.md
 
@@ -50,6 +50,7 @@ nav:
     - 组件配置:
       - Overview: reference/index.md
       - 启动参数: reference/global/args.md
+      - 字段变量: reference/global/var.md
       - 系统配置: 
         - monitor: reference/global/monitor.md
         - discovery: reference/global/discovery.md
@@ -85,6 +86,7 @@ nav:
 
       - Interceptor:
         - Overview: reference/pipelines/interceptor/overview.md
+        - schema: reference/pipelines/interceptor/schema.md
         - transformer: reference/pipelines/interceptor/transformer.md
         - rateLimit: reference/pipelines/interceptor/limit.md
         - addK8sMeta: reference/pipelines/interceptor/addk8smeta.md

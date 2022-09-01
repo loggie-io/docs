@@ -64,7 +64,7 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| labelSelector | map  |    必填    |      | 通过该label来匹配Pods |
+| labelSelector | map  |    必填    |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
 
 
 !!! example
