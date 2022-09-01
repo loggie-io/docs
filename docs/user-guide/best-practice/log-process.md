@@ -38,7 +38,7 @@
 简单起见，示例使用CRD实例配置下发在Agent，同时使用dev sink直接输出处理结果展示。
 
 ### 创建tomcat deployment
-请[参考]((../use-in-kubernetes/collect-container-logs.md#_3))
+请[参考](../use-in-kubernetes/collect-container-logs.md#_3)
 
 ### 创建logconfig
 配置logconfig如下所示：
