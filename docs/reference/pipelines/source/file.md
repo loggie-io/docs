@@ -11,6 +11,9 @@ file source用于日志采集。
     
     ```
 
+!!! tips
+    如果你使用logconfig/clusterlogconfig采集容器日志，file source里还增加了额外的字段，请参考[这里](../../discovery/kubernetes/logconfig.md#sources)。
+
 ## paths
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
@@ -40,6 +43,16 @@ file source用于日志采集。
 | `字段`       | `类型`     | `是否必填` | `默认值` | `含义`                   |
 | ------------ | ---------- | ---------- | -------- | ------------------------ |
 | excludeFiles | string数组 | 非必填     | 无       | 排除采集的文件正则表达式 |
+
+!!! example
+    ```yaml
+    sources:
+    - type: file
+      paths:
+      - /tmp/*.log
+      excludeFiles:
+      - \.gz$
+    ```
 
 ## ignoreOlder
 
@@ -78,6 +91,7 @@ file source用于日志采集。
     ```
 
 state含义解释：
+
 - pipeline: 所在的pipeline名称
 - source: 所在的source名称
 - filename: 采集的文件名称
