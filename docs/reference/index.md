@@ -26,14 +26,7 @@ Loggie的配置主要分为两类：
           sink: ~
     
       discovery:
-        enabled: true
-        kubernetes:
-          fields:
-            container.name: containername
-            logConfig: logconfig
-            namespace: namespace
-            node.name: nodename
-            pod.name: podname
+        enabled: false
 
       reload:
         enabled: true
