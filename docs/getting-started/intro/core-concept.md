@@ -15,7 +15,7 @@ Loggie是一个基于Golang的轻量级、高性能、云原生日志采集Agent
 #### 核心数据流
 
 - **Source**：输入源，表示一个具体的输入源，一个Pipeline可以有多个不同的输入源。比如file source表示日志文件采集源，Kafka source为读取Kafka的输入源。
-- **Sink**：输出源，表示一个具体的输出源，一个Pipeline仅能配置一种类型的输入源，但是可以有多个并行实例。比如Elasticsearch sink表示日志数据将发送至远端的Elasticsearch。
+- **Sink**：输出源，表示一个具体的输出源，一个Pipeline仅能配置一种类型的输出源，但是可以有多个并行实例。比如Elasticsearch sink表示日志数据将发送至远端的Elasticsearch。
 - **Interceptor**：拦截器，表示一个日志数据处理组件，不同的拦截器根据实现可以进行日志的解析、切分、转换、限流等。一个Pipeline可以有多个Interceptor，数据流经过多个Interceptor被链式处理。
 - **Queue**：队列，目前有内存队列。
 - **Pipeline**：管道，source/interceptor/queue/sink共同组成了一个Pipeline，不同的Pipeline数据隔离。
