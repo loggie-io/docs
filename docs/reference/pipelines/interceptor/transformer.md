@@ -269,7 +269,7 @@ interceptors:
         "node": "127.0.0.1",
         "phase": "running"
       }，
-      status: "127.0.0.1 is running"
+      "status": "127.0.0.1 is running"
     }
     ```
 
