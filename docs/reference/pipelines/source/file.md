@@ -159,6 +159,7 @@ state含义解释：
 | charset | string  | 否      | utf-8 | 提取字段的匹配模型 |
 
 当前支持的转换为utf-8的编码格式有  
+
 - `nop`
 - `plain`
 - `utf-8`
