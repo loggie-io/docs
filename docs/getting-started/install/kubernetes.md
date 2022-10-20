@@ -205,11 +205,13 @@ loggie-sxxwh   1/1     Running   0          5m21s   10.244.0.5   kind-control-pl
 
 ## 部署Loggie Aggregator
 
-部署Aggregator基本和Agent一致，在helm chart中我们提供了默认注释掉的`Aggregator global config`部分，只需使用该配置同时去掉Agent的配置即可。  
+部署Aggregator基本和Agent一致，在helm chart中我们提供了`aggregator config`部分，只需改成`enabled: true`即可。  
+
+helm chart中提供了statefulSet的部署方式，你也可以根据需求修改成deployment等方式。  
 
 同时，请注意在values.yaml中根据情况增加：
 
-- nodeSelector或者affinity，根据node是否有污点增加tolerations。使得Aggregator DaemonSet只调度在某几个节点上
+- nodeSelector或者affinity，根据node是否有污点增加tolerations。使得Aggregator StatefulSet只调度在某几个节点上
 - service增加接收的端口，比如使用Grpc source，需要填写默认的6066端口：
   ```yaml
   servicePorts:
