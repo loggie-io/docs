@@ -93,6 +93,6 @@ Cluster级别CRD，可用于：
 
 
 
-## spec.pipelines
+## spec.pipeline
 
 配置和LogConfig一致。
