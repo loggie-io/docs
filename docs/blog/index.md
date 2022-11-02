@@ -30,6 +30,7 @@
   [使用Loggie快速构建可扩展的云原生日志架构]: (https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
   
  ---
+ 
  ## 网易数帆云原生日志平台架构实践
 
 <aside style="font-size: .7rem" markdown>
