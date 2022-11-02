@@ -6,7 +6,31 @@
 </style>
 
 # Blog
-## 网易数帆云原生日志平台架构实践
+
+## 使用Loggie快速构建可扩展的云原生日志架构
+
+<aside style="font-size: .7rem" markdown>
+<span>:octicons-person-16: [__ethfoo__] &nbsp;</span>
+<span>
+:octicons-calendar-24: 2022-10-26 &nbsp;
+:octicons-clock-24: 10 min read 
+</span>
+</aside>
+
+---
+
+主要内容包括：
+
+- Loggie简介与核心设计思路
+- Loggie在Kubernetes下采集日志的各种姿势
+- 使用Loggie构建不同规模的日志系统架构
+  
+  [:octicons-arrow-right-24: __Continue reading__](https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
+  [__ethfoo__]: https://github.com/ethfoo
+  [使用Loggie快速构建可扩展的云原生日志架构]: (https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
+  
+ ---
+ ## 网易数帆云原生日志平台架构实践
 
 <aside style="font-size: .7rem" markdown>
 <span>:octicons-person-16: [__ethfoo__] &nbsp;</span>
@@ -31,26 +55,3 @@
   [__ethfoo__]: https://github.com/ethfoo
   [网易数帆云原生日志平台架构实践]: (https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA)
 
-
----
-## 使用Loggie快速构建可扩展的云原生日志架构
-
-<aside style="font-size: .7rem" markdown>
-<span>:octicons-person-16: [__ethfoo__] &nbsp;</span>
-<span>
-:octicons-calendar-24: 2022-10-26 &nbsp;
-:octicons-clock-24: 10 min read 
-</span>
-</aside>
-
----
-
-主要内容包括：
-
-- Loggie简介与核心设计思路
-- Loggie在Kubernetes下采集日志的各种姿势
-- 使用Loggie构建不同规模的日志系统架构
-  
-  [:octicons-arrow-right-24: __Continue reading__](https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
-  [__ethfoo__]: https://github.com/ethfoo
-  [使用Loggie快速构建可扩展的云原生日志架构]: (https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
