@@ -62,9 +62,8 @@ git push v${A.B.C}
 
 #### 6. 在Github上发布release
 
-- Loggie工程复制项目中的CHANGELOG即可
-- Loggie installation工程需要提供`loggie-linux-amd64`二进制和`loggie-v${A.B.C}.tgz` helm chart包。
-  - 二进制需要找台linux amd64机器进行`make build`
+- Loggie工程已经使用github action自动构建出release制品并发布
+- Loggie installation工程需要提供`loggie-v${A.B.C}.tgz` helm chart包。
   - helm chart包需要基于对应版本的loggie installation项目，执行`helm package ./helm-chart`即可。
 
 #### 7. 更新Loggie docs文档
