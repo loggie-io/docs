@@ -23,9 +23,9 @@
 - Loggie在Kubernetes下采集日志的各种姿势
 - 使用Loggie构建不同规模的日志系统架构
   
-  [:octicons-arrow-right-24: __Continue reading__](https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
+  [:octicons-arrow-right-24: __Continue reading__](https://github.com/loggie-io/asserts/blob/main/ppt/%E4%BD%BF%E7%94%A8Loggie%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%8F%AF%E6%89%A9%E5%B1%95%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.pdf)
   [__ethfoo__]: https://github.com/ethfoo
-  [使用Loggie快速构建可扩展的云原生日志架构]: (https://github.com/loggie-io/assets/blob/main/ppt/%E4%B8%8B%E4%B8%80%E4%BB%A3%E4%BA%91%E5%8E%9F%E7%94%9F%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86Agent%20Loggie.pdf)
+  [使用Loggie快速构建可扩展的云原生日志架构]: (https://github.com/loggie-io/asserts/blob/main/ppt/%E4%BD%BF%E7%94%A8Loggie%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%8F%AF%E6%89%A9%E5%B1%95%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.pdf)
 
 ---
 
