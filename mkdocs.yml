@@ -93,3 +93,8 @@ extra:
       link: https://github.com/loggie-io
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/r/loggieio/loggie
+
+  alternate:
+    - name: English
+      link: https://loggie-io.github.io/docs-cn/
+      lang: en
