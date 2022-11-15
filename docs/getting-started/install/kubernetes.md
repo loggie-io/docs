@@ -84,7 +84,7 @@ extraVolumes:
 
 这里简单列举一下采集什么样的日志需要挂载什么路径：
 
-1. 采集 **stdout** 标准输出：Loggie会从/var/log/pods下采集，所以Loggie需要挂载：
+- 采集 **stdout** 标准输出：Loggie会从/var/log/pods下采集，所以Loggie需要挂载：
 
     ```yaml
     volumeMounts:
@@ -120,7 +120,7 @@ extraVolumes:
     
     另外，如果非docker运行时，比如使用containerd，无需挂载`/var/lib/docker`，Loggie会从`/var/log/pods`中寻找实际的标准输出路径。
 
-2. 采集业务Pod使用 **HostPath** 挂载的日志：比如业务统一将日志挂载到了节点的`/data/logs`路径下，则需要挂载挂载该路径:
+- 采集业务Pod使用 **HostPath** 挂载的日志：比如业务统一将日志挂载到了节点的`/data/logs`路径下，则需要挂载挂载该路径:
 
    ```yaml
    volumeMounts:
@@ -134,7 +134,7 @@ extraVolumes:
     name: logs
    ```
 
-3. 采集业务Pod使用 **EmptyDir** 挂载的日志：默认emtpyDir会在节点的`/var/lib/kubelet/pods`路径下，所以需要Loggie挂载该路径。如果环境的kubelet修改了该路径配置，这里需要同步修改:
+- 采集业务Pod使用 **EmptyDir** 挂载的日志：默认emtpyDir会在节点的`/var/lib/kubelet/pods`路径下，所以需要Loggie挂载该路径。如果环境的kubelet修改了该路径配置，这里需要同步修改:
 
    ```yaml
    volumeMounts:
@@ -148,8 +148,8 @@ extraVolumes:
     name: kubelet
    ```
 
-4. 采集业务Pod使用 **PV** 挂载的日志：和使用EmptyDir一致。
-5. 采集业务Pod **无挂载** ，同时设置了`rootFsCollectionEnabled: true`，Loggie会自动从docker的rootfs里找到容器里的实际路径，此时需要挂载docker的root路径：
+- 采集业务Pod使用 **PV** 挂载的日志：和使用EmptyDir一致。
+- 采集业务Pod **无挂载** ，同时设置了`rootFsCollectionEnabled: true`，Loggie会自动从docker的rootfs里找到容器里的实际路径，此时需要挂载docker的root路径：
 
     ```yaml
     volumeMounts:
@@ -162,7 +162,6 @@ extraVolumes:
       type: DirectoryOrCreate
     name: docker
     ```
-    
    如果docker的实际root路径有修改，则需要同步修改这里的volumeMount和volume，比如修改了root路径为`/data/docker`，则挂载为：
    
     ```yaml
@@ -176,8 +175,6 @@ extraVolumes:
       type: DirectoryOrCreate
     name: docker
     ```
-
-
 
 
 其他：
