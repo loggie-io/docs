@@ -80,11 +80,99 @@ extraVolumes:
     name: docker
 ```
 建议根据实际情况默认挂载以上目录。  
+特别强调的是：由于Loggie本身也是容器化部署，所以Loggie也需要挂载节点的一些volume来采集日志，否则Loggie容器内部看不到日志文件，更没办法去采集。
 
+这里简单列举一下采集什么样的日志需要挂载什么路径：
+1. 采集**stdout**标准输出：Loggie会从/var/log/pods下采集，所以Loggie需要挂载：
+    ```yaml
+    volumeMounts:
+    - mountPath: /var/log/pods
+      name: podlogs
+    - mountPath: /var/lib/docker
+      name: docker  
+      
+    volumes:
+    - hostPath:
+      path: /var/log/pods
+      type: DirectoryOrCreate
+    name: podlogs
+    - hostPath:
+      path: /var/lib/docker
+      type: DirectoryOrCreate
+    name: docker
+    ```
+    
+    但是有可能/var/log/pods下这些日志文件会软链接到docker的root路径下，默认为`/var/lib/docker`，这个时候，需要同样挂载`/var/lib/docker`这个路径到Loggie中：
+    ```yaml
+    volumeMounts:
+    - mountPath: /var/log/pods
+      name: podlogs
+      
+    volumes:
+    - hostPath:
+      path: /var/log/pods
+      type: DirectoryOrCreate
+    name: podlogs
+    ```
+    另外，如果非docker运行时，比如使用containerd，无需挂载`/var/lib/docker`，Loggie会从`/var/log/pods`中寻找实际的标准输出路径。
+
+2. 采集业务Pod使用**HostPath**挂载的日志：比如业务统一将日志挂载到了节点的`/data/logs`路径下，则需要挂载挂载该路径:
+   ```yaml
+   volumeMounts:
+    - mountPath: /data/logs
+      name: logs
+      
+    volumes:
+    - hostPath:
+      path: /data/logs
+      type: DirectoryOrCreate
+    name: logs
+   ```
+
+3. 采集业务Pod使用**EmptyDir**挂载的日志：默认emtpyDir会在节点的`/var/lib/kubelet/pods`路径下，所以需要Loggie挂载该路径。如果环境的kubelet修改了该路径配置，这里需要同步修改:
+   ```yaml
+   volumeMounts:
+    - mountPath: /var/lib/kubelet/pods
+      name: kubelet
+      
+    volumes:
+    - hostPath:
+      path: /var/lib/kubelet/pods
+      type: DirectoryOrCreate
+    name: kubelet
+   ```
+
+4. 采集业务Pod使用**PV**挂载的日志：和使用EmptyDir一致。
+5. 采集业务Pod**无挂载**，同时设置了`rootFsCollectionEnabled: true`，Loggie会自动从docker的rootfs里找到容器里的实际路径，此时需要挂载docker的root路径：
+    ```yaml
+    volumeMounts:
+    - mountPath: /var/lib/docker
+      name: docker  
+      
+    volumes:
+    - hostPath:
+      path: /var/lib/docker
+      type: DirectoryOrCreate
+    name: docker
+    ```
+   如果docker的实际root路径有修改，则需要同步修改这里的volumeMount和volume，比如修改了root路径为`/data/docker`，则挂载为：
+    ```yaml
+    volumeMounts:
+    - mountPath: /data/docker
+      name: docker  
+      
+    volumes:
+    - hostPath:
+      path: /data/docker
+      type: DirectoryOrCreate
+    name: docker
+    ```
+
+
+
+
+其他：
 - Loggie需要记录采集的文件状态(offset等)，避免重启后从头开始采集文件，造成日志采集重复，默认挂载路径为/data/loggie.db，所以挂载了`/data/loggie--{{ template "loggie.name" . }}`目录。
-- 如果业务Pod使用hostPath挂载日志到节点，需要Loggie挂载相同的路径。  
-- 因为Loggie需要采集容器标准输出的路径，所以需要从节点/var/lib/docker或者/var/log/pods下采集日志，如果环境中部署的docker修改了该路径，请同步修改该挂载路径。如果非docker运行时，比如使用containerd，无需挂载/var/lib/docker，Loggie会从/var/log/pods中寻找实际的标准输出路径。  
-- 如果业务Pod使用emtpyDir挂载日志到节点，默认emtpyDir会在节点的/var/lib/kubelet/pods路径下，所以需要Loggie挂载该路径。如果环境的kubelet修改了该路径配置，这里需要同步修改。  
 
 
 #### 调度
