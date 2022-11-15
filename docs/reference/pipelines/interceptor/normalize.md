@@ -132,7 +132,7 @@
         "time": "2021-08-08"
         "order": "U12345"
         "service": "storeCenter"
-        "price: 13.14
+        "price": 13.14
         ```
 
     
