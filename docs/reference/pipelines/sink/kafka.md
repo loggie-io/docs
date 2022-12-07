@@ -116,3 +116,12 @@
 | sasl.userName | string  |    必填    |     | 用户名 |
 | sasl.password | string  |    必填    |     | 密码 |
 | sasl.algorithm | string  |    type=scram时必填    |     | type=scram时使用的算法，可选`sha256`、`sha512` |
+
+
+## partitionKey
+
+|    `字段`   | `类型`   |  `是否必填`  | `默认值` | `含义`            |
+| ---------- |--------| ----------- |-------|-----------------|
+| partitionKey | string |    非必填    | 无     | 控制发送至topic下哪个分区 |
+
+与topic相似，可使用`${a.b}`的方式，获取event里的字段值作为具体的topic名称。

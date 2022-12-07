@@ -90,3 +90,13 @@ Kafka source用于接收Kafka数据。
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | autoOffsetReset | string    |    非必填    | latest  | 没有offset时，初始的offset采用方式，可为`earliest`和`latest` |
+
+## sasl
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| sasl |   |    非必填    |     | SASL authentication |
+| sasl.type | string  |    必填    |     | SASL类型，可为：`plain`、`scram` |
+| sasl.userName | string  |    必填    |     | 用户名 |
+| sasl.password | string  |    必填    |     | 密码 |
+| sasl.algorithm | string  |    type=scram时必填    |     | type=scram时使用的算法，可选`sha256`、`sha512` |
