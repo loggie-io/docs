@@ -34,6 +34,7 @@ nav:
         - 日志格式与元信息字段: user-guide/best-practice/log-enrich.md
         - 日志切分处理: user-guide/best-practice/log-process.md
         - 使用Loggie中转机: user-guide/best-practice/aggregator.md
+        - 自适应sink流量控制: user-guide/best-practice/concurrency.md
 
       - 监控报警:
         - Loggie的监控与报警: user-guide/monitor/loggie-monitor.md
@@ -83,6 +84,7 @@ nav:
         - file: reference/pipelines/sink/file.md
         - dev: reference/pipelines/sink/dev.md
         - sls: reference/pipelines/sink/sls.md
+        - webhook: reference/pipelines/sink/webhook.md
 
       - Interceptor:
         - Overview: reference/pipelines/interceptor/overview.md

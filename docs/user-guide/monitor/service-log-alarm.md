@@ -14,11 +14,11 @@
 ### 原理
 采集链路不需要独立部署Loggie，但是由于在采集的数据链路上进行匹配，理论上会对传输性能造成一定影响，但胜在方便简单。  
 
-`logAlert interceptor`用于在日志传输的时候检测异常日志，异常日志会被封装成报警的事件发送至monitor eventbus的`logAlert` topic，由`logAlert listener`来消费。目前`logAlert listener`支持发送至Prometheus AlertManager。有发送至其他报警渠道的需求，欢迎提Issues或者PR。  
+`logAlert interceptor`用于在日志传输的时候检测异常日志，异常日志会被封装成报警的事件发送至monitor eventbus的`logAlert` topic，由`logAlert listener`来消费。`logAlert listener`支持发送至任意http后端（可以多个）。发送体根据自定义模板进行渲染，若模板未定义，则会发送原始数据。在配置模板前，可以先观察原始数据，再进行模板配置，原始数据可能会根据pipeline配置被其他interceptor改动而与示例不同。
 
 ### 配置示例
 
-配置新增`logAlert listener`：
+配置新增`logAlert listener`。详细配置可参考[LogAlert](../../reference/monitor/logalert.md)。
 
 !!! config
 
@@ -30,10 +30,43 @@
           enabled: true
         listeners:
           logAlert:
-            alertManagerAddress: ["http://127.0.0.1:9093"]
+            alertManagerAddress: ["http://127.0.0.1:8080/loggie"]
             bufferSize: 100
             batchTimeout: 10s
             batchSize: 10
+            linelimit: 10
+            template: |
+              {
+                  "alerts":
+                        [
+                        {{$first := true}}
+                        {{range .Alerts}}
+                        {{if $first}}{{$first = false}}{{else}},{{end}}
+                        {
+                              "labels": {
+                                "topic": "{{.fields.topic}}"
+                              },
+                              "annotations": {
+                                "message": "\nNew alert: \nbody:\n{{range .body}}{{.}}\n{{end}}\ncontainerid: {{._meta.pipelineName}}\nsource: {{._meta.sourceName}}\ncontainername: {{.fields.containername}}\nlogconfig: {{.fields.logconfig}}\nname: {{.fields.name}}\nnamespace: {{.fields.namespace}}\nnodename: {{.fields.nodename}}\npodname: {{.fields.podname}}\nfilename: {{.state.filename}}\n",
+                                "reason": "{{.reason}}"
+                              },
+                              "startsAt": "{{._meta.timestamp}}",
+                              "endsAt": "{{._meta.timestamp}}"
+                        }
+                        {{end}}
+                        ],
+                        {{$first := true}}
+                        {{range .Alerts}}
+                        {{if $first}}{{$first = false}}{{else}}
+                        "commonLabels": {
+                          "namespace": "{{._additions.namespace}}",
+                          "module": "{{._additions.module}}",
+                          "alertname": "{{._additions.alertname}}",
+                          "cluster": "{{._additions.cluster}}"
+                        }
+                        {{end}}
+                        {{end}}
+              }
           filesource: ~
           filewatcher: ~
           reload: ~
@@ -44,7 +77,60 @@
         port: 9196
     ```
 
-增加`logAlert interceptor`，同时在ClusterLogConfig/LogConfig中引用：
+其中：
+
+!!! 原始alert数据
+
+  ```json
+    {
+      "Alerts": [
+        {
+          "_meta": {
+            "pipelineName": "default/spring",
+            "sourceName": "loggie-source-756fd6bb94-4skqv/loggie-alert/common",
+            "timestamp": "2022-10-28T13:12:30.528824+08:00"
+          },
+          "body": [
+            "2022-10-28 01:48:07.093 ERROR 1 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.ArithmeticException: / by zero] with root cause",
+            "",
+            "java.lang.ArithmeticException: / by zero"
+          ],
+          "fields": {
+            "containerid": "0dc5f07983bfdf7709ee4fce752679983c4184e94c70dab5fe6df5843d5cbb68",
+            "containername": "loggie-alert",
+            "logconfig": "spring",
+            "name": "loggie-source",
+            "namespace": "default",
+            "nodename": "docker-desktop",
+            "podname": "loggie-source-756fd6bb94-4skqv",
+            "topic": "loggie"
+          },
+          "reason": "matches some rules",
+          "state": {
+            "bytes": 6913,
+            "filename": "/var/log/pods/default_loggie-source-756fd6bb94-4skqv_9da3e440-e749-4930-8e4d-41e0d5b66417/loggie-alert/1.log",
+            "hostname": "docker-desktop",
+            "offset": 3836,
+            "pipeline": "default/spring",
+            "source": "loggie-source-756fd6bb94-4skqv/loggie-alert/common",
+            "timestamp": "2022-10-28T13:12:30.527Z"
+          },
+          "_addtions": {
+            "namespace": "default",
+            "cluster": "local",
+            "alertname": "loggie-test",
+            "module": "loggie
+          }
+        }
+      ]
+    }
+  ```
+
+建议先观察原始alert数据格式，再配置模板进行渲染。
+
+增加`logAlert interceptor`，同时在ClusterLogConfig/LogConfig中引用。其中`additions`为给alert额外添加的字段，会放入alert原始数据的`_addtions`字段中，可用做模板渲染。
+
+详细配置可参考[LogAlert Interceptor](../../reference/pipelines/interceptor/logalert.md)。
 
 !!! config
 
@@ -57,70 +143,114 @@
       interceptors: |
         - type: logAlert
           matcher:
-            contains: ["err"]
+            contains: ["ERROR"]
+          additions:
+            module: "loggie"
+            alertname: "loggie-test"
+            cluster: "local"
+            namespace: "default"
     ```
 
-可以配置alertManager的webhook发送至其他服务来接收报警。  
-!!! config
-    ```yaml
-    receivers:
-    - name: webhook
-      webhook_configs:
-        - url: http://127.0.0.1:8787/webhook
-          send_resolved: true
-    ```
+可以配置接收方发送至其他服务来报警。
 
-
-发送成功后我们在alertManager里可以查看到类似的日志：
-```
-ts=2021-12-22T13:33:08.639Z caller=log.go:124 level=debug component=dispatcher msg="Received alert" alert=[6b723d0][active]
-ts=2021-12-22T13:33:38.640Z caller=log.go:124 level=debug component=dispatcher aggrGroup={}:{} msg=flushing alerts=[[6b723d0][active]]
-ts=2021-12-22T13:33:38.642Z caller=log.go:124 level=debug component=dispatcher receiver=webhook integration=webhook[0] msg="Notify success" attempts=1
-
-```
-
-同时webhook接收到类似的报警：
+接收方接收到类似的报警：
 
 !!! example
 
     ```json
     {
-    "receiver": "webhook",
-    "status": "firing",
     "alerts": [
         {
-            "status": "firing",
             "labels": {
-                "host": "fuyideMacBook-Pro.local",
-                "source": "a"
+                "topic": "loggie"
             },
             "annotations": {
-                "message": "10.244.0.1 - - [13/Dec/2021:12:40:48 +0000] error \"GET / HTTP/1.1\" 404 683",
-                "reason": "contained error"
+                "message": "\nNew alert: \nbody:\n2022-10-28 01:48:07.093 ERROR 1 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.ArithmeticException: / by zero] with root cause\n\njava.lang.ArithmeticException: / by zero\ncontainerid: 0dc5f07983bfdf7709ee4fce752679983c4184e94c70dab5fe6df5843d5cbb68\nsource: loggie-source-756fd6bb94-4skqv/loggie-alert/common\ncontainername: loggie-alert\nlogconfig: spring\nname: loggie-source\nnamespace: default\nnodename: docker-desktop\npodname: loggie-source-756fd6bb94-4skqv\nfilename: /var/log/pods/default_loggie-source-756fd6bb94-4skqv_9da3e440-e749-4930-8e4d-41e0d5b66417/loggie-alert/1.log\n",
+                "reason": "matches some rules"
             },
-            "startsAt": "2021-12-22T21:33:08.638086+08:00",
-            "endsAt": "0001-01-01T00:00:00Z",
-            "generatorURL": "",
-            "fingerprint": "6b723d0e395b14dc"
+            "startsAt": "2022-10-28T13:12:30.527Z",
+            "endsAt": "2022-10-28T13:12:30.527Z"
         }
     ],
-    "groupLabels": {},
     "commonLabels": {
-        "host": "node1",
-        "source": "a"
-    },
-    "commonAnnotations": {
-        "message": "10.244.0.1 - - [13/Dec/2021:12:40:48 +0000] error \"GET / HTTP/1.1\" 404 683",
-        "reason": "contained error"
-    },
-    "externalURL": "http://xxxxxx:9093",
-    "version": "4",
-    "groupKey": "{}:{}",
-    "truncatedAlerts": 0
+        "namespace": "default",
+        "module": "loggie",
+        "alertname": "loggie-test",
+        "cluster": "local"
+      }
     }
     ```
 
+我们收到类似报警：
+```
+内容 : New alert:
+body:
+2022-12-09 09:48:55.190 ERROR 1 --- [nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.ArithmeticException: / by zero] with root cause
+
+java.lang.ArithmeticException: / by zero
+
+containerid: 0dc5f07983bfdf7709ee4fce752679983c4184e94c70dab5fe6df5843d5cbb68
+source: loggie-source-756fd6bb94-4skqv/loggie-alert/common
+containername: loggie-alert
+logconfig: spring
+name: loggie-source
+namespace: default
+nodename: docker-desktop
+podname: loggie-source-756fd6bb94-4skqv
+filename: /var/log/pods/default_loggie-source-756fd6bb94-4skqv_9da3e440-e749-4930-8e4d-41e0d5b66417/loggie-alert/1.log
+```
+
+
+
 
 ## 独立链路检测
-!!! info
-    马上放出，敬请期待
+
+### 原理
+Loggie配置source采集日志，经过`logAlert interceptor`匹配时，仅将匹配成功的日志发送至`webhook sink`，匹配失败的日志看作正常日志被忽略。在sink为webhook时，`logAlert interceptor`会自动进入此模式，建议在使用`webhook sink`时，同时开启`logAlert interceptor`搭配使用。
+
+
+### 配置示例
+
+配置新增`webhook sink`。详细配置可参考[Webhook Sink](../../reference/pipelines/sink/webhook.md)。
+
+!!! config
+  ```yaml
+      sink:
+        type: webhook
+        addr: http://localhost:8080/loggie
+        linelimit: 10
+        template: |
+              {
+                  "alerts":
+                        [
+                        {{$first := true}}
+                        {{range .Alerts}}
+                        {{if $first}}{{$first = false}}{{else}},{{end}}
+                        {
+                              "labels": {
+                                "topic": "{{.fields.topic}}"
+                              },
+                              "annotations": {
+                                "message": "\nNew alert: \nbody:\n{{range .body}}{{.}}\n{{end}}\ncontainerid: {{._meta.pipelineName}}\nsource: {{._meta.sourceName}}\ncontainername: {{.fields.containername}}\nlogconfig: {{.fields.logconfig}}\nname: {{.fields.name}}\nnamespace: {{.fields.namespace}}\nnodename: {{.fields.nodename}}\npodname: {{.fields.podname}}\nfilename: {{.state.filename}}\n",
+                                "reason": "{{.reason}}"
+                              },
+                              "startsAt": "{{._meta.timestamp}}",
+                              "endsAt": "{{._meta.timestamp}}"
+                        }
+                        {{end}}
+                        ],
+                        {{$first := true}}
+                        {{range .Alerts}}
+                        {{if $first}}{{$first = false}}{{else}}
+                        "commonLabels": {
+                          "namespace": "{{._additions.namespace}}",
+                          "module": "{{._additions.module}}",
+                          "alertname": "{{._additions.alertname}}",
+                          "cluster": "{{._additions.cluster}}"
+                        }
+                        {{end}}
+                        {{end}}
+              }
+  ```
+
+`logAlert Interceptor`配置和接收方收到的报警与采集链路检测报警一致。
