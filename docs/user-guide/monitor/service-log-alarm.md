@@ -119,7 +119,7 @@
             "namespace": "default",
             "cluster": "local",
             "alertname": "loggie-test",
-            "module": "loggie
+            "module": "loggie"
           }
         }
       ]
