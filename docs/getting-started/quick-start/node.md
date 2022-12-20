@@ -6,7 +6,7 @@
 请找一台Linux服务器节点，下载Loggie二进制可执行文件
 ```shell
 VERSION=v1.3.0
-curl -LJ https://github.com/loggie-io/loggie/releases/download/${VERSION}/loggie-linux-amd64 -o loggie
+curl -LJ https://github.com/loggie-io/loggie/releases/download/$VERSION/loggie-linux-amd64 -o loggie
 ```
 
 请将以上的`<VERSION>`替换成具体的版本号。
