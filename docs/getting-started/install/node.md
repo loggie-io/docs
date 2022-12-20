@@ -14,7 +14,7 @@ Loggie使用Golang编译成二进制，可根据自身需求对接各类部署�
 
 ```
 VERSION=v1.3.0
-mkdir /opt/loggie && curl https://github.com/loggie-io/loggie/releases/download/${VERSION}/loggie-linux-amd64 -o /opt/loggie/loggie && chmod +x /opt/loggie/loggie
+mkdir /opt/loggie && curl https://github.com/loggie-io/loggie/releases/download/$VERSION/loggie-linux-amd64 -o /opt/loggie/loggie && chmod +x /opt/loggie/loggie
 ```
 
 请将以上的`<VERSION>`替换成具体的版本号。

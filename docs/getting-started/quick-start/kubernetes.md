@@ -23,7 +23,7 @@
 
 ```bash
 VERSION=v1.3.0
-helm pull https://github.com/loggie-io/installation/releases/download/${VERSION}/loggie-${VERSION}.tgz && tar xvzf loggie-${VERSION}.tgz
+helm pull https://github.com/loggie-io/installation/releases/download/$VERSION/loggie-$VERSION.tgz && tar xvzf loggie-$VERSION.tgz
 ```
 尝试修改一下其中的values.yaml。
 请将以上的`<VERSION>`替换成具体的版本号。
@@ -38,7 +38,7 @@ helm install loggie ./loggie -nloggie --create-namespace
 #### 直接部署：
 
 ```bash
-helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/${VERSION}/loggie-${VERSION}.tgz
+helm install loggie -nloggie --create-namespace https://github.com/loggie-io/installation/releases/download/$VERSION/loggie-$VERSION.tgz
 ```
 请将以上的`<VERSION>`替换成具体的版本号。
 
