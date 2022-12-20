@@ -16,7 +16,7 @@ Concurrency相关配置使用可参照[自适应sink流量控制](../../../user-
         pretty: true
       parallelism: 16
       concurrency:
-        enable: true
+        enabled: true
         rtt:
           blockJudgeThreshold: 120%
           newRttWeigh: 0.4
