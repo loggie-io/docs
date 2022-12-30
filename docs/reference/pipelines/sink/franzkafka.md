@@ -1,6 +1,7 @@
-# kafka
+# franz kafka
 
-使用franz-go kafka将日志数据发送至下游Kafka,并且能比较好的支持kerberos认证
+使用[franz-go kafka](https://github.com/twmb/franz-go)库将日志数据发送至下游Kafka，并且能比较好的支持kerberos认证。  
+（本sink和kafka sink的区别一般只在于使用的kafka golang库不同，提供给对franz kafka库有偏好的用户使用）
 
 !!! example
 
@@ -84,24 +85,24 @@
 
 | `字段`                   | `类型`   |  `是否必填`  |  `默认值`  | `含义`                  |
 |------------------------|--------| ----------- | --------- |-----------------------|
-| tls.enabled            |        |    非必填    |     | 是否启用                  |
-| tls.caCertFiles        |        |    非必填    |     | 证书文件                  |
+| tls.enabled            |  bool      |    非必填    |   false  | 是否启用                  |
+| tls.caCertFiles        |    string    |    非必填    |     | 证书文件路径                  |
 | tls.clientCertFile     | string |    必填    |     | SASL类型，可为：`客户端cert文件` |
-| tls.clientCertFile     | string |    必填    |     | SASL类型，可为：`客户端key文件`  |
+| tls.clientKeyFile     | string |    必填    |     | SASL类型，可为：`客户端key文件`  |
 | tls.endpIdentAlgo          | bool   |    type=scram时必填    |     | 客户端是否验证服务端的证书名字       |
 
 ## sasl
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  | `含义`                                                                               |
 | ---------- | ----------- | ----------- | --------- |------------------------------------------------------------------------------------|
-| tls.enabled            |   |    非必填    |     | 是否启用                                 |
+| tls.enabled            |  bool |    非必填    |   false  | 是否启用                                 |
 | sasl |   |    非必填    |     | SASL authentication                                                                |
 | sasl.mechanism | string  |    必填    |     | SASL类型，可为：`PLAIN`、`SCRAM-SHA-256`、`SCRAM-SHA-512`、`GSSAPI`|
 | sasl.userName | string  |    必填    |     | 用户名                                                                                |
 | sasl.password | string  |    必填    |     | 密码                                                                                 |
 
 
-### gssapi
+## gssapi
 
 | `字段`                           | `类型`   |  `是否必填`  |  `默认值`  | `含义`                                 |
 |--------------------------------|--------| ----------- | --------- |--------------------------------------|
@@ -110,7 +111,7 @@
 | sasl.gssapi.keyTabPath         | string |    必填    |     | keytab 文件路径                          |
 | sasl.gssapi.kerberosConfigPath | string |    必填    |     | kerbeos 文件路径                         |
 | sasl.gssapi.serviceName        | string |    必填    |     | 服务名称                                 |
-| sasl.gssapi.UserName           | string |    必填    |     | 用户名                                  |
+| sasl.gssapi.userName           | string |    必填    |     | 用户名                                  |
 | sasl.gssapi.password           | string |    必填    |     | 密码                                   |
 | sasl.gssapi.realm              | string |    必填    |     | 领域                                   |
 | sasl.gssapi.disablePAFXFAST                   | bool   |    type=scram时必填    |     |DisablePAFXFAST 用于将客户端配置为不使用 PA_FX_FAST |
@@ -147,10 +148,5 @@ pipelines:
 
 ```
 
-## k8s 挂载keytab二进制证书
 
-参考官方文档:
-
-```
-https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/
-```
+Kubernetes 挂载keytab二进制证书，请参考[官方文档](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/)。

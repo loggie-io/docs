@@ -65,6 +65,35 @@ sources字段为数组，一个Pipeline中可填写多个source组件配置。
 
 会从Loggie所在的环境变量中，获取`SVC_NAME`的值`${SVC_NAME}`，然后给所有的日志event上添加字段：`service: ${SVC_NAME}`。
 
+### fieldsFromPath
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| fieldsFromPath | map  |    非必填    |     | 额外添加到event中的字段，value为path指定文件里的内容 |
+
+比如如下配置:
+
+!!! example
+
+    ```yaml
+    sources:
+    - type: file
+      name: access
+      paths:
+      - /var/log/*.log
+      fieldsFromPath:
+        test: /tmp/foo
+    ```
+
+假设文件`/tmp/foo`的内容为bar：
+```
+cat /tmp/foo
+---
+bar
+```
+
+Loggie会给所有的日志event上添加字段：`test`: `bar`。
+
 ### fieldsUnderRoot
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
