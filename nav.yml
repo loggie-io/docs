@@ -69,6 +69,7 @@ nav:
         - Overview: reference/pipelines/source/overview.md
         - file: reference/pipelines/source/file.md
         - kafka: reference/pipelines/source/kafka.md
+        - elasticsearch: reference/pipelines/source/elasticsearch.md
         - kubeEvent: reference/pipelines/source/kube-event.md
         - grpc: reference/pipelines/source/grpc.md
         - prometheusExporter: reference/pipelines/source/prometheus-exporter.md
@@ -79,12 +80,15 @@ nav:
         - Overview: reference/pipelines/sink/overview.md
         - elasticsearch: reference/pipelines/sink/elasticsearch.md
         - kafka: reference/pipelines/sink/kafka.md
+        - kafka(franz): reference/pipelines/sink/franzkafka.md
         - loki: reference/pipelines/sink/loki.md
+        - pulsar: reference/pipelines/sink/pulsar.md
         - grpc: reference/pipelines/sink/grpc.md
         - file: reference/pipelines/sink/file.md
         - dev: reference/pipelines/sink/dev.md
         - sls: reference/pipelines/sink/sls.md
         - webhook: reference/pipelines/sink/webhook.md
+        - zinc: reference/pipelines/sink/zinc.md
 
       - Interceptor:
         - Overview: reference/pipelines/interceptor/overview.md
@@ -111,6 +115,7 @@ nav:
         - queue: reference/monitor/queue.md
         - logAlert: reference/monitor/logalert.md
         - sys: reference/monitor/sys.md
+        - info: reference/monitor/info.md
       
     - 开发手册:
       - 代码贡献: developer-guide/contributing.md

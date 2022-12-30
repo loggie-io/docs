@@ -6,6 +6,7 @@
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
 | period | time.Duration  |    非必填    |   10s   |  listener消费处理数据的时间间隔 |
+| fieldsRef | string数组  |    非必填    |      |  支持从source fields配置当中获取key value加入到metrics中为label |
 
 ## Metrics
 

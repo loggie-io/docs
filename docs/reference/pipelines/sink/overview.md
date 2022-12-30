@@ -69,9 +69,19 @@ Concurrency相关配置使用可参照[自适应sink流量控制](../../../user-
 
 ### concurrency
 
+!!! example
+
+    ```yaml
+    sink:
+      type: kafka
+      concurrency:
+        enabled: true
+    ```
+
+
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| enable | bool  |    非必填    |   false  | 是否开启sink自适应并发度控制 |
+| enabled | bool  |    非必填    |   false  | 是否开启sink自适应并发度控制 |
 
 注：默认此功能不开启。
 
