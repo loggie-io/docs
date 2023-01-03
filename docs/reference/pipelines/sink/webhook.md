@@ -17,10 +17,11 @@ webhook sink将日志数据发送至http接收方，在配置webhook时，logAle
 
 ## webhook
 
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| addr | string  |    必填    |      | 发送alert的http地址 |
-| template | string  |    非必填    |      | 用来渲染的模板 |
-| timeout | int  |    非必填    |    30  | 发送alert的http timeout，单位秒 |
-| headers | map  |    非必填    |      | 发送alert的http header |
-| lineLimit | int  |    非必填    |    10  | 多行日志采集情况下，每个alert中包含的最大日志行数 |
+| `字段`      | `类型`   |  `是否必填`  | `默认值` | `含义`                        |
+|-----------|--------| ----------- |-------|-----------------------------|
+| addr      | string |    必填    |       | 发送alert的http地址              |
+| template  | string |    非必填    |       | 用来渲染的模板                     |
+| timeout   | int    |    非必填    | 30    | 发送alert的http timeout，单位秒    |
+| headers   | map    |    非必填    |       | 发送alert的http header         |
+| method    | string |    非必填    | post  | 发送alert的http method         |
+| lineLimit | int    |    非必填    | 10    | 多行日志采集情况下，每个alert中包含的最大日志行数 |
