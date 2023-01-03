@@ -14,7 +14,7 @@
 ### 原理
 采集链路不需要独立部署Loggie，但是由于在采集的数据链路上进行匹配，理论上会对传输性能造成一定影响，但胜在方便简单。  
 
-`logAlert interceptor`用于在日志传输的时候检测异常日志，异常日志会被封装成报警的事件发送至monitor eventbus的`logAlert` topic，由`logAlert listener`来消费。`logAlert listener`支持发送至任意http后端（可以多个）。发送体根据自定义模板进行渲染，若模板未定义，则会发送原始数据。在配置模板前，可以先观察原始数据，再进行模板配置，原始数据可能会根据pipeline配置被其他interceptor改动而与示例不同。
+`logAlert interceptor`用于在日志传输的时候检测异常日志，异常日志会被封装成报警的事件发送至monitor eventbus的`logAlert` topic，由`logAlert listener`来消费。`logAlert listener`支持发送至任意http后端（可以多个）。发送体根据自定义模板进行渲染，若模板未定义，则会发送原始数据。在配置模板前，可以先观察原始数据（设置debug模式启动），再进行模板配置，原始数据可能会根据pipeline配置被其他interceptor改动而与示例不同。
 
 ### 配置示例
 
@@ -126,9 +126,11 @@
     }
   ```
 
-建议先观察原始alert数据格式，再配置模板进行渲染。
+`_meta` 为固定的字段，包含`pipelineName`，`sourceName`，`timestamp`。
 
 增加`logAlert interceptor`，同时在ClusterLogConfig/LogConfig中引用。其中`additions`为给alert额外添加的字段，会放入alert原始数据的`_addtions`字段中，可用做模板渲染。
+
+建议先使用debug模式（`-log.level=debug`）观察原始alert数据格式，再配置模板进行渲染，原始数据会受到其他配置的影响，这里仅展示一个示例。
 
 详细配置可参考[LogAlert Interceptor](../../reference/pipelines/interceptor/logalert.md)。
 
@@ -206,7 +208,7 @@ filename: /var/log/pods/default_loggie-source-756fd6bb94-4skqv_9da3e440-e749-493
 ## 独立链路检测
 
 ### 原理
-Loggie配置source采集日志，经过`logAlert interceptor`匹配时，仅将匹配成功的日志发送至`webhook sink`，匹配失败的日志看作正常日志被忽略。在sink为webhook时，`logAlert interceptor`会自动进入此模式，建议在使用`webhook sink`时，同时开启`logAlert interceptor`搭配使用。
+Loggie配置source采集日志，经过`logAlert interceptor`匹配时，可配置`sendOnlyMatched`仅将匹配成功的日志发送至`webhook sink`，匹配失败的日志看作正常日志被忽略。建议在使用`webhook sink`时，同时开启`logAlert interceptor`, 设置`sendOnlyMatched`为`true`搭配使用。
 
 
 ### 配置示例
