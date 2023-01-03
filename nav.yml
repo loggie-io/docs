@@ -87,7 +87,7 @@ nav:
         - file: reference/pipelines/sink/file.md
         - dev: reference/pipelines/sink/dev.md
         - sls: reference/pipelines/sink/sls.md
-        - webhook: reference/pipelines/sink/webhook.md
+        - alertwebhook: reference/pipelines/sink/webhook.md
         - zinc: reference/pipelines/sink/zinc.md
 
       - Interceptor:
