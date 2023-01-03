@@ -7,7 +7,7 @@ alertwebhook sink将日志数据发送至http接收方。
 
     ```yaml
     sink:
-      type: webhook
+      type: alertwebhook
       addr: http://localhost:8080/loggie
       headers:
         api: test1
