@@ -77,6 +77,9 @@
         port: 9196
     ```
 
+模版使用go template。可参考[GO Template](https://pkg.go.dev/text/template)，
+[GO Template教学](https://cloud.tencent.com/developer/article/1683688)。
+
 其中：
 
 !!! 原始alert数据
@@ -115,7 +118,7 @@
             "source": "loggie-source-756fd6bb94-4skqv/loggie-alert/common",
             "timestamp": "2022-10-28T13:12:30.527Z"
           },
-          "_addtions": {
+          "_additions": {
             "namespace": "default",
             "cluster": "local",
             "alertname": "loggie-test",
@@ -125,6 +128,24 @@
       ]
     }
   ```
+
+原始alert数据，为一个json，其中`Alerts`为固定的key，其value为alert列表。
+
+**每个alert字段解释**：
+
+| `字段`               | `是否自带` | `含义`                  |
+|--------------------|--------|-----------------------|
+| _meta              | 是      | alert元数据              |
+| _meta.pipelineName | 是      | alert元数据              |
+| _meta.sourceName   | 是      | alert元数据              |
+| _meta.timestamp    | 是      | alert元数据              |
+| body               | 是      | logBody               |
+| fields             | 否      | field字段，由其余配置添加       |
+| reason             | 是      | 匹配成功原因                |
+| state              | 是      | 采集信息，一般为file source自带 |
+| _additions         | 否      | 由配置指定                 |
+
+
 
 `_meta` 为固定的字段，包含`pipelineName`，`sourceName`，`timestamp`。
 
@@ -146,6 +167,7 @@
         - type: logAlert
           matcher:
             contains: ["ERROR"]
+          sendOnlyMatched: true
           additions:
             module: "loggie"
             alertname: "loggie-test"
@@ -208,12 +230,12 @@ filename: /var/log/pods/default_loggie-source-756fd6bb94-4skqv_9da3e440-e749-493
 ## 独立链路检测
 
 ### 原理
-Loggie配置source采集日志，经过`logAlert interceptor`匹配时，可配置`sendOnlyMatched`仅将匹配成功的日志发送至`webhook sink`，匹配失败的日志看作正常日志被忽略。建议在使用`webhook sink`时，同时开启`logAlert interceptor`, 设置`sendOnlyMatched`为`true`搭配使用。
+Loggie配置source采集日志，经过`logAlert interceptor`匹配时，可配置`sendOnlyMatched`仅将匹配成功的日志发送至`alertwebhook sink`，匹配失败的日志看作正常日志被忽略。建议在使用`alertwebhook sink`时，同时开启`logAlert interceptor`, 设置`sendOnlyMatched`为`true`搭配使用。
 
 
 ### 配置示例
 
-配置新增`webhook sink`。详细配置可参考[Webhook Sink](../../reference/pipelines/sink/webhook.md)。
+配置新增`alertwebhook sink`。详细配置可参考[AlertWebhook Sink](../../reference/pipelines/sink/webhook.md)。
 
 !!! config
   ```yaml
@@ -255,4 +277,4 @@ Loggie配置source采集日志，经过`logAlert interceptor`匹配时，可配�
               }
   ```
 
-`logAlert Interceptor`配置和接收方收到的报警与采集链路检测报警一致。
+`logAlert Interceptor`配置和接收方收到的报警与采集链路检测报警类似。
