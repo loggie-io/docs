@@ -230,17 +230,17 @@ filename: /var/log/pods/default_loggie-source-756fd6bb94-4skqv_9da3e440-e749-493
 ## 独立链路检测
 
 ### 原理
-Loggie配置source采集日志，经过`logAlert interceptor`匹配时，可配置`sendOnlyMatched`仅将匹配成功的日志发送至`alertwebhook sink`，匹配失败的日志看作正常日志被忽略。建议在使用`alertwebhook sink`时，同时开启`logAlert interceptor`, 设置`sendOnlyMatched`为`true`搭配使用。
+Loggie配置source采集日志，经过`logAlert interceptor`匹配时，可配置`sendOnlyMatched`仅将匹配成功的日志发送至`alertWebhook sink`，匹配失败的日志看作正常日志被忽略。建议在使用`alertWebhook sink`时，同时开启`logAlert interceptor`, 设置`sendOnlyMatched`为`true`搭配使用。
 
 
 ### 配置示例
 
-配置新增`alertwebhook sink`。详细配置可参考[AlertWebhook Sink](../../reference/pipelines/sink/webhook.md)。
+配置新增`alertWebhook sink`。详细配置可参考[AlertWebhook Sink](../../reference/pipelines/sink/webhook.md)。
 
 !!! config
   ```yaml
       sink:
-        type: webhook
+        type: alertWebhook
         addr: http://localhost:8080/loggie
         linelimit: 10
         template: |

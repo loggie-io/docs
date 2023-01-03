@@ -1,13 +1,13 @@
-# alertwebhook
+# alertWebhook
 
-alertwebhook sink将日志数据发送至http接收方。
+alertWebhook sink将日志数据发送至http接收方。
 使用示例请参考[日志报警](../../../user-guide/monitor/service-log-alarm.md)
 
 !!! example
 
     ```yaml
     sink:
-      type: alertwebhook
+      type: alertWebhook
       addr: http://localhost:8080/loggie
       headers:
         api: test1
