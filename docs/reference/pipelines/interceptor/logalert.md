@@ -22,7 +22,7 @@
       advanced:
         enabled: true
         mode: [ "noData","regexp" ]
-        duration: 20
+        duration: 6h
         matchType: "any"
         rules:
           - regexp: '(?<date>.*?) (?<time>[\S|\\.]+)  (<status>[\S|\\.]+) (?<u>.*?) --- (?<thread>\[*?\]) (?<pkg>.*) : (?<message>(.|\n|\t)*)'
