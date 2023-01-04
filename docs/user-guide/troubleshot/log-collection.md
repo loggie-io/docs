@@ -16,7 +16,39 @@
 
 （针对非Kubernetes的主机场景，只是少了LogConfig CRD配置下发的步骤，其余类似）
 
-## 排查步骤
+## Loggie dashboard
+在Kubernetes的场景下，目前Loggie提供了一个基于terminal的可交互式dashboard，可以更好的帮助我们便捷的排查问题。
+
+**进入dashboard**
+
+- 找到任意一个Loggie Pod
+```
+kubectl -nloggie get po -owide
+```
+
+- 进入其中一个Loggie Pod
+```
+kubectl -nloggie exec -it ${podName} bash
+```
+
+- 运行dashboard
+```
+./loggie inspect
+```
+
+**使用dashboard**
+
+dashboard首页展示示例如下所示：
+![dashboard](img/loggie-dashboard.png)
+
+具体请参考使用说明[视频](https://www.bilibili.com/video/BV1oK411R79b)。
+
+
+!!! tips
+
+    Loggie dashboard功能仅从v1.4版本开始提供，如果从低版本升级，需增加clusterrole配置，请参考[这里](https://github.com/loggie-io/loggie/pull/416)。
+
+## 手动排查步骤
 
 排查问题关键先要确定是哪一步出现了问题。
 

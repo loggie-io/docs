@@ -1,6 +1,7 @@
 # logAlert listener
 
 用于日志报警的发送。
+使用示例请参考[日志报警](../../user-guide/monitor/service-log-alarm.md)。
 
 !!! example
 

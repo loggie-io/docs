@@ -45,7 +45,7 @@
 | cluster | string  |    非必填    |  ""    | 标识Loggie集群名称。Loggie支持在一个Kubernetes集群中部署多套Loggie，可以通过在LogConfig CRD中指定`selector.cluster`，指定配置下发的Loggie集群 |
 | kubeconfig | string  |    非必填    |     |  指定请求Kubernetes集群API的kubeconfig文件。通常在Loggie部署到Kubernetes集群中无需填写，此时为inCluster模式。如果Loggie部署在Kubernetes集群外（例如本地调试时），需要指定该kubeconfig文件。 |
 | master | string  |    非必填    |     | 指定请求Kubernetes集群API的master地址，inCluster模式一般无需填写 |
-| containerRuntime | string  |    非必填    |  docker   | 容器运行时，可选`docker`和`containerd` |
+| containerRuntime | string  |    非必填    |  docker   | 容器运行时，可选`docker`、`containerd`、`none` |
 | rootFsCollectionEnabled | bool  |    非必填    |  false   | 是否开启采集root filesystem里的日志，用于不挂载日志volume的场景 |
 | parseStdout | bool  |    非必填    |  false   | 是否开启自动提取容器标准输出原始内容 |
 | dynamicContainerLog | bool  |    非必填    |  false   | 是否开启动态容器日志配置，打开后配置文件不会渲染具体的path和动态fields字段，可以有效避免大规模容器化场景里Pod变动从而导致配置的频繁渲染，显著减少reload次数，特别是在单节点的Pod个数较多和使用clusterlogconfig匹配大量的Pod时。一般建议设置为true。 |
