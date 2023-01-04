@@ -48,8 +48,9 @@ interceptors:
 
 ## action
 
-### 共有字段
+### 公共字段
 
+#### ignoreError
 - ignoreError: 表示是否忽略该action处理过程中的错误，并且不会打印错误日志。
 
 !!! example
@@ -63,6 +64,20 @@ interceptors:
     ```
     这里的ignoreError设置为true，表示会忽略该正则匹配的错误，并且会继续执行后续的action。
     
+#### dropIfError
+表示如果出现错误，直接丢弃该条event。
+
+!!! example
+
+    ```yaml
+    - type: transformer
+      actions:
+        - action: regex(body)
+          pattern: (?<ip>\S+) (?<id>\S+) (?<u>\S+) (?<time>\[.*?\]) (?<url>\".*?\") (?<status>\S+) (?<size>\S+)
+          dropIfError: true
+    ```
+    这里的dropIfError设置为true，表示如果出现正则匹配的错误，会直接丢弃这条日志（后续action也不会执行）。
+
 
 ### add(key, value)
 给event添加额外的key:value。
@@ -374,6 +389,49 @@ const (
     }
     ```
 
+### grok(key)
+使用grok的方式切分日志，提取字段。
+另外也可以为grok(key, to)。
+
+参数：
+
+- key: 必填，grok提取的字段
+- to: 非必填，提取后所有的字段放置到的key。默认为空，表示将字段提取到根部
+
+额外字段：
+
+- match: 必填，grok表达式
+- ignoreBlank: 非必填，默认true，是否忽略空字段，如果解析得到的字段key的结果为""，那么结果不会写入key:""
+- pattern: 非必填，自定义pattern
+- patternPaths: 非必填，获取pattern的路径，支持url和path，其中url为解析get请求的response。这里提供一个实例的[url](https://raw.githubusercontent.com/vjeantet/grok/master/patterns/grok-patterns)；path则为本地路径，如果填写的是目录则会拿目录下所有文件内可能包含的规则
+
+!!! example
+
+    ```yaml
+    - action: grok(body)
+      match: "^%{DATESTAMP:datetime} %{FILE:file}:%{INT:line}: %{IPV4:ip} %{PATH:path} %{UUID:uuid}(?P<space>[a-zA-Z]?)"
+      pattern: 
+        FILE: "[a-zA-Z0-9._-]+"
+    ```
+    
+    input:
+    ```json
+    {
+      "body": "2022/05/28 01:32:01 logTest.go:66: 192.168.0.1 /var/log/test.log 54ce5d87-b94c-c40a-74a7-9cd375289334",
+    }
+    ```
+    
+    output:
+    ```
+    		"datetime": "2022/05/28 01:32:01",
+				"line":     "66",
+				"ip":       "192.168.0.1",
+				"path":     "/var/log/test.log",
+				"uuid":     "54ce5d87-b94c-c40a-74a7-9cd375289334",
+
+    ```
+
+
 ### jsonDecode(key)
 将json文本反序列化。
 也可以为jsonDecode(key, to)。
@@ -403,6 +461,82 @@ const (
       "stream": "stderr", 
       "time": "2021-06-10T08:29:07.698731204Z"
     }
+    ```
+
+### jsonEncode(key)
+将多个字段序列化成json string形式。
+也可以为jsonEncode(key, to)。
+
+参数：
+
+- key: 必填，对应的字段key
+- to: 非必填，提取后所有的字段放置到的key。默认为空，则表示将字段提取到根部
+
+!!! example
+
+    ```yaml
+    interceptors:
+      - type: transformer
+        actions:
+        - action: jsonEncode(fields)
+    ```
+    
+    input:
+    ```json
+    {
+      "body": "this is test",
+      "fields":
+        "topic": "loggie",
+        "foo": "bar"
+    }
+    ```
+    
+    output:
+    ```json
+     {
+      "fields": "{\"topic\":\"loggie\",\"foo\":\"bar\"}",
+      "body": "this is test"
+    }
+
+    ```
+
+
+### split(key)
+将一行日志根据某种分割符切分。
+
+参数：
+
+- key: 必填，对应的字段key
+- to: 非必填，提取后所有的字段放置到的key。默认为空，则表示将字段提取到根部
+
+额外字段：
+
+- separator: 分隔符，string，必填
+- max: 通过分割符分割后得到的最多的字段数，int，非必填，默认值为-1
+- keys: 分割后字段对应的key，string数组，必填
+
+!!! example
+
+    ```yaml
+      interceptors:
+      - type: transformer
+        actions:
+          - action: split(body)
+            separator: "|"
+            keys: ["time", "order", "service", "price"]
+    ```
+    
+    input:
+    ```
+      "body": `2021-08-08|U12345|storeCenter|13.14`,
+    ```
+    
+    output:
+    ```
+      "time": "2021-08-08"
+      "order": "U12345"
+      "service": "storeCenter"
+      "price: "13.14"
     ```
 
 

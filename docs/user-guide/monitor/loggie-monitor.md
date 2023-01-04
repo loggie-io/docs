@@ -35,7 +35,7 @@ monitor eventbus配置在全局的系统配置中，示例如下：
 Prometheus格式metrics默认通过`http.port`端口暴露在`/metrics`。可以通过`curl <podIp>:9196/metrics`来查看当前的metrics指标。  
 
 ## 日志采集核心指标
-目前有以下的listener：
+目前有以下的[listener](../../reference/monitor/overview.md)，主要包含：
 
 - **filesource**: 当前日志采集的指标数据，比如当前有哪些文件在采集中，采集状态如何
 - **filewatcher**: 定时的全量遍历（默认5min)配置path匹配的所有文件，监控全局采集状态，判断是否有未及时采集的文件等
