@@ -38,8 +38,8 @@ zinc sink用于发送数据至[zinc](https://github.com/zinclabs/zinc)存储。
 | ---------- | ----------- | ----------- | --------- | -------- |
 | index | string  |    非必填    |  default    | 发送至zinc的index |
 
-## SkipSSLVerify
+## skipSSLVerify
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| SkipSSLVerify | bool  |    非必填    |  true    | 是否忽略SSL校验 |
+| skipSSLVerify | bool  |    非必填    |  true    | 是否忽略SSL校验 |
