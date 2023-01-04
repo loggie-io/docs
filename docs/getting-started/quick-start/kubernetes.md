@@ -22,7 +22,7 @@
 #### 下载chart再部署
 
 ```bash
-VERSION=v1.3.0
+VERSION=v1.4.0-rc.0
 helm pull https://github.com/loggie-io/installation/releases/download/$VERSION/loggie-$VERSION.tgz && tar xvzf loggie-$VERSION.tgz
 ```
 尝试修改一下其中的values.yaml。
