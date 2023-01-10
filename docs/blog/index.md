@@ -72,8 +72,9 @@
 - ⼤规模场景下的困境与挑战
 - 开源Loggie的现在与未来
   
-  [:octicons-arrow-right-24: __Continue reading__](https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA)
-  [:octicons-arrow-right-24: __PPT__]([https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA](https://github.com/loggie-io/asserts/blob/main/ppt/%E7%BD%91%E6%98%93%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E5%AE%9E%E8%B7%B5.pdf))
+  [:octicons-arrow-right-24: __Continue reading__](https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA)  
+  
+  [:fontawesome-regular-file-powerpoint: __PPT__](https://github.com/loggie-io/asserts/blob/main/ppt/%E7%BD%91%E6%98%93%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E5%AE%9E%E8%B7%B5.pdf)
   [__ethfoo__]: https://github.com/ethfoo
   [网易数帆云原生日志平台架构实践]: (https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA)
 
