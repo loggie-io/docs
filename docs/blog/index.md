@@ -7,6 +7,30 @@
 
 # Blog
 
+## 网易基于Loggie的云原生大规模日志架构演进
+
+<aside style="font-size: .7rem" markdown>
+<span>:octicons-person-16: [__ethfoo__] &nbsp;</span>
+<span>
+:octicons-calendar-24: 2022-10-26 &nbsp;
+:octicons-clock-24: 10 min read 
+</span>
+</aside>
+
+主要内容包括：
+
+- 日志场景的最初探索
+- 云原生的大规模迁移
+- 使用Loggie为核心的统一日志平台
+- 深入日志架构的最佳实践
+  
+  [:octicons-arrow-right-24: __Continue reading__](https://github.com/loggie-io/asserts/blob/main/ppt/%E7%BD%91%E6%98%93%E5%9F%BA%E4%BA%8ELoggie%E7%9A%84%E4%BA%91%E5%8E%9F%E7%94%9F%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.pdf)
+  [__ethfoo__]: https://github.com/ethfoo
+  [网易基于Loggie的云原生大规模日志架构演进]: (https://github.com/loggie-io/asserts/blob/main/ppt/%E7%BD%91%E6%98%93%E5%9F%BA%E4%BA%8ELoggie%E7%9A%84%E4%BA%91%E5%8E%9F%E7%94%9F%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.pdf)
+
+---
+
+
 ## 使用Loggie快速构建可扩展的云原生日志架构
 
 <aside style="font-size: .7rem" markdown>
@@ -49,6 +73,7 @@
 - 开源Loggie的现在与未来
   
   [:octicons-arrow-right-24: __Continue reading__](https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA)
+  [:octicons-arrow-right-24: __PPT__]([https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA](https://github.com/loggie-io/asserts/blob/main/ppt/%E7%BD%91%E6%98%93%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E5%AE%9E%E8%B7%B5.pdf))
   [__ethfoo__]: https://github.com/ethfoo
   [网易数帆云原生日志平台架构实践]: (https://mp.weixin.qq.com/s/rtnBplSAdOzQmtYAtXrAqA)
 
