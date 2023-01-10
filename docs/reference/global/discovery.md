@@ -88,5 +88,5 @@
 | ${_k8s.node.nodeInfo.kubeProxyVersion}| string  |    非必填    |    | 添加node kubeProxyVersion作为元信息 |
 | ${_k8s.node.nodeInfo.operatingSystem}| string  |    非必填    |    | 添加node operatingSystem作为元信息 |
 | ${_k8s.node.nodeInfo.architecture}| string  |    非必填    |    | 添加node architecture作为元信息 |
-| ${_k8s.node.labels.<key>}| string  |    非必填    |    | 添加node的某个label作为元信息，其中的`<key>`请替换成具体的label key |
-| ${_k8s.node.annotations.<key>}| string  |    非必填    |    | 添加node的某个annotation作为元信息，其中的`<key>`请替换成具体的annotation key |
+| ${_k8s.node.labels.`<key>`}| string  |    非必填    |    | 添加node的某个label作为元信息，其中的`<key>`请替换成具体的label key |
+| ${_k8s.node.annotations.`<key>`}| string  |    非必填    |    | 添加node的某个annotation作为元信息，其中的`<key>`请替换成具体的annotation key |
