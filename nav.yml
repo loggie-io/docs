@@ -116,6 +116,9 @@ nav:
         - logAlert: reference/monitor/logalert.md
         - sys: reference/monitor/sys.md
         - info: reference/monitor/info.md
+
+      - APIs:
+        - 内部运维类: reference/apis/ops.md 
       
     - 开发手册:
       - 代码贡献: developer-guide/contributing.md
