@@ -12,7 +12,7 @@ nav:
         - Kubernetes部署: getting-started/install/kubernetes.md
         - 主机部署: getting-started/install/node.md
       - RoadMap:
-        - 2022: getting-started/roadmap/roadmap-2022.md
+        - 2023: getting-started/roadmap/roadmap-2023.md
 
     - 用户指南:
       - Overview: user-guide/index.md
