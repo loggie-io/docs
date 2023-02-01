@@ -645,6 +645,13 @@ const (
 ### contain(key, target)
 字段值是否包含参数值target。
 
+!!! caution
+
+    target请直接使用字符串，无需添加双引号。
+    比如`contain(body, error)`，而不是`contain(body, "error")`。`contain(body, "error")`会被当作`"error"`来匹配。
+
+
+
 ### exist(key)
 目标字段是否存在或者是否为空。
 
