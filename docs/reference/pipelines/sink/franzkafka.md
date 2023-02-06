@@ -98,7 +98,7 @@
 | tls.enabled            |  bool |    非必填    |   false  | 是否启用                                 |
 | sasl |   |    非必填    |     | SASL authentication                                                                |
 | sasl.mechanism | string  |    必填    |     | SASL类型，可为：`PLAIN`、`SCRAM-SHA-256`、`SCRAM-SHA-512`、`GSSAPI`|
-| sasl.userName | string  |    必填    |     | 用户名                                                                                |
+| sasl.username | string  |    必填    |     | 用户名                                                                                |
 | sasl.password | string  |    必填    |     | 密码                                                                                 |
 
 
