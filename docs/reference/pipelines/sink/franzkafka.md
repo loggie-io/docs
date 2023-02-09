@@ -133,9 +133,11 @@ pipelines:
           - /tmp/log/*.log
     sink:
       type: franzKafka
+      brokers:
+      - "hadoop74.axrzpt.com:9092"
       topic: loggie
       writeTimeout: 5s
-      SASL:
+      sasl:
         gssapi:
           kerberosConfigPath: /etc/krb5-conf/krb5.conf
       security:
@@ -143,8 +145,6 @@ pipelines:
         sasl.mechanism: "GSSAPI"
         sasl.jaas.config: "com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true debug=true keyTab=\"/shylock/kerberos/zork.keytab\"  principal=\"zork@AXRZPT.COM\";"
         sasl.kerberos.service.name: "kafka"
-      brokers:
-        - "hadoop74.axrzpt.com:9092"
 
 ```
 
