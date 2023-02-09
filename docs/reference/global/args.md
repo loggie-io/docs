@@ -11,7 +11,7 @@
 
 - `-meta.nodeName`：默认情况下会使用系统的hostname，在Kubernetes部署中会使用Downward API来注入nodeName。一般情况下不需要单独配置
 
-## 日志参数:  
+## 日志参数 
 
 - `-log.level`: 日志级别，默认为info，可配置为debug、info、warn和error
 - `-log.jsonFormat`: 是否将日志输出为json格式，默认为false
