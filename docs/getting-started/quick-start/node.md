@@ -5,7 +5,7 @@
 ### 1. 下载可执行文件
 请找一台Linux服务器节点，下载Loggie二进制可执行文件
 ```shell
-VERSION=v1.4.0-rc.0
+VERSION=v1.4.0
 curl -LJ https://github.com/loggie-io/loggie/releases/download/$VERSION/loggie -o loggie
 ```
 

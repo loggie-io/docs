@@ -13,7 +13,7 @@ Loggie使用Golang编译成二进制，可根据自身需求对接各类部署�
 ## 下载二进制
 
 ```
-VERSION=v1.4.0-rc.0
+VERSION=v1.4.0
 mkdir /opt/loggie && curl https://github.com/loggie-io/loggie/releases/download/$VERSION/loggie -o /opt/loggie/loggie && chmod +x /opt/loggie/loggie
 ```
 
