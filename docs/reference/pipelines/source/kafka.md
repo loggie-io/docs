@@ -46,7 +46,7 @@ Kafka source用于接收Kafka数据。
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| maxAcceptedBytes | int  |    非必填      |    1e6  | 最大接收的batch字节数 |
+| maxAcceptedBytes | int  |    非必填      |    1e6（1MB)  | 最大接收的消息字节数，如果超过会被truncate，可以设置为一个能容忍的较大的值 |
 
 ## readMaxAttempts
 
