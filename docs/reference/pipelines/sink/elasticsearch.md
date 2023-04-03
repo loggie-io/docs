@@ -14,11 +14,13 @@
 
 !!! caution
 
-    如果elasticsearch版本为v6.x，请加上以下etype参数。
+    如果elasticsearch版本为v6.x，请加上以下`etype: _doc`参数。
     
     ```yaml
     sink:
+      type: elasticsearch
       etype: _doc
+      ...
     ```
 
 
