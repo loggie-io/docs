@@ -11,6 +11,17 @@
       index: "log-${fields.service}-${+YYYY.MM.DD}"
     ```
 
+
+!!! caution
+
+    如果elasticsearch版本为v6.x，请加上以下etype参数。
+    
+    ```yaml
+    sink:
+      etype: _doc
+    ```
+
+
 ## hosts
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
