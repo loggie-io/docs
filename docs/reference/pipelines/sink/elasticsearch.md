@@ -81,5 +81,5 @@
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| opType | string  |    非必填    |   index  | 参考https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html#docs-index-api-query-params, 如果目标为datastream，则需要设置为create |
+| opType | string  |    非必填    |   index  | 参考[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html#docs-index-api-query-params), 如果目标为datastream，则需要设置为create |
 
