@@ -293,6 +293,7 @@ state含义解释：
       name: accesslog
       multi:
     	active: true
+        pattern: '^\['
     ```
 
 ### active
