@@ -36,9 +36,9 @@ kubectl -nloggie exec -it ${podName} bash
 ./loggie inspect
 ```
 
-**使用dashboard**
+**使用terminal**
 
-dashboard首页展示示例如下所示：
+terminal首页展示示例如下所示：
 ![dashboard](img/loggie-dashboard.png)
 
 具体请参考使用说明[视频](https://www.bilibili.com/video/BV1oK411R79b)。
@@ -46,7 +46,7 @@ dashboard首页展示示例如下所示：
 
 !!! tips
 
-    Loggie dashboard功能仅从v1.4版本开始提供，如果从低版本升级，需增加clusterrole配置，请参考[这里](https://github.com/loggie-io/loggie/pull/416)。
+    Loggie terminal功能仅从v1.4版本开始提供，如果从低版本升级，需增加clusterrole配置，请参考[这里](https://github.com/loggie-io/loggie/pull/416)。
 
 ## 手动排查步骤
 
