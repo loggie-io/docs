@@ -293,7 +293,7 @@ state含义解释：
       name: accesslog
       multi:
     	active: true
-        pattern: '^\['
+        pattern: '^\d{4}-\d{2}-\d{2}'
     ```
 
 ### active
@@ -307,6 +307,20 @@ state含义解释：
 | `字段`  | `类型` | `是否必填`                    | `默认值` | `含义`                                                       |
 | ------- | ------ | ----------------------------- | -------- | ------------------------------------------------------------ |
 | pattern | string | 当multi.active=true的时候必填 | false    | 判断为一条全新日志的正则表达式。例如配置为`'^\['`，则认为行首以`[`开头才是一条新日志，否则将这行内容合入上一条日志作为上一条日志的一部分 |
+
+!!! example
+
+  假设有多行日志如下所示：
+  
+   ```
+   2023-05-11 14:30:15 ERROR Exception in thread "main" java.lang.NullPointerException
+        at com.example.MyClass.myMethod(MyClass.java:25)
+        at com.example.MyClass.main(MyClass.java:10)
+   ```
+
+  配置pattern正则：^\d{4}-\d{2}-\d{2}  
+  会将日志变成一行。这样在日志查询的时候，不会产生上面的多行异常日志堆栈乱序等问题。
+
 
 #### maxLines
 
