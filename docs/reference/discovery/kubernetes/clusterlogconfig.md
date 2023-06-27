@@ -36,7 +36,7 @@ Cluster级别CRD，可用于：
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| labelSelector | map  |    必填    |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
+| labelSelector | map  |    必填    |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: '*'` |
 
 
 !!! example
