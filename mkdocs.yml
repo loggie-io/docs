@@ -88,6 +88,9 @@ markdown_extensions:
 copyright: Copyright &copy; 2022 Loggie.io
 
 extra:
+  version:
+    provider: mike
+
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/loggie-io
