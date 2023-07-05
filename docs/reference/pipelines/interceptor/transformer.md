@@ -570,6 +570,23 @@ const (
     }
     ```
 
+### toStr(key, type)
+
+将字段值转换为字符串。
+
+参数：
+
+- key: 目标字段
+- type: 转换前的字段类型，可为`bool`, `int`, `float`, `int64`, `float64`。非必填，如果已知字段类型，建议填写，填写时请自行保证类型正确，否则可能导致转换失败；如果未填写，将根据反射获取字段类型，可能会对采集效率产生影响。
+
+!!! example
+
+    ``yaml     - action: toStr(code, int)     ``
+
+    input:``json     {       "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",       "code": 200     }     ``
+
+    output:``json     {       "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",       "code": "200"     }     ``
+
 ### print()
 打印event。一般用于调试阶段使用。
 
