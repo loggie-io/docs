@@ -27,5 +27,5 @@ jobs:
       - run: git config --get user.name
       - run: git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - run: git pull origin gh-pages -r
-      - run: mike set-default main
       - run: mike deploy --push --update-aliases main latest
+      - run: mike set-default main
