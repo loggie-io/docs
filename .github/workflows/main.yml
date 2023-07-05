@@ -1,0 +1,30 @@
+name: ci 
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material==9.1.18
+      - run: pip install mike
+      - run: mkdocs --version
+      - run: pip show mkdocs-material
+      - run: git config --global user.name "${GITHUB_ACTOR}"
+      - run: git config --get user.name
+      - run: git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      - run: git pull origin gh-pages -r
+      - run: mike set-default main
+      - run: mike deploy --push --update-aliases main latest
