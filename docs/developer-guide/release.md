@@ -76,7 +76,7 @@ git push v${A.B.C}
 提PR将release分支合入main，可等稳定一段时间后再合入，注意Loggie工程和Loggie-installation部署脚本均需要。
 
 
-## 有BugFix时
+## 有BugFix
 
 - 如果是不重要的bug，基于main分支提交修改即可，可以不合入release分支
 - 如果为重要的bug，需要修复，确定需要修复的版本release分支（可为最近一个或者多个），除了提交至main分支外，还需要cherry-pick至指定release分支，同时打上tag，新增最小版本号，同时需要确认Loggie-installation和docs是否同步修改。
