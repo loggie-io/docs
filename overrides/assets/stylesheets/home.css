@@ -19,15 +19,14 @@
   display: none;
 }
 
-@media screen and (min-width: 60em) {
-  .md-sidebar--secondary {
-    display: none;
-  }
+.md-sidebar--primary {
+  display: none !important;
 }
-@media screen and (min-width: 76.25em) {
-  .md-sidebar--primary {
-    display: none;
-  }
+.md-sidebar--secondary {
+  display: none !important;
+}
+.md-content__inner {
+  margin-right: 0 !important;
 }
 
 @keyframes continuousgradient {
@@ -247,7 +246,7 @@ body {
 }
 
 .features-container ul{
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   margin: 0 auto;
 }
