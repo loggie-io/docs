@@ -10,7 +10,7 @@
 Loggie和业务container部署在同一个Pod里，同时需要挂载相同的日志文件volume，另外Loggie的配置可通过configMap的方式挂载到容器中，Loggie根据提供的configMap配置文件，采集容器的日志，并发送到后端。  
 
 
-## 注入Loggie sidecar
+## 方式1: 手动或者通过部署侧注入Loggie sidecar
 
 ```yaml
 apiVersion: apps/v1
@@ -121,3 +121,8 @@ data:
 
 !!! info 
     Loggie后续会支持自动Sidecar注入和通过LogConfig自动生成ConfigMap挂载的方式，从而达到和使用DaemonSet一致的体验。  
+
+
+## 方式2: 自动注入sidecar
+
+请参考：https://github.com/loggie-io/loggie-operator
