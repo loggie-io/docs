@@ -398,6 +398,7 @@ Loggie提供了无需挂载即可采集容器日志的能力，可自动识别�
 helm模版会自动渲染增加额外的一些挂载路径和配置，如果你从低版本升级，需要额外修改部署的Daemonset yaml。
 具体原理请参考issues [#208](https://github.com/loggie-io/loggie/issues/208)。
 
-
+请注意：  
+- containerd运行时下的无挂载volume的容器日志采集暂未大规模生产运行过，请谨慎使用于生产环境。
 
 
