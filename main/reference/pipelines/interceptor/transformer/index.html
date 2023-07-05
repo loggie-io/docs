@@ -2047,6 +2047,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tostrkey-type" class="md-nav__link">
+    toStr(key, type)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#print" class="md-nav__link">
     print()
   </a>
@@ -2872,6 +2879,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tostrkey-type" class="md-nav__link">
+    toStr(key, type)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#print" class="md-nav__link">
     print()
   </a>
@@ -3455,6 +3469,19 @@
 <span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
 <span class="p">}</span>
 </code></pre></div></p>
+</div>
+<h3 id="tostrkey-type">toStr(key, type)<a class="headerlink" href="#tostrkey-type" title="Permanent link">&para;</a></h3>
+<p>将字段值转换为字符串。</p>
+<p>参数：</p>
+<ul>
+<li>key: 目标字段</li>
+<li>type: 转换前的字段类型，可为<code>bool</code>, <code>int</code>, <code>float</code>, <code>int64</code>, <code>float64</code>。非必填，如果已知字段类型，建议填写，填写时请自行保证类型正确，否则可能导致转换失败；如果未填写，将根据反射获取字段类型，可能会对采集效率产生影响。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><code>yaml     - action: toStr(code, int)</code></p>
+<p>input:<code>json     {       "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",       "code": 200     }</code></p>
+<p>output:<code>json     {       "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",       "code": "200"     }</code></p>
 </div>
 <h3 id="print">print()<a class="headerlink" href="#print" title="Permanent link">&para;</a></h3>
 <p>打印event。一般用于调试阶段使用。</p>
