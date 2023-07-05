@@ -46,7 +46,7 @@ Loggie目前有以下几种CRD：
 在采集容器日志之前，请确保已经在Kubernetes中部署了Loggie DaemonSet。[如何在Kubernetes中部署Loggie？](../../getting-started/install/kubernetes.md)  
 
 !!! info 
-    我们推荐使用DaemonSet的方式采集容器日志，后续Loggie计划支持自动注入Loggie Sidecar的方式采集日志。[RoadMap](../../getting-started/roadmap/roadmap-2022.md)
+    我们推荐使用DaemonSet的方式采集容器日志，Loggie已支持自动注入Loggie Sidecar的方式采集日志。请参考：https://github.com/loggie-io/loggie-operator
 
 
 ### 使用方式

@@ -83,6 +83,7 @@ nav:
         - kafka(franz): reference/pipelines/sink/franzkafka.md
         - loki: reference/pipelines/sink/loki.md
         - pulsar: reference/pipelines/sink/pulsar.md
+        - rocketmq: reference/pipelines/sink/rocketmq.md
         - grpc: reference/pipelines/sink/grpc.md
         - file: reference/pipelines/sink/file.md
         - dev: reference/pipelines/sink/dev.md
