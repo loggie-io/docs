@@ -876,8 +876,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#loggie-sidecar_1" class="md-nav__link">
-    注入Loggie sidecar
+  <a href="#1-loggie-sidecar" class="md-nav__link">
+    方式1: 手动或者通过部署侧注入Loggie sidecar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sidecar" class="md-nav__link">
+    方式2: 自动注入sidecar
   </a>
   
 </li>
@@ -2497,8 +2504,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#loggie-sidecar_1" class="md-nav__link">
-    注入Loggie sidecar
+  <a href="#1-loggie-sidecar" class="md-nav__link">
+    方式1: 手动或者通过部署侧注入Loggie sidecar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sidecar" class="md-nav__link">
+    方式2: 自动注入sidecar
   </a>
   
 </li>
@@ -2534,7 +2548,7 @@
 <p>如下图所示：
 <img alt="" src="../imgs/sidecar-collect.png" /></p>
 <p>Loggie和业务container部署在同一个Pod里，同时需要挂载相同的日志文件volume，另外Loggie的配置可通过configMap的方式挂载到容器中，Loggie根据提供的configMap配置文件，采集容器的日志，并发送到后端。  </p>
-<h2 id="loggie-sidecar_1">注入Loggie sidecar<a class="headerlink" href="#loggie-sidecar_1" title="Permanent link">&para;</a></h2>
+<h2 id="1-loggie-sidecar">方式1: 手动或者通过部署侧注入Loggie sidecar<a class="headerlink" href="#1-loggie-sidecar" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -2647,6 +2661,8 @@
 <p class="admonition-title">Info</p>
 <p>Loggie后续会支持自动Sidecar注入和通过LogConfig自动生成ConfigMap挂载的方式，从而达到和使用DaemonSet一致的体验。  </p>
 </div>
+<h2 id="2-sidecar">方式2: 自动注入sidecar<a class="headerlink" href="#2-sidecar" title="Permanent link">&para;</a></h2>
+<p>请参考：<a href="https://github.com/loggie-io/loggie-operator">https://github.com/loggie-io/loggie-operator</a></p>
 
 
 
