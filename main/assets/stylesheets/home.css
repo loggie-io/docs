@@ -248,7 +248,7 @@ body {
 .features-container ul{
   display: flex !important;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 .features-container ul li{
