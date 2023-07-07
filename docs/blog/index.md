@@ -7,6 +7,27 @@
 
 # Blog
 
+## 尝鲜初体验：使用Loggie和VictoriaLogs快速构建新一代的日志系统
+
+<aside style="font-size: .7rem" markdown>
+<span>:octicons-person-16: [__ethfoo__] &nbsp;</span>
+<span>
+:octicons-calendar-24: 2023-6-28 &nbsp;
+:octicons-clock-24: 20 min read 
+</span>
+</aside>
+
+主要内容包括：
+
+- 当前日志存储的痛点
+- VictoriaLogs的优势
+- 使用Loggie采集日志至VictoriaLogs中
+  
+  [:octicons-arrow-right-24: __Continue reading__](./victorialogs/loggie_victorialogs.md)
+  [__ethfoo__]: https://github.com/ethfoo
+  [网易基于Loggie的云原生大规模日志架构演进]: (./victorialogs/loggie_victorialogs.md)
+
+
 ## 网易基于Loggie的云原生大规模日志架构演进
 
 <aside style="font-size: .7rem" markdown>
