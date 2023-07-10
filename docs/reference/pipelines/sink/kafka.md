@@ -47,6 +47,50 @@
 ```
 可配置`topic: ${fields.topic}`，同样也会发送到topic "loggie"。
 
+## ifRenderTopicFailed
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| ifRenderTopicFailed |   |    非必填  |     | 如果使用动态的规则渲染topic，比如`topic: ${fields.topic}`，有可能渲染失败（比如日志没有fields.topic字段），下面配置指示失败后的动作。 |
+| ifRenderTopicFailed.dropEvent |   |    非必填  |  true   | 默认为丢弃 |
+| ifRenderTopicFailed.ignoreError |   |    非必填  |     | 忽略错误日志，请注意，这里只是不打印错误日志 |
+| ifRenderTopicFailed.defaultTopic |   |    非必填  |     |  发送至该默认的topic，配置后dropEvent不生效 |
+
+!!! example
+    
+    === "1"
+
+        ```yaml
+        sink:
+          type: kafka
+          brokers: ["127.0.0.1:6400"]
+          topic: "log-${fields.topic}"
+          ifRenderTopicFailed:
+            dropEvent: true
+        ```
+
+    === "2"
+
+        ```yaml
+        sink:
+          type: kafka
+          brokers: ["127.0.0.1:6400"]
+          topic: "log-${fields.topic}"
+          ifRenderTopicFailed:
+            ignoreError: true
+            defaultTopic: default
+        ```
+
+## ignoreUnknownTopicOrPartition
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| ignoreUnknownTopicOrPartition |   |    非必填  |     | 用于当发送的topic不存在时，忽略Kafka返回UNKNOWN_TOPIC_OR_PARTITION的报错 |
+
+这种情况一般发生在使用动态渲染的topic，但是环境里的Kafka关闭了自动创建topic，导致无法发送至渲染出来的topic。默认情况Loggie会一直不停的重试，从而无法发送新的日志。
+开启ignoreUnknownTopicOrPartition后，这种情况下会直接丢弃发送的日志，避免影响其他正常包含已存在topic的日志发送。
+请注意和上面`ifRenderTopicFailed`的区别，`ifRenderTopicFailed`是动态渲染不出来topic或者渲染的为空值，而`ignoreUnknownTopicOrPartition`则是渲染成功，但是topic在Kafka中实际不存在。
+
 
 ## balance
 
