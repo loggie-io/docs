@@ -2620,7 +2620,9 @@
 <p>这里我们将其中的sink修改为以下示例：  </p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Aggregator</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Aggregator</label><label for="__tabbed_1_2">Kafka</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loggie.io/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sink</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -2631,7 +2633,7 @@
 <span class="w">    </span><span class="no">host: &quot;loggie-aggregator.loggie-aggregator:6066&quot;</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Kafka</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loggie.io/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sink</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -2642,6 +2644,7 @@
 <span class="w">    </span><span class="no">brokers: [&quot;127.0.0.1:6400&quot;]</span>
 <span class="w">    </span><span class="no">topic: &quot;log-${fields.topic}&quot;</span>
 </code></pre></div>
+</div>
 </div>
 </div>
 </div>

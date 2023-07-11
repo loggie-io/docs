@@ -2912,7 +2912,9 @@
 </table>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">base</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">base</label><label for="__tabbed_1_2">max</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code><span class="nt">interceptors</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normalize</span>
 <span class="w">  </span><span class="nt">processors</span><span class="p">:</span>
@@ -2930,7 +2932,7 @@
 &quot;price&quot;: 13.14
 </code></pre></div></p>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">max</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code><span class="nt">interceptors</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normalize</span>
 <span class="w">  </span><span class="nt">processors</span><span class="p">:</span>
@@ -2947,6 +2949,7 @@
 <div class="highlight"><pre><span></span><code>&quot;time&quot;: &quot;2021-08-08&quot;
 &quot;content&quot;: &quot;U12345 storeCenter 13.14&quot;
 </code></pre></div></p>
+</div>
 </div>
 </div>
 </div>

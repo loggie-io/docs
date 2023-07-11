@@ -2637,7 +2637,9 @@
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">增加<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/timestamp" title="GitHub User: timestamp">@timestamp</a>，body修改为message</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">增加<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/timestamp" title="GitHub User: timestamp">@timestamp</a>，body修改为message</label><label for="__tabbed_1_2">增加_timestamp_，修改时区和格式，body修改为_log_</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">interceptors</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema</span>
 <span class="w">    </span><span class="nt">addMeta</span><span class="p">:</span>
@@ -2654,7 +2656,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">增加_timestamp_，修改时区和格式，body修改为_log_</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">interceptors</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema</span>
 <span class="w">    </span><span class="nt">addMeta</span><span class="p">:</span>
@@ -2666,6 +2668,7 @@
 <span class="w">      </span><span class="nt">body</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_log_</span>
 </code></pre></div>
+</div>
 </div>
 </div>
 </div>

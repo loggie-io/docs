@@ -2564,7 +2564,9 @@
 <p>配置示例如下，具体请参考<a href="../../best-practice/log-process/">日志切分与处理</a>。</p>
 <div class="admonition config">
 <p class="admonition-title">Config</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">interceptor</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">interceptor</label><label for="__tabbed_1_2">clusterLogConfig</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loggie.io/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Interceptor</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -2579,7 +2581,7 @@
 <span class="w">          </span><span class="no">targets: [&quot;body&quot;]</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">clusterLogConfig</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loggie.io/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterLogConfig</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -2595,6 +2597,7 @@
 <span class="w">    </span><span class="nt">interceptorRef</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jsondecode</span>
 <span class="w">    </span><span class="nt">sinkRef</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
 </code></pre></div>
+</div>
 </div>
 </div>
 </div>
