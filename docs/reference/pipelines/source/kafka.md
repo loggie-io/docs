@@ -97,6 +97,6 @@ Kafka source用于接收Kafka数据。
 | ---------- | ----------- | ----------- | --------- | -------- |
 | sasl |   |    非必填    |     | SASL authentication |
 | sasl.type | string  |    必填    |     | SASL类型，可为：`plain`、`scram` |
-| sasl.userName | string  |    必填    |     | 用户名 |
+| sasl.userName | string  |    必填    |     | 用户名，请注意在v1.4和之前使用的名称为`userName`，当然后续版本也对此进行了兼容 |
 | sasl.password | string  |    必填    |     | 密码 |
 | sasl.algorithm | string  |    type=scram时必填    |     | type=scram时使用的算法，可选`sha256`、`sha512` |
