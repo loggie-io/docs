@@ -25,6 +25,9 @@
             algorithm: sha512
         ```
 
+!!! note "支持的Kafka版本"
+    
+    该kafka sink使用的是[segmentio/kafka-go](https://github.com/segmentio/kafka-go)库。当前Loggie使用的库版本为`v0.4.39`，对应版本测试支持的Kafka版本为：[0.10.1.0 - 2.7.1](https://github.com/segmentio/kafka-go/tree/v0.4.39#kafka-versions)
 
 ## brokers
 

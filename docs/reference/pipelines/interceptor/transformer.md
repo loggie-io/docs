@@ -581,11 +581,25 @@ const (
 
 !!! example
 
-    ``yaml     - action: toStr(code, int)     ``
+    ```yaml     
+    - action: toStr(code, int)     
+    ```
 
-    input:``json     {       "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",       "code": 200     }     ``
+    input:
+    ```json
+    {
+      "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",
+      "code": 200
+    }
+    ```
 
-    output:``json     {       "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",       "code": "200"     }     ``
+    output:
+    ```json  
+    {
+      "body": "2021-02-16T09:21:20.545525544Z DEBUG this is log body",
+      "code": "200"
+    }   
+    ```
 
 ### print()
 打印event。一般用于调试阶段使用。

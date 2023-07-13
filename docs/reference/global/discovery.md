@@ -51,15 +51,21 @@
 | dynamicContainerLog | bool  |    非必填    |  false   | 是否开启动态容器日志配置，打开后配置文件不会渲染具体的path和动态fields字段，可以有效避免大规模容器化场景里Pod变动从而导致配置的频繁渲染，显著减少reload次数，特别是在单节点的Pod个数较多和使用clusterlogconfig匹配大量的Pod时。一般建议设置为true。 |
 | kubeletRootDir | string  |    非必填    |  /var/lib/kubelet   | kubelet的root路径 |
 | podLogDirPrefix | string  |    非必填    |  /var/log/pods   | kubernetes默认放置的pod标准输出路径 |
+| hostRootMountPath | string  |    非必填    |    | 使用Loggie直接挂载节点root根目录的模式，部署脚本和升级参考[这里](https://github.com/loggie-io/installation/pull/30/files) |
 | typePodFields | map  |    非必填    |    | 当logconfig/clusterlogconfig里selector为`type: pod`时，自动添加的kubernetes相关元信息，key即为添加的元信息key，value请使用${_k8s.XX}的方式指定，同时支持填写固定值的`key:value`字段 |
 | typeNodeFields | map  |    非必填    |    | 当logconfig/clusterlogconfig里selector为`type: node`时，自动添加的kubernetes相关元信息，key即为添加的元信息key，value请使用${_k8s.XX}的方式指定，同时支持填写固定值的`key:value`字段 |
+| fieldsOmitEmpty | bool  |    非必填    |     | 忽略空值的元信息字段，比如如果event中有logconfig: ""，则整个字段不添加 |
+| defaults |   |    非必填    |     |  |
+| defaults.sinkRef | string  |    非必填    |     | 如果LogConfig/clusterLogConfig中没有配置sinkRef，所有的LogConfig/clusterLogConfig默认使用该sink。  请注意优先级覆盖关系：`logconfig中的sinkRef` 优先于 `default.sinkRef` 优先于 `全局defaults里配置的sink` |
+
 
 ### typePodFields支持的变量
 "${_k8s.XX}"的方式可填写以下参数：
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| ${_k8s.logconfig}| string  |    非必填    |    | 添加logConfig name作为元信息 |
+| ${_k8s.logconfig}| string  |    非必填    |    | 添加LogConfig name作为元信息 |
+| ${_k8s.clusterlogconfig}| string  |    非必填    |    | 添加ClusterLogConfig name作为元信息 |
 | ${_k8s.node.name} | string  |    非必填    |    | 添加所在节点node name作为元信息 |
 | ${_k8s.node.ip} | string  |    非必填    |    | 添加所在节点node ip作为元信息 |
 | ${_k8s.pod.namespace} | string  |    非必填    |    | 添加namespace作为元信息 |
