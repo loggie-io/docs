@@ -207,3 +207,11 @@
 
 
 Kubernetes 挂载keytab二进制证书，请参考[官方文档](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/)。
+
+## partitionKey
+
+|    `字段`   | `类型`   |  `是否必填`  | `默认值` | `含义`            |
+| ---------- |--------| ----------- |-------|-----------------|
+| partitionKey | string |    非必填    | 无     | 控制发送至topic下哪个分区 |
+
+与topic相似，可使用`${a.b}`的方式，获取event里的字段值作为具体的topic名称。

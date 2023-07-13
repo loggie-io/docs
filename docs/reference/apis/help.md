@@ -1,10 +1,13 @@
-# 运维类接口
+# help接口
 
 ## 查询日志采集状态
 
-#### URL
+#### **URL**
 
-GET /api/v1/help/log
+GET
+```bash
+/api/v1/help/log
+```
 
 #### 描述
 
@@ -30,13 +33,13 @@ GET /api/v1/help/log
 |  fdStatus.activeFdCount    | 活跃的fd个数   |   int    |          |
 |  fdStatus.inActiveFdCount    | 不活跃的fd个数   |  int     |          |
 |  fileStatus    | 文件采集状态   |       |          |
-|  fileStatus.pipeline.`<name>`    | 管道状态，对应配置中的pipeline name，参考下面的[pipeline](ops.md#pipeline)参数   |   map    |          |
+|  fileStatus.pipeline.`<name>`    | 管道状态，对应配置中的pipeline name，参考下面的[pipeline](help.md#pipeline)参数   |   map    |          |
 
 ##### pipeline
 
 | 参数名称 | 说明     | 参数类型  | 备注 |
 | -------- | -------- | -------- | -------- |
-|  source.`<name>`    | pipeline中source的状态，参考下面的[source](ops.md#source)参数   |   map    |          |
+|  source.`<name>`    | pipeline中source的状态，参考下面的[source](help.md#source)参数   |   map    |          |
 
 ##### source
 

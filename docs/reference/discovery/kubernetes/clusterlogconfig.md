@@ -95,4 +95,15 @@ Cluster级别CRD，可用于：
 
 ## spec.pipeline
 
-配置和LogConfig一致。
+基本配置和LogConfig一致。
+
+### sources
+在ClusterLogConfig中，`source`新增以下额外的参数：
+
+#### typeNodeFields
+如果当`type: node`时：
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| typeNodeFields | map  |    非必填    |      | 和全局配置discovery.kubernetes中的[typeNodeFields](../../global/discovery.md#typenodefields支持的变量)一样，区别是这里为clusterlogconfig级别生效 |
+

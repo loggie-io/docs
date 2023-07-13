@@ -46,6 +46,8 @@ Concurrency相关配置使用可参照[自适应sink流量控制](../../../user-
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec |   |    非必填    |    | sink发送数据给下游时，数据使用的格式 |
 | codec.type | string  |    非必填    |   json | codec类型 |
+| codec.printEvents | bool  |    非必填    |   json | 是否打印出events到Loggie的日志中，可用于临时排查问题 |
+| codec.pretty | bool  |    非必填    |   json | 打印出events到Loggie的日志中的时候，是否美化展示，仅type:json时生效 |
 
 #### type: json
 
@@ -65,6 +67,21 @@ Concurrency相关配置使用可参照[自适应sink流量控制](../../../user-
       type: dev
       codec:
         type: raw
+    ```
+
+#### printEvents
+
+是否打印出events到Loggie的日志中，可用于临时排查问题。  
+此时无需将当前的sink type修改为dev，更加方便。  
+
+!!! example
+
+    ```yaml
+    sink:
+      type: kafka
+      ...
+      codec:
+        printEvents: true
     ```
 
 ### concurrency

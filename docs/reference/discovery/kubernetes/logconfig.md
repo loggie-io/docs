@@ -106,8 +106,11 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 | ---------- | ----------- | ----------- | --------- | -------- |
 | containerName | string  |    非必填    |      | 表示指定采集的容器名称，建议在Pod里包含多个容器时填写 |
 | excludeContainerPatterns | string数组  |    非必填    |      | 排除的容器名称，使用正则表达式形式 |
+| matchFields | struct  |    非必填    |      | 将Pod中的label等信息加入到fields中作为额外的字段，具体请参考下面[matchFields](./logconfig.md#matchfields) |
+| typePodFields | map  |    非必填    |      | 和全局配置discovery.kubernetes中的[typePodFields](../../global/discovery.md#typepodfields支持的变量)一样，区别是这里为logconfig级别生效 |
 
-#### sources.matchFields
+
+#### matchFields
 非必填, 将Pod中的信息加入到Fields中
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
@@ -116,12 +119,11 @@ namespace级别CRD，表示一个日志采集任务，用于采集Pod容器日�
 | annotationKey | string数组  |    非必填    |      | 和上面labelKey类似，注入的为Pod Annoatation的值，支持配置为"*"的方式获取所有的annotation |
 | env | string数组  |    非必填    |      | 和上面labelKey类似，注入的为Pod Env环境变量的值，支持配置为"*"的方式获取所有的env |
 | reformatKeys |   |    非必填    |      | 重新格式化key |
-| reformatKeys.label | fmt参数数组  |    非必填    |      | 重新格式化label key |
-| reformatKeys.annotation | fmt参数数组  |    非必填    |      |  重新格式化annotation key|
-| reformatKeys.env | fmt参数数组  |    非必填    |      | 重新格式化env key |
+| reformatKeys.label | fmt参数数组  |    非必填    |      | 重新格式化label key，，请参考下文[fmt参数](./logconfig.md#fmt) |
+| reformatKeys.annotation | fmt参数数组  |    非必填    |      |  重新格式化annotation key，请参考下文[fmt参数](./logconfig.md#fmt)|
+| reformatKeys.env | fmt参数数组  |    非必填    |      | 重新格式化env key，，请参考下文[fmt参数](./logconfig.md#fmt) |
 
-
-**fmt参数**
+##### fmt
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |

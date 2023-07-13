@@ -1,6 +1,8 @@
-# kafka
+# franz kafka
 
-Kafka source用于接收Kafka数据。
+使用[franz-go kafka](https://github.com/twmb/franz-go)库消费Kafka。
+
+（本sink和kafka sink的区别一般只在于使用的kafka golang库不同，提供给对franz kafka库有偏好的用户使用）
 
 !!! example
     ```yaml
@@ -66,73 +68,69 @@ Kafka source用于接收Kafka数据。
 - timestamp: 消费时打上的时间戳，格式为RFC3339（"2006-01-02T15:04:05Z07:00"）
 - topic: 消费的topic
 
-## queueCapacity
+## fetchMaxWait
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| queueCapacity | int  |    非必填      |    100  | 内部发送的队列容量 |
+| fetchMaxWait | time.Duration  |    非必填      |   5s   | 在返回之前等待获取响应达到所需的最小字节数的最大时间 |
 
-## minAcceptedBytes
-
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| minAcceptedBytes | int  |    非必填      |    1  | 最小接收的batch字节数 |
-
-## maxAcceptedBytes
+## fetchMaxBytes
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| maxAcceptedBytes | int  |    非必填      |    1e6（1MB)  | 最大接收的消息字节数，如果超过会被truncate，可以设置为一个能容忍的较大的值 |
+| fetchMaxBytes | int  |    非必填      |   50 << 20 （50MiB）   | 获取的最大字节数量 |
 
-## readMaxAttempts
-
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| readMaxAttempts | int  |    非必填      |    3  | 最大的重试次数 |
-
-## maxPollWait
+## fetchMinBytes
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| maxPollWait | time.Duration  |    非必填      |    10s  | 接收的最长等待时间 |
+| fetchMinBytes | int  |    非必填      |   1   | 获取的最小字节数量 |
 
-## readBackoffMin
-
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| readBackoffMin | time.Duration  |    非必填      |    100ms  | 在接收新的消息前，最小的时间间隔 |
-
-## readBackoffMax
+## fetchMaxPartitionBytes
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| readBackoffMax | time.Duration  |    非必填      |    1s  | 在接收新的消息前，最大的时间间隔 |
+| fetchMaxPartitionBytes | int  |    非必填      |  50 << 20 （50MiB）    | 从单个分区获取的最大字节数量 |
 
 ## enableAutoCommit
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| enableAutoCommit | bool  |    非必填      |    false  | 是否开启autoCommit |
+| enableAutoCommit | bool  |    非必填      |   false   | 是否开启自动commit到kafka |
 
 ## autoCommitInterval
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| autoCommitInterval | time.Duration    |    非必填    |  1s   | autoCommit的间隔时间 |
-
+| autoCommitInterval | time.Duration  |    非必填      |   1s   | 自动commit到kafka的时间间隔 |
 
 ## autoOffsetReset
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
 | ---------- | ----------- | ----------- | --------- | -------- |
-| autoOffsetReset | string    |    非必填    | latest  | 没有offset时，初始的offset采用方式，可为`earliest`和`latest` |
+| autoOffsetReset | string  |    非必填      |   latest   | 如果没有对应的offset，则一开始从什么地方消费topic数据，可为：`latest`或者`earliest` |
 
 ## sasl
 
-|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
-| ---------- | ----------- | ----------- | --------- | -------- |
-| sasl |   |    非必填    |     | SASL authentication |
-| sasl.type | string  |    必填    |     | SASL类型，可为：`plain`、`scram` |
-| sasl.usename | string  |    必填    |     | 用户名，请注意在v1.4和之前使用的名称为`userName`，当然后续版本也对此进行了兼容 |
-| sasl.password | string  |    必填    |     | 密码 |
-| sasl.algorithm | string  |    type=scram时必填    |     | type=scram时使用的算法，可选`sha256`、`sha512` |
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  | `含义`                                                                               |
+| ---------- | ----------- | ----------- | --------- |------------------------------------------------------------------------------------|
+| sasl |   |    非必填    |     | SASL authentication                                                                |
+| sasl.enabled            |  bool |    非必填    |   false  | 是否启用                                 |
+| sasl.mechanism | string  |    必填    |     | SASL类型，可为：`PLAIN`、`SCRAM-SHA-256`、`SCRAM-SHA-512`、`GSSAPI`|
+| sasl.username | string  |    必填    |     | 用户名                                                                                |
+| sasl.password | string  |    必填    |     | 密码                                                                                 |
+
+
+## gssapi
+
+| `字段`                           | `类型`   |  `是否必填`  |  `默认值`  | `含义`                                 |
+|--------------------------------|--------| ----------- | --------- |--------------------------------------|
+| sasl.gssapi                    |        |    非必填    |     | SASL authentication                  |
+| sasl.gssapi.authType           | string |    必填    |     | SASL类型，可为：1 使用账号密码、2 使用keytab        |
+| sasl.gssapi.keyTabPath         | string |    必填    |     | keytab 文件路径                          |
+| sasl.gssapi.kerberosConfigPath | string |    必填    |     | kerbeos 文件路径                         |
+| sasl.gssapi.serviceName        | string |    必填    |     | 服务名称                                 |
+| sasl.gssapi.userName           | string |    必填    |     | 用户名                                  |
+| sasl.gssapi.password           | string |    必填    |     | 密码                                   |
+| sasl.gssapi.realm              | string |    必填    |     | 领域                                   |
+| sasl.gssapi.disablePAFXFAST                   | bool   |    type=scram时必填    |     |DisablePAFXFAST 用于将客户端配置为不使用 PA_FX_FAST |

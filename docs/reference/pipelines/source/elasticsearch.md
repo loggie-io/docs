@@ -116,6 +116,25 @@
 | ---------- | ----------- | ----------- | --------- | -------- |
 | size | int  |    非必填    |  100   | 每次请求得到hits返回的个数 |
 
+## sortBy
+
+|    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
+| ---------- | ----------- | ----------- | --------- | -------- |
+| sortBy |   |    必填    |  数组   | 用于查询的排序 |
+| sortBy.fields | string  |    必填    |     | 排序的字段 |
+| sortBy.ascending | bool  |    非必填    |  true   | 是否按照升序排序 |
+
+!!! example
+
+    ```yml
+            sortBy:
+            - fields: "@timestamp"
+              ascending: true
+            - fields: "_id"
+              ascending: true
+    ```
+
+
 ## interval
 
 |    `字段`   |    `类型`    |  `是否必填`  |  `默认值`  |  `含义`  |
