@@ -1,11 +1,9 @@
-# version
-
+# version版本接口
 
 #### **URL**
 
-GET 
 ```bash
-/version
+GET /version
 ```
 
 #### 描述

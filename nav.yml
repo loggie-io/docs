@@ -126,6 +126,8 @@ nav:
       - APIs:
         - help: reference/apis/help.md 
         - version: reference/apis/version.md
+        - config: reference/apis/config.md
+        - registry: reference/apis/registry.md
       
     - 开发手册:
       - 代码贡献: developer-guide/contributing.md
