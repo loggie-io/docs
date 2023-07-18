@@ -2344,11 +2344,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    查询日志采集状态
+  <a href="#apiv1help" class="md-nav__link">
+    /api/v1/help
   </a>
   
-    <nav class="md-nav" aria-label="查询日志采集状态">
+    <nav class="md-nav" aria-label="/api/v1/help">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2359,21 +2359,62 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     描述
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     请求参数
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    返回
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apiv1helplog" class="md-nav__link">
+    /api/v1/help/log
+  </a>
+  
+    <nav class="md-nav" aria-label="/api/v1/help/log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_1" class="md-nav__link">
+    URL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    请求参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     返回参数
   </a>
   
@@ -2421,6 +2462,34 @@
     <li class="md-nav__item">
       <a href="../version/" class="md-nav__link">
         version
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry/" class="md-nav__link">
+        registry
       </a>
     </li>
   
@@ -2635,11 +2704,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    查询日志采集状态
+  <a href="#apiv1help" class="md-nav__link">
+    /api/v1/help
   </a>
   
-    <nav class="md-nav" aria-label="查询日志采集状态">
+    <nav class="md-nav" aria-label="/api/v1/help">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2650,21 +2719,62 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     描述
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     请求参数
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    返回
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apiv1helplog" class="md-nav__link">
+    /api/v1/help/log
+  </a>
+  
+    <nav class="md-nav" aria-label="/api/v1/help/log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_1" class="md-nav__link">
+    URL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    请求参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     返回参数
   </a>
   
@@ -2719,14 +2829,100 @@
 
 
 <h1 id="help">help接口<a class="headerlink" href="#help" title="Permanent link">&para;</a></h1>
-<h2 id="_1">查询日志采集状态<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="apiv1help">/api/v1/help<a class="headerlink" href="#apiv1help" title="Permanent link">&para;</a></h2>
 <h4 id="url"><strong>URL</strong><a class="headerlink" href="#url" title="Permanent link">&para;</a></h4>
-<p>GET
-<div class="highlight"><pre><span></span><code>/api/v1/help/log
-</code></pre></div></p>
-<h4 id="_2">描述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>GET<span class="w"> </span>/api/v1/help
+</code></pre></div>
+<h4 id="_1">描述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>查询该Loggie Agent的内部配置日志采集状态</p>
+<h4 id="_2">请求参数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>pipeline: 查看某个pipelineName的配置和日志采集状态 </li>
+<li>source: 查看某个sourceName的配置和日志采集状态</li>
+<li>status: 可为pending，即只展示正在采集的，比如100%，NaN%和ignored的日志文件，但包括0%的</li>
+</ul>
+<p>示例：</p>
+<p><div class="highlight"><pre><span></span><code>/api/v1/help?pipeline=test&amp;status=pending
+</code></pre></div>
+表示只返回pipeline为test的正在采集的所有日志文件状态</p>
+<h4 id="_3">返回<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>示例如下：</p>
+<div class="highlight"><pre><span></span><code>---------<span class="w"> </span>Usage:<span class="w"> </span>-----------------------
+<span class="p">|</span>---<span class="w"> </span>view<span class="w"> </span>details:<span class="w"> </span>/api/v1/help?detail<span class="o">=</span>&lt;module&gt;,<span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>one<span class="w"> </span>of:<span class="w"> </span>pipeline/log
+<span class="p">|</span>---<span class="w"> </span>query<span class="w"> </span>by<span class="w"> </span>pipeline<span class="w"> </span>name:<span class="w"> </span>/api/v1/help?pipeline<span class="o">=</span>&lt;name&gt;
+<span class="p">|</span>---<span class="w"> </span>query<span class="w"> </span>by<span class="w"> </span><span class="nb">source</span><span class="w"> </span>name:<span class="w"> </span>/api/v1/help?source<span class="o">=</span>&lt;name&gt;
+
+---------<span class="w"> </span>Pipeline<span class="w"> </span>Status:<span class="w"> </span>--------------
+all<span class="w"> </span><span class="m">1</span><span class="w"> </span>pipelines<span class="w"> </span>running
+<span class="w">  </span>*<span class="w"> </span>pipeline:<span class="w"> </span>local,<span class="w"> </span>sources:<span class="w"> </span><span class="o">[</span>demo<span class="o">]</span>
+
+✅<span class="w"> </span>pipeline<span class="w"> </span>configurations<span class="w"> </span>consistency<span class="w"> </span>check<span class="w"> </span>passed
+
+pipelines:
+-<span class="w"> </span>name:<span class="w"> </span><span class="nb">local</span>
+<span class="w">  </span>cleanDataTimeout:<span class="w"> </span>5s
+<span class="w">  </span>queue:
+<span class="w">    </span>type:<span class="w"> </span>channel
+<span class="w">  </span>interceptors:
+<span class="w">  </span>-<span class="w"> </span>name:<span class="w"> </span>global
+<span class="w">    </span>type:<span class="w"> </span>schema
+<span class="w">    </span>addMeta:
+<span class="w">      </span>timestamp:
+<span class="w">        </span>key:<span class="w"> </span><span class="s1">&#39;@timestamp&#39;</span>
+<span class="w">    </span>order:<span class="w"> </span><span class="m">700</span>
+<span class="w">  </span>-<span class="w"> </span>type:<span class="w"> </span>metric
+<span class="w">  </span>-<span class="w"> </span>type:<span class="w"> </span>maxbytes
+<span class="w">  </span>-<span class="w"> </span>type:<span class="w"> </span>retry
+<span class="w">  </span>sources:
+<span class="w">  </span>-<span class="w"> </span>name:<span class="w"> </span>demo
+<span class="w">    </span>type:<span class="w"> </span>file
+<span class="w">    </span>fieldsUnderKey:<span class="w"> </span>fields
+<span class="w">    </span>fields:
+<span class="w">      </span>topic:<span class="w"> </span>loggie
+<span class="w">    </span>paths:
+<span class="w">    </span>-<span class="w"> </span>/tmp/log/*.log
+<span class="w">    </span>watcher:
+<span class="w">      </span>maxOpenFds:<span class="w"> </span><span class="m">6000</span>
+<span class="w">  </span>sink:
+<span class="w">    </span>type:<span class="w"> </span>dev
+<span class="w">    </span>parallelism:<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span>codec:
+<span class="w">      </span>type:<span class="w"> </span>json
+<span class="w">      </span>printEvents:<span class="w"> </span><span class="nb">true</span>
+<span class="w">      </span>pretty:<span class="w"> </span><span class="nb">true</span>
+
+<span class="p">|</span><span class="w"> </span>more<span class="w"> </span>details:
+<span class="p">|</span>---<span class="w"> </span>pipelines<span class="w"> </span>configuration<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>ref:<span class="w"> </span>/api/v1/reload/config
+<span class="p">|</span>---<span class="w"> </span>current<span class="w"> </span>running<span class="w"> </span>pipelines<span class="w"> </span>configuration<span class="w"> </span>ref:<span class="w"> </span>/api/v1/controller/pipelines
+
+---------<span class="w"> </span>Log<span class="w"> </span>Collection<span class="w"> </span>Status:<span class="w"> </span>---------
+
+all<span class="w"> </span>activeFdCount:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>inActiveFdCount:<span class="w"> </span><span class="m">1</span>
+
+&gt;<span class="w"> </span>pipeline<span class="w"> </span>*<span class="w"> </span><span class="nb">source</span><span class="w"> </span>-<span class="w"> </span>filename<span class="w"> </span><span class="p">|</span><span class="w"> </span>progress<span class="o">(</span>offset/size<span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>modify
+<span class="w">  </span>&gt;<span class="w"> </span><span class="nb">local</span>
+<span class="w">    </span>*<span class="w"> </span>demo
+<span class="w">      </span>-<span class="w"> </span>/tmp/log/app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">100</span>.00%<span class="o">(</span><span class="m">189</span>/189<span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">2023</span>-07-17T17:10:33+08:00
+
+<span class="p">|</span><span class="w"> </span>more<span class="w"> </span>details:
+<span class="p">|</span>---<span class="w"> </span>registry<span class="w"> </span>storage<span class="w"> </span>ref:<span class="w"> </span>/api/v1/source/file/registry
+</code></pre></div>
+<ul>
+<li>Pipeline Status</li>
+<li>表示多少pipeline正在运行</li>
+<li><code>pipeline configurations consistency check passed</code>：表示检查磁盘上的pipeline配置和Loggie内存中的是否一致</li>
+<li>pipelines配置：被Loggie最终读取到的配置，包括了全局default字段和默认的字段融合最终的配置</li>
+<li>Log Collection Status</li>
+<li>所有active和inactive的日志文件个数：请注意，这里的active和inactive是Loggie内部判断活跃度的机制，和file source中<a href="../../pipelines/source/file/#maxcontinueread">maxContinueRead</a>，<a href="../../pipelines/source/file/#maxcontinuereadtimeout">maxContinueReadTimeout</a>，<a href="../../pipelines/source/file/#maxeofcount">maxEofCount</a>有关系。比如说一个文件1s打印一条日志，默认配置下其实并不是active。</li>
+<li>日志采集的进度：包括文件路径，采集进度，上次修改时间等</li>
+</ul>
+<h2 id="apiv1helplog">/api/v1/help/log<a class="headerlink" href="#apiv1helplog" title="Permanent link">&para;</a></h2>
+<h4 id="url_1"><strong>URL</strong><a class="headerlink" href="#url_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>GET<span class="w"> </span>/api/v1/help/log
+</code></pre></div>
+<h4 id="_4">描述<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>查询该Loggie Agent的日志采集状态</p>
-<h4 id="_3">请求参数<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<h4 id="_5">请求参数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li>pipeline: 表示只查询某个pipeline的状态</li>
 <li>status: 如果status=pending，表示只返回正在采集的日志文件状态（包括0%），忽略采集进度100%、文件不存在NaN%和ignored状态</li>
@@ -2735,7 +2931,7 @@
 <p><div class="highlight"><pre><span></span><code>/api/v1/help/log?pipeline=test&amp;status=pending
 </code></pre></div>
 表示只返回pipeline为test的正在采集的所有日志文件状态</p>
-<h4 id="_4">返回参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<h4 id="_6">返回参数<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
