@@ -1174,8 +1174,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#loggie-dashboard" class="md-nav__link">
-    Loggie dashboard
+  <a href="#loggie-terminal" class="md-nav__link">
+    Loggie Terminal
   </a>
   
 </li>
@@ -2677,8 +2677,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#loggie-dashboard" class="md-nav__link">
-    Loggie dashboard
+  <a href="#loggie-terminal" class="md-nav__link">
+    Loggie Terminal
   </a>
   
 </li>
@@ -2775,9 +2775,9 @@
 <li>采集日志文件：Loggie会自动Reload然后读取配置文件，然后根据配置发送相应的日志数据到下游服务</li>
 </ol>
 <p>（针对非Kubernetes的主机场景，只是少了LogConfig CRD配置下发的步骤，其余类似）</p>
-<h2 id="loggie-dashboard">Loggie dashboard<a class="headerlink" href="#loggie-dashboard" title="Permanent link">&para;</a></h2>
+<h2 id="loggie-terminal">Loggie Terminal<a class="headerlink" href="#loggie-terminal" title="Permanent link">&para;</a></h2>
 <p>在Kubernetes的场景下，目前Loggie提供了一个基于terminal的可交互式dashboard，可以更好的帮助我们便捷的排查问题。</p>
-<p><strong>进入dashboard</strong></p>
+<p><strong>进入Terminal</strong></p>
 <ul>
 <li>
 <p>找到任意一个Loggie Pod
@@ -2785,13 +2785,8 @@
 </code></pre></div></p>
 </li>
 <li>
-<p>进入其中一个Loggie Pod
-<div class="highlight"><pre><span></span><code>kubectl -nloggie exec -it ${podName} bash
-</code></pre></div></p>
-</li>
-<li>
-<p>运行dashboard
-<div class="highlight"><pre><span></span><code>./loggie inspect
+<p>进入其中一个Loggie Pod并执行loggie inspect子命令进入terminal
+<div class="highlight"><pre><span></span><code>kubectl -nloggie exec -it ${podName} -- ./loggie inspect
 </code></pre></div></p>
 </li>
 </ul>
