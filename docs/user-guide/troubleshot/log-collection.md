@@ -16,24 +16,19 @@
 
 （针对非Kubernetes的主机场景，只是少了LogConfig CRD配置下发的步骤，其余类似）
 
-## Loggie dashboard
+## Loggie Terminal
 在Kubernetes的场景下，目前Loggie提供了一个基于terminal的可交互式dashboard，可以更好的帮助我们便捷的排查问题。
 
-**进入dashboard**
+**进入Terminal**
 
 - 找到任意一个Loggie Pod
 ```
 kubectl -nloggie get po -owide
 ```
 
-- 进入其中一个Loggie Pod
+- 进入其中一个Loggie Pod并执行loggie inspect子命令进入terminal
 ```
-kubectl -nloggie exec -it ${podName} bash
-```
-
-- 运行dashboard
-```
-./loggie inspect
+kubectl -nloggie exec -it ${podName} -- ./loggie inspect
 ```
 
 **使用terminal**
