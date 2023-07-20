@@ -21,6 +21,13 @@
 
 **进入Terminal**
 
+找到任意一个Loggie Pod并执行loggie inspect:
+```
+kubectl -nloggie exec -it $(kubectl -nloggie get po -oname|head -n1|cut -d/ -f2) -- ./loggie inspect
+```
+
+或者，  
+如果你记不住以上命令，可以：
 - 找到任意一个Loggie Pod
 ```
 kubectl -nloggie get po -owide
