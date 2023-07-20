@@ -2778,17 +2778,18 @@
 <h2 id="loggie-terminal">Loggie Terminal<a class="headerlink" href="#loggie-terminal" title="Permanent link">&para;</a></h2>
 <p>在Kubernetes的场景下，目前Loggie提供了一个基于terminal的可交互式dashboard，可以更好的帮助我们便捷的排查问题。</p>
 <p><strong>进入Terminal</strong></p>
-<ul>
-<li>
-<p>找到任意一个Loggie Pod
+<p>找到任意一个Loggie Pod并执行loggie inspect:
+<div class="highlight"><pre><span></span><code>kubectl -nloggie exec -it $(kubectl -nloggie get po -oname|head -n1|cut -d/ -f2) -- ./loggie inspect
+</code></pre></div></p>
+<p>或者，<br />
+如果你记不住以上命令，可以：
+- 找到任意一个Loggie Pod
 <div class="highlight"><pre><span></span><code>kubectl -nloggie get po -owide
 </code></pre></div></p>
-</li>
-<li>
-<p>进入其中一个Loggie Pod并执行loggie inspect子命令进入terminal
+<ul>
+<li>进入其中一个Loggie Pod并执行loggie inspect子命令进入terminal
 <div class="highlight"><pre><span></span><code>kubectl -nloggie exec -it ${podName} -- ./loggie inspect
-</code></pre></div></p>
-</li>
+</code></pre></div></li>
 </ul>
 <p><strong>使用terminal</strong></p>
 <p>terminal首页展示示例如下所示：
