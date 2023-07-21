@@ -46,8 +46,8 @@ Concurrency相关配置使用可参照[自适应sink流量控制](../../../user-
 | ---------- | ----------- | ----------- | --------- | -------- |
 | codec |   |    非必填    |    | sink发送数据给下游时，数据使用的格式 |
 | codec.type | string  |    非必填    |   json | codec类型 |
-| codec.printEvents | bool  |    非必填    |   json | 是否打印出events到Loggie的日志中，可用于临时排查问题 |
-| codec.pretty | bool  |    非必填    |   json | 打印出events到Loggie的日志中的时候，是否美化展示，仅type:json时生效 |
+| codec.printEvents | bool  |    非必填    |  false  | 是否打印出events到Loggie的日志中，可用于临时排查问题 |
+| codec.pretty | bool  |    非必填    |   false | 打印出events到Loggie的日志中的时候，是否美化展示，仅type:json时生效，请注意，如果是发送到Elasticsearch等下游，请勿使用pretty，会导致发送异常 |
 
 #### type: json
 
