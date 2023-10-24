@@ -16,7 +16,7 @@
     === "SASL认证"
         ```yaml
         sink:
-          type: kafka
+          type: franzKafka
           brokers: ["127.0.0.1:6400"]
           topic: "demo"
           sasl:
