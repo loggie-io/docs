@@ -31,6 +31,31 @@ Cluster级别CRD，可用于：
 ## spec.selector
 表示Pipeline配置适用的范围
 
+
+## spec.namespaceSelector
+技术提供方：[<img src="https://www.eoitek.com/static/image/eoiicon.ico" height="18px"/>擎创科技](https://www.eoitek.com/)
+
+表示匹配指定命名空间下的全部POD
+
+  !!! example
+    ```yaml
+      namespaceSelector:
+      - test1
+      - test2
+    ```
+
+## spec.excludeNamespaceSelector
+技术提供方：[<img src="https://www.eoitek.com/static/image/eoiicon.ico" height="18px"/>擎创科技](https://www.eoitek.com/)
+
+表示排除指定命名空间下的全部POD
+
+!!! example
+    ```yaml
+      excludeNamespaceSelector:
+      - test1
+      - test2
+    ```
+
 ### type: pod
 通过Pipeline配置选择一批Pod进行日志采集
 
@@ -83,6 +108,50 @@ Cluster级别CRD，可用于：
           
     ```
     表示将配置的Pipelines下发至`cluster`为aggregator的Loggie集群。
+
+### type: workload
+
+技术提供方：[<img src="https://www.eoitek.com/static/image/eoiicon.ico" height="18px"/>擎创科技](https://www.eoitek.com/)
+
+通过Pipeline配置选择一批负载进行日志采集
+
+| `字段` | `类型`  | `是否必填` |  `默认值`  |  `含义`  |
+|------|-------|-----| --------- | -------- |
+| type | array | 非必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
+| nameSelector | array   | 必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
+| namespaceSelector | array   | 必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
+| excludeNamespaceSelector | array   | 必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
+
+
+!!! example
+
+    ```yaml
+    apiVersion: loggie.io/v1beta1
+    kind:  ClusterLogConfig
+    metadata:
+        name: globalstdout
+    spec:
+        selector:
+            type: workload
+        workload_selector:
+          - type:
+              - Deployment
+            nameSelector:
+              - default1
+              - default2
+            nameSpaceSelector:
+              - default1
+              - default2
+
+        pipeline:
+            sources: |
+              - type: file
+                name: stdout
+                paths:
+                  - stdout
+                sinkRef: default
+    ```
+    表示采集default1和default2的Deployment下名字为default1和default2的所有Pod的日志。
 
 
 ### cluster
