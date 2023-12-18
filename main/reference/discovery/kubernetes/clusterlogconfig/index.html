@@ -1460,7 +1460,21 @@
     spec.selector
   </a>
   
-    <nav class="md-nav" aria-label="spec.selector">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specnamespaceselector" class="md-nav__link">
+    spec.namespaceSelector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specexcludenamespaceselector" class="md-nav__link">
+    spec.excludeNamespaceSelector
+  </a>
+  
+    <nav class="md-nav" aria-label="spec.excludeNamespaceSelector">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1480,6 +1494,13 @@
           <li class="md-nav__item">
   <a href="#type-cluster" class="md-nav__link">
     type: cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-workload" class="md-nav__link">
+    type: workload
   </a>
   
 </li>
@@ -2680,7 +2701,21 @@
     spec.selector
   </a>
   
-    <nav class="md-nav" aria-label="spec.selector">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specnamespaceselector" class="md-nav__link">
+    spec.namespaceSelector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specexcludenamespaceselector" class="md-nav__link">
+    spec.excludeNamespaceSelector
+  </a>
+  
+    <nav class="md-nav" aria-label="spec.excludeNamespaceSelector">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2700,6 +2735,13 @@
           <li class="md-nav__item">
   <a href="#type-cluster" class="md-nav__link">
     type: cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-workload" class="md-nav__link">
+    type: workload
   </a>
   
 </li>
@@ -2801,6 +2843,24 @@
 </div>
 <h2 id="specselector">spec.selector<a class="headerlink" href="#specselector" title="Permanent link">&para;</a></h2>
 <p>表示Pipeline配置适用的范围</p>
+<h2 id="specnamespaceselector">spec.namespaceSelector<a class="headerlink" href="#specnamespaceselector" title="Permanent link">&para;</a></h2>
+<p>技术提供方：<a href="https://www.eoitek.com/"><img src="https://www.eoitek.com/static/image/eoiicon.ico" height="18px"/>擎创科技</a></p>
+<p>表示匹配指定命名空间下的全部POD</p>
+<p>!!! example
+    <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">namespaceSelector</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test2</span>
+</code></pre></div></p>
+<h2 id="specexcludenamespaceselector">spec.excludeNamespaceSelector<a class="headerlink" href="#specexcludenamespaceselector" title="Permanent link">&para;</a></h2>
+<p>技术提供方：<a href="https://www.eoitek.com/"><img src="https://www.eoitek.com/static/image/eoiicon.ico" height="18px"/>擎创科技</a></p>
+<p>表示排除指定命名空间下的全部POD</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">excludeNamespaceSelector</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test2</span>
+</code></pre></div>
+</div>
 <h3 id="type-pod">type: pod<a class="headerlink" href="#type-pod" title="Permanent link">&para;</a></h3>
 <p>通过Pipeline配置选择一批Pod进行日志采集</p>
 <table>
@@ -2879,6 +2939,79 @@
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster</span>
 </code></pre></div>
 表示将配置的Pipelines下发至<code>cluster</code>为aggregator的Loggie集群。</p>
+</div>
+<h3 id="type-workload">type: workload<a class="headerlink" href="#type-workload" title="Permanent link">&para;</a></h3>
+<p>技术提供方：<a href="https://www.eoitek.com/"><img src="https://www.eoitek.com/static/image/eoiicon.ico" height="18px"/>擎创科技</a></p>
+<p>通过Pipeline配置选择一批负载进行日志采集</p>
+<table>
+<thead>
+<tr>
+<th><code>字段</code></th>
+<th><code>类型</code></th>
+<th><code>是否必填</code></th>
+<th><code>默认值</code></th>
+<th><code>含义</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>array</td>
+<td>非必填</td>
+<td></td>
+<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+</tr>
+<tr>
+<td>nameSelector</td>
+<td>array</td>
+<td>必填</td>
+<td></td>
+<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+</tr>
+<tr>
+<td>namespaceSelector</td>
+<td>array</td>
+<td>必填</td>
+<td></td>
+<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+</tr>
+<tr>
+<td>excludeNamespaceSelector</td>
+<td>array</td>
+<td>必填</td>
+<td></td>
+<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loggie.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ClusterLogConfig</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">globalstdout</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workload</span>
+<span class="w">    </span><span class="nt">workload_selector</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="w">        </span><span class="nt">nameSelector</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default1</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default2</span>
+<span class="w">        </span><span class="nt">nameSpaceSelector</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default1</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default2</span>
+
+<span class="w">    </span><span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">sources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">- type: file</span>
+<span class="w">            </span><span class="no">name: stdout</span>
+<span class="w">            </span><span class="no">paths:</span>
+<span class="w">              </span><span class="no">- stdout</span>
+<span class="w">            </span><span class="no">sinkRef: default</span>
+</code></pre></div>
+表示采集default1和default2的Deployment下名字为default1和default2的所有Pod的日志。</p>
 </div>
 <h3 id="cluster">cluster<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h3>
 <table>
