@@ -115,12 +115,12 @@ Cluster级别CRD，可用于：
 
 通过Pipeline配置选择一批负载进行日志采集
 
-| `字段` | `类型`  | `是否必填` |  `默认值`  |  `含义`  |
-|------|-------|-----| --------- | -------- |
-| type | array | 非必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
-| nameSelector | array   | 必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
-| namespaceSelector | array   | 必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
-| excludeNamespaceSelector | array   | 必填  |      | 通过该label来匹配Pods，支持使用`*`来匹配所有的value，比如`app: *` |
+| `字段` | `类型`  | `是否必填` |  `默认值`  | `含义`                                                    |
+|------|-------|--------| --------- |---------------------------------------------------------|
+| type | array | 非必填    |      | 目前支持Deployment、DaemonSet、CronJob、Job、StatefulSet，不写就是全部 |
+| nameSelector | array | 非必填    |      | 负载名字，不写就是全部                                             |
+| namespaceSelector | array | 非必填    |      | 命名空间，只匹配指定命名空间下的负载，不写就是全部                               |
+| excludeNamespaceSelector | array   | 非必填     |      | 排除一部分命名空间                                               |
 
 
 !!! example
