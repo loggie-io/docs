@@ -2959,28 +2959,28 @@
 <td>array</td>
 <td>非必填</td>
 <td></td>
-<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+<td>目前支持Deployment、DaemonSet、CronJob、Job、StatefulSet，不写就是全部</td>
 </tr>
 <tr>
 <td>nameSelector</td>
 <td>array</td>
-<td>必填</td>
+<td>非必填</td>
 <td></td>
-<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+<td>负载名字，不写就是全部</td>
 </tr>
 <tr>
 <td>namespaceSelector</td>
 <td>array</td>
-<td>必填</td>
+<td>非必填</td>
 <td></td>
-<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+<td>命名空间，只匹配指定命名空间下的负载，不写就是全部</td>
 </tr>
 <tr>
 <td>excludeNamespaceSelector</td>
 <td>array</td>
-<td>必填</td>
+<td>非必填</td>
 <td></td>
-<td>通过该label来匹配Pods，支持使用<code>*</code>来匹配所有的value，比如<code>app: *</code></td>
+<td>排除一部分命名空间</td>
 </tr>
 </tbody>
 </table>
