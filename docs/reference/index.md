@@ -35,11 +35,6 @@ Loggie的配置主要分为两类：
       defaults:
         sink:
           type: dev
-        sources:
-          - type: file
-            watcher:
-              cleanFiles:
-                maxHistory: 1
       http:
         enabled: true
         port: 9196
