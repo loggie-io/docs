@@ -5,16 +5,33 @@
 （本sink和kafka sink的区别一般只在于使用的kafka golang库不同，提供给对franz kafka库有偏好的用户使用）
 
 !!! example
-    ```yaml
-    sources:
-    - type: kafka
-      brokers: ["kafka1.kafka.svc:9092"]
-      topic: log-*
-    ```
 
-!!! note "支持的Kafka版本"
-    
-    该kafka sink使用的是[segmentio/kafka-go](https://github.com/segmentio/kafka-go)库。当前Loggie使用的库版本为`v0.4.39`，对应版本测试支持的Kafka版本为：[0.10.1.0 - 2.7.1](https://github.com/segmentio/kafka-go/tree/v0.4.39#kafka-versions)
+简单
+``` yaml
+    sources:
+    - type: franzKafka
+      brokers: ["127.0.0.1:9092"]
+      topic: log-*
+``` 
+SASL+TLS认证
+```yaml
+    sources:
+    - type: franzKafka
+      brokers: ["127.0.0.1:9092"]
+      topic: log-*
+      tls:
+        enabled: true
+        caCertFiles: /data/ca.crt
+        endpIdentAlgo: false
+      sasl:
+        enabled: true
+        mechanism: SCRAM-SHA-256
+        username: admin
+        password: admin
+
+```
+
+
 
 
 ## brokers
@@ -119,6 +136,16 @@
 | sasl.mechanism | string  |    必填    |     | SASL类型，可为：`PLAIN`、`SCRAM-SHA-256`、`SCRAM-SHA-512`、`GSSAPI`|
 | sasl.username | string  |    必填    |     | 用户名                                                                                |
 | sasl.password | string  |    必填    |     | 密码                                                                                 |
+
+## tls
+
+| `字段`                   | `类型`   |  `是否必填`  |  `默认值`  | `含义`                  |
+|------------------------|--------| ----------- | --------- |-----------------------|
+| tls.enabled            |  bool      |    非必填    |   false  | 是否启用                  |
+| tls.caCertFiles        |    string    |    非必填    |     | 证书文件路径                  |
+| tls.clientCertFile     | string |    必填    |     | SASL类型，可为：`客户端cert文件` |
+| tls.clientKeyFile     | string |    必填    |     | SASL类型，可为：`客户端key文件`  |
+| tls.endpIdentAlgo          | bool   |    type=scram时必填    |     | 客户端是否验证服务端的证书名字       |
 
 
 ## gssapi
